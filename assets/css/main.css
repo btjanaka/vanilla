@@ -392,9 +392,9 @@ footer a:hover { color: #fff; text-decoration: underline; }
 
 .post-link { display: block; font-size: 42px; }
 
-.profile img { box-shadow: 0 0 5px #828282; width: 230px; margin: 5px 0px 5px 15px; display: inline; float: right; }
+.profile img.profile { box-shadow: 0 0 5px #828282; width: 230px; margin: 5px 0px 5px 15px; display: inline; float: right; }
 
-@media screen and (max-width: 48em) { .profile img { width: 230px; margin: 0px auto 25px auto; display: block; float: none; } }
+@media screen and (max-width: 48em) { .profile img.profile { width: 230px; margin: 0px auto 25px auto; display: block; float: none; } }
 .address { font-weight: bold; }
 .address p { margin: 0; }
 
