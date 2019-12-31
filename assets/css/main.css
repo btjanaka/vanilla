@@ -338,7 +338,7 @@ body { box-sizing: border-box; -moz-box-sizing: border-box; -webkit-box-sizing: 
 
 .right { float: right; }
 
-.site-header { border-bottom: 1px solid #e8e8e8; background-color: #fff; opacity: 0.95; position: fixed; left: calc((100vw - 100%) / 2); top: 0px; width: 100%; z-index: 50; }
+.site-header { border-bottom: 1px solid #e8e8e8; background-color: #fff; position: fixed; left: calc((100vw - 100%) / 2); top: 0px; width: 100%; z-index: 50; }
 
 .site-title { font-size: 20px; line-height: 56px; letter-spacing: -1px; margin-bottom: 0; }
 
@@ -391,6 +391,8 @@ footer a:hover { color: #fff; text-decoration: underline; }
 .post-meta { color: #828282; font-size: 0.875rem; margin-bottom: 0px; }
 
 .post-link { display: block; font-size: 42px; }
+
+.post h2 { margin-top: 0px; padding-top: 40px; }
 
 .profile img.profile { box-shadow: 0 0 5px #828282; width: 230px; margin: 5px 0px 5px 15px; display: inline; float: right; }
 
@@ -532,6 +534,12 @@ article a:hover, .news a:hover { text-decoration: underline; }
 .social a:hover { color: #e62020; }
 
 .measure { margin: 0 auto; max-width: 42rem; }
+
+#markdown-toc::before { content: "Contents"; font-weight: bold; display: block; text-align: center; margin: 5px auto 1px auto; }
+
+#markdown-toc ol { margin-bottom: 0px; }
+
+#markdown-toc { border: 1px solid #ccc; padding: 10px 30px; list-style: decimal; display: inline-block; margin: 10px 0px; }
 
 .social-icons-left, .social-icons-right { text-align: center; float: none; }
 
