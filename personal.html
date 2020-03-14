@@ -1,10 +1,10 @@
 <!DOCTYPE html><html lang="en">
   <head><meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"><title>404 - Bryon Tjanaka</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"><title>Personal - Bryon Tjanaka</title>
 
 <meta name="description" content="Computer Science @ UCI">
-<link rel="canonical" href="/404.html"><link rel="alternate" type="application/rss+xml" title="Bryon Tjanaka" href="/feed.xml"><!-- start favicons snippet, use https://realfavicongenerator.net/ -->
+<link rel="canonical" href="/personal.html"><link rel="alternate" type="application/rss+xml" title="Bryon Tjanaka" href="/feed.xml"><!-- start favicons snippet, use https://realfavicongenerator.net/ -->
 <link rel="apple-touch-icon" sizes="180x180" href="/assets/favicon/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon/favicon-16x16.png">
@@ -259,7 +259,7 @@
 </head>
   <body>
     <div class="root" data-is-touch="false">
-      <div class="layout--page js-page-root"><div class="page__main js-page-main page__viewport cell cell--auto">
+      <div class="layout--page js-page-root"><div class="page__main js-page-main page__viewport has-aside cell cell--auto">
 
       <div class="page__main-inner"><div class="page__header d-print-none"><header class="header"><div class="main">
       <div class="header__title">
@@ -445,24 +445,610 @@
   </g>
 </svg>
 <a title="Computer Science @ UCI" href="/">Bryon Tjanaka</a></div><button class="button button--secondary button--circle search-button js-search-toggle"><i class="fas fa-search"></i></button></div><nav class="navigation">
-        <ul><li class="navigation__item"><a href="/projects.html">Projects</a></li><li class="navigation__item"><a href="/blog.html">Blog</a></li><li class="navigation__item"><a href="/personal.html">Personal</a></li><li class="navigation__item"><a href="/archive.html">Archive</a></li><li><button class="button button--secondary button--circle search-button js-search-toggle"><i class="fas fa-search"></i></button></li></ul>
+        <ul><li class="navigation__item"><a href="/projects.html">Projects</a></li><li class="navigation__item"><a href="/blog.html">Blog</a></li><li class="navigation__item navigation__item--active"><a href="/personal.html">Personal</a></li><li class="navigation__item"><a href="/archive.html">Archive</a></li><li><button class="button button--secondary button--circle search-button js-search-toggle"><i class="fas fa-search"></i></button></li></ul>
       </nav></div>
   </header>
 </div><div class="page__content"><div class ="main"><div class="grid grid--reverse">
 
-              <div class="col-aside d-print-none js-col-aside"></div>
+              <div class="col-aside d-print-none js-col-aside"><aside class="page__aside js-page-aside"><div class="toc-aside js-toc-root"></div></aside></div>
 
               <div class="col-main cell cell--auto"><!-- start custom main top snippet -->
 
-<!-- end custom main top snippet --><article itemscope itemtype="http://schema.org/WebPage"><header style="display:none;"><h1>404</h1></header><meta itemprop="headline" content="404"><meta itemprop="author" content="Bryon Tjanaka"/><div class="js-article-content"><div class="layout--404">
-  <div class="sign">
-    <h1>404</h1>
-    <p>Page not found</p>
+<!-- end custom main top snippet --><article itemscope itemtype="http://schema.org/Article"><div class="article__header"><header><h1>Personal</h1></header></div><meta itemprop="headline" content="Personal"><meta itemprop="author" content="Bryon Tjanaka"/><div class="js-article-content"><div class="layout--article"><!-- start custom article top snippet -->
+
+<!-- end custom article top snippet --><div class="article__content" itemprop="articleBody"><h2 id="graphic-design">Graphic Design</h2>
+
+<p>I typically use <a href="https://inkscape.org">Inkscape</a> to draw these. Refer to this
+<a href="https://github.com/btjanaka/art">GitHub repo</a> for the sources.</p>
+
+<div class="swiper swiper-graphic-design">
+  <div class="swiper__wrapper">
+    
+      <div class="swiper__slide">
+        <img class="image image--full" alt="Mountain explorer (Guess Who?)" title="Mountain explorer (Guess Who?)" src="/assets/img/graphic-design/mountain-explorer-blue.png" />
+      </div>
+    
+      <div class="swiper__slide">
+        <img class="image image--vertical" alt="A hero holding up a sword" title="A hero holding up a sword" src="/assets/img/graphic-design/hero-drawing.png" />
+      </div>
+    
+      <div class="swiper__slide">
+        <img class="image image--full" alt="An explosion?" title="An explosion?" src="/assets/img/graphic-design/explosion-drawing.png" />
+      </div>
+    
+      <div class="swiper__slide">
+        <img class="image image--full" alt="Perspective drawing of a tower" title="Perspective drawing of a tower" src="/assets/img/graphic-design/tower-drawing.png" />
+      </div>
+    
   </div>
+  <div class="swiper__button swiper__button--prev fas fa-chevron-left"></div>
+  <div class="swiper__button swiper__button--next fas fa-chevron-right"></div>
 </div>
 
+<script>(function() {
+  var SOURCES = window.TEXT_VARIABLES.sources;
+  window.Lazyload.js(SOURCES.jquery, function() {
+    function swiper(options) {
+      var $window = $(window), $root = this, $swiperWrapper, $swiperSlides, $swiperButtonPrev, $swiperButtonNext,
+        initialSlide, animation, onChange, onChangeEnd,
+        rootWidth, count, preIndex, curIndex, translateX, CRITICAL_ANGLE = Math.PI / 3;
 
-</div><section class="page__comments d-print-none"></section></article><!-- start custom main bottom snippet -->
+      function setOptions(options) {
+        var _options = options || {};
+        initialSlide = _options.initialSlide || 0;
+        animation = _options.animation === undefined && true;
+        onChange = onChange || _options.onChange;
+        onChangeEnd = onChangeEnd || _options.onChangeEnd;
+      }
+
+      function init() {
+        $swiperWrapper = $root.find('.swiper__wrapper');
+        $swiperSlides = $root.find('.swiper__slide');
+        $swiperButtonPrev = $root.find('.swiper__button--prev');
+        $swiperButtonNext = $root.find('.swiper__button--next');
+        animation && $swiperWrapper.addClass('swiper__wrapper--animation');
+        calc(true);
+      }
+
+      function preCalc() {
+        rootWidth = $root.width();
+        count = $swiperWrapper.children('.swiper__slide').length;
+        if (count < 2) {
+          $swiperButtonPrev.addClass('d-none');
+          $swiperButtonNext.addClass('d-none');
+        }
+        curIndex = initialSlide || 0;
+        translateX = getTranslateXFromCurIndex();
+      }
+
+      var calc = (function() {
+        var preAnimation, $swiperSlide, $preSwiperSlide;
+        return function (needPreCalc, params) {
+          needPreCalc && preCalc();
+          var _animation = (params && params.animation !== undefined) ? params.animation : animation;
+          if (preAnimation === undefined || preAnimation !== _animation) {
+            preAnimation = _animation ? $swiperWrapper.addClass('swiper__wrapper--animation') :
+              $swiperWrapper.removeClass('swiper__wrapper--animation');
+          }
+          if (preIndex !== curIndex) {
+            ($preSwiperSlide = $swiperSlides.eq(preIndex)).removeClass('active');
+            ($swiperSlide = $swiperSlides.eq(curIndex)).addClass('active');
+            onChange && onChange(curIndex, $swiperSlides.eq(curIndex), $swiperSlide, $preSwiperSlide);
+            if (onChangeEnd) {
+              if (_animation) {
+                setTimeout(function() {
+                  onChangeEnd(curIndex, $swiperSlides.eq(curIndex), $swiperSlide, $preSwiperSlide);
+                }, 400);
+              } else {
+                onChangeEnd(curIndex, $swiperSlides.eq(curIndex), $swiperSlide, $preSwiperSlide);
+              }
+            }
+            preIndex = curIndex;
+          }
+          $swiperWrapper.css('transform', 'translate(' + translateX + 'px, 0)');
+          if (count > 1) {
+            if (curIndex <= 0) {
+              $swiperButtonPrev.addClass('disabled');
+            } else {
+              $swiperButtonPrev.removeClass('disabled');
+            }
+            if (curIndex >= count - 1) {
+              $swiperButtonNext.addClass('disabled');
+            } else {
+              $swiperButtonNext.removeClass('disabled');
+            }
+          }
+        };
+      })();
+
+      function getTranslateXFromCurIndex() {
+        return curIndex <= 0 ? 0 : - rootWidth * curIndex;
+      }
+
+      function moveToIndex(index ,params) {
+        preIndex = curIndex;
+        curIndex = index;
+        translateX = getTranslateXFromCurIndex();
+        calc(false, params);
+      }
+
+      function move(type) {
+        var nextIndex = curIndex, unstableTranslateX;
+        if (type === 'prev') {
+          nextIndex > 0 && nextIndex--;
+        } else if (type === 'next') {
+          nextIndex < count - 1 && nextIndex++;
+        }
+        if (type === 'cur') {
+          moveToIndex(curIndex, { animation: true });
+          return;
+        }
+        unstableTranslateX = translateX % rootWidth !== 0;
+        if (nextIndex !== curIndex || unstableTranslateX) {
+          unstableTranslateX ? moveToIndex(nextIndex, { animation: true }) : moveToIndex(nextIndex);
+        }
+      }
+
+      setOptions(options);
+      init();
+      preIndex = curIndex;
+
+      $swiperButtonPrev.on('click', function(e) {
+        e.stopPropagation();
+        move('prev');
+      });
+      $swiperButtonNext.on('click', function(e) {
+        e.stopPropagation();
+        move('next');
+      });
+      $window.on('resize', function() {
+        calc(true, { animation: false });
+      });
+
+      (function() {
+        var pageX, pageY, velocityX, preTranslateX = translateX, timeStamp, touching;
+        function handleTouchstart(e) {
+          var point = e.touches ? e.touches[0] : e;
+          pageX = point.pageX;
+          pageY = point.pageY;
+          velocityX = 0;
+          preTranslateX = translateX;
+        }
+        function handleTouchmove(e) {
+          if (e.touches && e.touches.length > 1) {
+            return;
+          }
+          var point = e.touches ? e.touches[0] : e;
+          var deltaX = point.pageX - pageX;
+          var deltaY = point.pageY - pageY;
+          velocityX = deltaX / (e.timeStamp - timeStamp);
+          timeStamp = e.timeStamp;
+          if (e.cancelable && Math.abs(Math.atan(deltaY / deltaX)) < CRITICAL_ANGLE) {
+            touching = true;
+            translateX += deltaX;
+            calc(false, { animation: false });
+          }
+          pageX = point.pageX;
+          pageY = point.pageY;
+        }
+        function handleTouchend() {
+          touching = false;
+          var deltaX = translateX - preTranslateX;
+          var distance = deltaX + velocityX * rootWidth;
+          if (Math.abs(distance) > rootWidth / 2) {
+            distance > 0 ? move('prev') : move('next');
+          } else {
+            move('cur');
+          }
+        }
+        $swiperWrapper.on('touchstart', handleTouchstart);
+        $swiperWrapper.on('touchmove', handleTouchmove);
+        $swiperWrapper.on('touchend', handleTouchend);
+        $swiperWrapper.on('touchcancel', handleTouchend);
+
+        (function() {
+          var pressing = false, moved = false;
+          $swiperWrapper.on('mousedown', function(e) {
+            pressing = true; handleTouchstart(e);
+          });
+          $swiperWrapper.on('mousemove', function(e) {
+            pressing && (e.preventDefault(), moved = true, handleTouchmove(e));
+          });
+          $swiperWrapper.on('mouseup', function(e) {
+            pressing && (pressing = false, handleTouchend(e));
+          });
+          $swiperWrapper.on('mouseleave', function(e) {
+            pressing && (pressing = false, handleTouchend(e));
+          });
+          $swiperWrapper.on('click', function(e) {
+            moved && (e.stopPropagation(), moved = false);
+          });
+        })();
+
+        $root.on('touchmove', function(e) {
+          if (e.cancelable & touching) {
+            e.preventDefault();
+          }
+        });
+      })();
+
+      return {
+        setOptions: setOptions,
+        previous: function(){
+          move('prev');
+        },
+        next: function(){
+          move('next');
+        },
+        refresh: function() {
+          calc(true, { animation: false });
+        }
+      };
+    }
+    $.fn.swiper = swiper;
+  });
+})();
+var SOURCES = window.TEXT_VARIABLES.sources;
+window.Lazyload.js(SOURCES.jquery, function() {
+  $('.swiper-graphic-design').swiper();
+});
+</script>
+
+<h2 id="drone">Drone</h2>
+
+<p>Filmed with a <a href="https://www.dji.com/spark">DJI Spark</a>.</p>
+
+<div><div class="extensions extensions--video">
+  <iframe class="extensions--youtube-video" src="https://www.youtube.com/embed/ocbqDGYMGUA" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe>
+</div>
+</div>
+
+<h2 id="modular-origami">Modular Origami</h2>
+
+<p>Each object is composed of up to several hundred pieces of paper.</p>
+
+<div class="swiper swiper-origami">
+  <div class="swiper__wrapper">
+    
+      <div class="swiper__slide">
+        <img alt="Menger Sponge, n=1" title="Menger Sponge, n=1" src="/assets/img/origami/menger.jpg" />
+      </div>
+    
+      <div class="swiper__slide">
+        <img alt="An assortment of modular origami" title="An assortment of modular origami" src="/assets/img/origami/origami-assortment.jpg" />
+      </div>
+    
+      <div class="swiper__slide">
+        <img alt="A small cube for ACM@UCI" title="A small cube for ACM@UCI" src="/assets/img/origami/acm-cube.jpg" />
+      </div>
+    
+  </div>
+  <div class="swiper__button swiper__button--prev fas fa-chevron-left"></div>
+  <div class="swiper__button swiper__button--next fas fa-chevron-right"></div>
+</div>
+
+<script>(function() {
+  var SOURCES = window.TEXT_VARIABLES.sources;
+  window.Lazyload.js(SOURCES.jquery, function() {
+    function swiper(options) {
+      var $window = $(window), $root = this, $swiperWrapper, $swiperSlides, $swiperButtonPrev, $swiperButtonNext,
+        initialSlide, animation, onChange, onChangeEnd,
+        rootWidth, count, preIndex, curIndex, translateX, CRITICAL_ANGLE = Math.PI / 3;
+
+      function setOptions(options) {
+        var _options = options || {};
+        initialSlide = _options.initialSlide || 0;
+        animation = _options.animation === undefined && true;
+        onChange = onChange || _options.onChange;
+        onChangeEnd = onChangeEnd || _options.onChangeEnd;
+      }
+
+      function init() {
+        $swiperWrapper = $root.find('.swiper__wrapper');
+        $swiperSlides = $root.find('.swiper__slide');
+        $swiperButtonPrev = $root.find('.swiper__button--prev');
+        $swiperButtonNext = $root.find('.swiper__button--next');
+        animation && $swiperWrapper.addClass('swiper__wrapper--animation');
+        calc(true);
+      }
+
+      function preCalc() {
+        rootWidth = $root.width();
+        count = $swiperWrapper.children('.swiper__slide').length;
+        if (count < 2) {
+          $swiperButtonPrev.addClass('d-none');
+          $swiperButtonNext.addClass('d-none');
+        }
+        curIndex = initialSlide || 0;
+        translateX = getTranslateXFromCurIndex();
+      }
+
+      var calc = (function() {
+        var preAnimation, $swiperSlide, $preSwiperSlide;
+        return function (needPreCalc, params) {
+          needPreCalc && preCalc();
+          var _animation = (params && params.animation !== undefined) ? params.animation : animation;
+          if (preAnimation === undefined || preAnimation !== _animation) {
+            preAnimation = _animation ? $swiperWrapper.addClass('swiper__wrapper--animation') :
+              $swiperWrapper.removeClass('swiper__wrapper--animation');
+          }
+          if (preIndex !== curIndex) {
+            ($preSwiperSlide = $swiperSlides.eq(preIndex)).removeClass('active');
+            ($swiperSlide = $swiperSlides.eq(curIndex)).addClass('active');
+            onChange && onChange(curIndex, $swiperSlides.eq(curIndex), $swiperSlide, $preSwiperSlide);
+            if (onChangeEnd) {
+              if (_animation) {
+                setTimeout(function() {
+                  onChangeEnd(curIndex, $swiperSlides.eq(curIndex), $swiperSlide, $preSwiperSlide);
+                }, 400);
+              } else {
+                onChangeEnd(curIndex, $swiperSlides.eq(curIndex), $swiperSlide, $preSwiperSlide);
+              }
+            }
+            preIndex = curIndex;
+          }
+          $swiperWrapper.css('transform', 'translate(' + translateX + 'px, 0)');
+          if (count > 1) {
+            if (curIndex <= 0) {
+              $swiperButtonPrev.addClass('disabled');
+            } else {
+              $swiperButtonPrev.removeClass('disabled');
+            }
+            if (curIndex >= count - 1) {
+              $swiperButtonNext.addClass('disabled');
+            } else {
+              $swiperButtonNext.removeClass('disabled');
+            }
+          }
+        };
+      })();
+
+      function getTranslateXFromCurIndex() {
+        return curIndex <= 0 ? 0 : - rootWidth * curIndex;
+      }
+
+      function moveToIndex(index ,params) {
+        preIndex = curIndex;
+        curIndex = index;
+        translateX = getTranslateXFromCurIndex();
+        calc(false, params);
+      }
+
+      function move(type) {
+        var nextIndex = curIndex, unstableTranslateX;
+        if (type === 'prev') {
+          nextIndex > 0 && nextIndex--;
+        } else if (type === 'next') {
+          nextIndex < count - 1 && nextIndex++;
+        }
+        if (type === 'cur') {
+          moveToIndex(curIndex, { animation: true });
+          return;
+        }
+        unstableTranslateX = translateX % rootWidth !== 0;
+        if (nextIndex !== curIndex || unstableTranslateX) {
+          unstableTranslateX ? moveToIndex(nextIndex, { animation: true }) : moveToIndex(nextIndex);
+        }
+      }
+
+      setOptions(options);
+      init();
+      preIndex = curIndex;
+
+      $swiperButtonPrev.on('click', function(e) {
+        e.stopPropagation();
+        move('prev');
+      });
+      $swiperButtonNext.on('click', function(e) {
+        e.stopPropagation();
+        move('next');
+      });
+      $window.on('resize', function() {
+        calc(true, { animation: false });
+      });
+
+      (function() {
+        var pageX, pageY, velocityX, preTranslateX = translateX, timeStamp, touching;
+        function handleTouchstart(e) {
+          var point = e.touches ? e.touches[0] : e;
+          pageX = point.pageX;
+          pageY = point.pageY;
+          velocityX = 0;
+          preTranslateX = translateX;
+        }
+        function handleTouchmove(e) {
+          if (e.touches && e.touches.length > 1) {
+            return;
+          }
+          var point = e.touches ? e.touches[0] : e;
+          var deltaX = point.pageX - pageX;
+          var deltaY = point.pageY - pageY;
+          velocityX = deltaX / (e.timeStamp - timeStamp);
+          timeStamp = e.timeStamp;
+          if (e.cancelable && Math.abs(Math.atan(deltaY / deltaX)) < CRITICAL_ANGLE) {
+            touching = true;
+            translateX += deltaX;
+            calc(false, { animation: false });
+          }
+          pageX = point.pageX;
+          pageY = point.pageY;
+        }
+        function handleTouchend() {
+          touching = false;
+          var deltaX = translateX - preTranslateX;
+          var distance = deltaX + velocityX * rootWidth;
+          if (Math.abs(distance) > rootWidth / 2) {
+            distance > 0 ? move('prev') : move('next');
+          } else {
+            move('cur');
+          }
+        }
+        $swiperWrapper.on('touchstart', handleTouchstart);
+        $swiperWrapper.on('touchmove', handleTouchmove);
+        $swiperWrapper.on('touchend', handleTouchend);
+        $swiperWrapper.on('touchcancel', handleTouchend);
+
+        (function() {
+          var pressing = false, moved = false;
+          $swiperWrapper.on('mousedown', function(e) {
+            pressing = true; handleTouchstart(e);
+          });
+          $swiperWrapper.on('mousemove', function(e) {
+            pressing && (e.preventDefault(), moved = true, handleTouchmove(e));
+          });
+          $swiperWrapper.on('mouseup', function(e) {
+            pressing && (pressing = false, handleTouchend(e));
+          });
+          $swiperWrapper.on('mouseleave', function(e) {
+            pressing && (pressing = false, handleTouchend(e));
+          });
+          $swiperWrapper.on('click', function(e) {
+            moved && (e.stopPropagation(), moved = false);
+          });
+        })();
+
+        $root.on('touchmove', function(e) {
+          if (e.cancelable & touching) {
+            e.preventDefault();
+          }
+        });
+      })();
+
+      return {
+        setOptions: setOptions,
+        previous: function(){
+          move('prev');
+        },
+        next: function(){
+          move('next');
+        },
+        refresh: function() {
+          calc(true, { animation: false });
+        }
+      };
+    }
+    $.fn.swiper = swiper;
+  });
+})();
+var SOURCES = window.TEXT_VARIABLES.sources;
+window.Lazyload.js(SOURCES.jquery, function() {
+  $('.swiper-origami').swiper();
+});
+</script>
+
+<h2 id="quotes">Quotes</h2>
+
+<blockquote id="quote-0">
+  <p>Audentes fortuna iuvat.</p>
+  </blockquote>
+
+<blockquote id="quote-1">
+  <p>Life is about waiting for the right moment to act. So relax. You are not early. You are not late. You are very much on time.</p>
+  </blockquote>
+
+<blockquote id="quote-2">
+  <p>The hardest choices require the strongest wills.</p><div class="speaker">Thanos</div>
+  
+  </blockquote>
+
+<blockquote id="quote-3">
+  <p>Go confidently in the direction of your dreams! Live the life you have imagined.</p><div class="speaker">Henry David Thoreau</div>
+  
+  </blockquote>
+
+<blockquote id="quote-4">
+  <p>If greedy doesn't work, the input is wrong.</p><div class="speaker">Karthik Gajulapalli</div>
+  
+  </blockquote>
+
+<blockquote id="quote-5">
+  <p>The early bird gets the worm, but the second mouse gets the cheese.</p><div class="speaker">Aldrich Killian</div>
+  
+  </blockquote>
+
+<blockquote id="quote-6">
+  <p>We live in the age of information, not the age of knowledge.</p>
+  </blockquote>
+
+<blockquote id="quote-7">
+  <p>Success is about being at the right place at the right time, and knowing it.</p>
+  </blockquote>
+
+<blockquote id="quote-8">
+  <p>You miss 100% of the shots you don't take.</p><div class="speaker">Wayne Gretzky</div>
+  
+  </blockquote>
+
+<blockquote id="quote-9">
+  <p>You can do anything, but not everything.</p><div class="speaker">David Allen</div>
+  
+  </blockquote>
+
+<blockquote id="quote-10">
+  <p>Consistency and repeatability is a hallmark and pillar of all engineering, and I don't know if I could have seen a more inopportune time for something not to work.</p><div class="speaker"><a href="https://youtu.be/v_KTkTS6GrQ?t=174">2016 VEX World Championship Finals 3</a></div>
+  
+  </blockquote>
+
+<blockquote id="quote-11">
+<p>Nature's first green is gold,</p>
+<p>Her hardest hue to hold.</p>
+<p>Her early leaf's a flower;</p>
+<p>But only so an hour.</p>
+<p>Then leaf subsides to leaf.</p>
+<p>So Eden sank to grief,</p>
+<p>So dawn goes down to day.</p>
+<p>Nothing gold can stay.</p>
+<div class="speaker">Robert Frost</div>
+</blockquote>
+
+<h2 id="competitive-programming">Competitive Programming</h2>
+
+<p>I have used these sites when practicing for competitions such as
+<a href="https://icpc.baylor.edu/">ICPC</a>.</p>
+
+<ul>
+  <li><a href="https://uhunt.onlinejudge.org/id/945356">uHunt profile</a></li>
+  <li><a href="https://open.kattis.com/users/btjanaka">Kattis profile</a></li>
+  <li><a href="https://leetcode.com/btjanaka/">LeetCode profile</a></li>
+  <li><a href="https://www.hackerrank.com/btjanaka">HackerRank profile</a></li>
+</ul>
+
+<h2 id="typeracer">TypeRacer</h2>
+
+<p><a href="https://data.typeracer.com/pit/profile?user=btjanaka&amp;ref=badge" target="_top">
+<img src="https://data.typeracer.com/misc/badge?user=btjanaka" class="image image--md" border="0" style="width: 150px;" alt="TypeRacer.com scorecard for user btjanaka" />
+</a></p>
+</div><div class="d-print-none"><footer class="article__footer"><!-- start custom article footer snippet -->
+
+<!-- end custom article footer snippet --></footer></div>
+
+</div>
+
+<script>(function() {
+  var SOURCES = window.TEXT_VARIABLES.sources;
+  window.Lazyload.js(SOURCES.jquery, function() {
+    $(function() {
+      var $this ,$scroll;
+      var $articleContent = $('.js-article-content');
+      var hasSidebar = $('.js-page-root').hasClass('layout--page--sidebar');
+      var scroll = hasSidebar ? '.js-page-main' : 'html, body';
+      $scroll = $(scroll);
+
+      $articleContent.find('.highlight').each(function() {
+        $this = $(this);
+        $this.attr('data-lang', $this.find('code').attr('data-lang'));
+      });
+      $articleContent.find('h1[id], h2[id], h3[id], h4[id], h5[id], h6[id]').each(function() {
+        $this = $(this);
+        $this.append($('<a class="anchor d-print-none" aria-hidden="true"></a>').html('<i class="fas fa-anchor"></i>'));
+      });
+      $articleContent.on('click', '.anchor', function() {
+        $scroll.scrollToAnchor('#' + $(this).parent().attr('id'), 400);
+      });
+    });
+  });
+})();
+</script></div><section class="page__comments d-print-none"></section></article><!-- start custom main bottom snippet -->
 
 <!-- end custom main bottom snippet --></div>
             </div></div></div><div class="page__footer d-print-none">
@@ -1012,6 +1598,68 @@ window.Lazyload.js([SOURCES.jquery, PAHTS.search_js], function() {
 /*(function () {
 
 })();*/
+</script><script>
+  /* toc must before affix, since affix need to konw toc' height. */(function() {
+  var SOURCES = window.TEXT_VARIABLES.sources;
+  var TOC_SELECTOR = window.TEXT_VARIABLES.site.toc.selectors;
+  window.Lazyload.js(SOURCES.jquery, function() {
+    var $window = $(window);
+    var $articleContent = $('.js-article-content');
+    var $tocRoot = $('.js-toc-root'), $col2 = $('.js-col-aside');
+    var toc;
+    var tocDisabled = false;
+    var hasSidebar = $('.js-page-root').hasClass('layout--page--sidebar');
+    var hasToc = $articleContent.find(TOC_SELECTOR).length > 0;
+
+    function disabled() {
+      return $col2.css('display') === 'none' || !hasToc;
+    }
+
+    tocDisabled = disabled();
+
+    toc = $tocRoot.toc({
+      selectors: TOC_SELECTOR,
+      container: $articleContent,
+      scrollTarget: hasSidebar ? '.js-page-main' : null,
+      scroller: hasSidebar ? '.js-page-main' : null,
+      disabled: tocDisabled
+    });
+
+    $window.on('resize', window.throttle(function() {
+      tocDisabled = disabled();
+      toc && toc.setOptions({
+        disabled: tocDisabled
+      });
+    }, 100));
+
+  });
+})();
+(function() {
+  var SOURCES = window.TEXT_VARIABLES.sources;
+  window.Lazyload.js(SOURCES.jquery, function() {
+    var $window = $(window), $pageFooter = $('.js-page-footer');
+    var $pageAside = $('.js-page-aside');
+    var affix;
+    var tocDisabled = false;
+    var hasSidebar = $('.js-page-root').hasClass('layout--page--sidebar');
+
+    affix = $pageAside.affix({
+      offsetBottom: $pageFooter.outerHeight(),
+      scrollTarget: hasSidebar ? '.js-page-main' : null,
+      scroller: hasSidebar ? '.js-page-main' : null,
+      scroll: hasSidebar ? $('.js-page-main').children() : null,
+      disabled: tocDisabled
+    });
+
+    $window.on('resize', window.throttle(function() {
+      affix && affix.setOptions({
+        disabled: tocDisabled
+      });
+    }, 100));
+
+    window.pageAsideAffix = affix;
+  });
+})();
 </script><script>
   window.Lazyload.js(['https://cdn.bootcss.com/jquery/3.1.1/jquery.min.js', 'https://cdn.bootcss.com/Chart.js/2.7.2/Chart.bundle.min.js'], function() {
     var $canvas = null, $this = null, _ctx = null, _text = '';

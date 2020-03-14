@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.0.0">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2020-03-14T00:03:26-07:00</updated><id>/feed.xml</id><title type="html">Bryon Tjanaka</title><subtitle>Computer Science @ UCI</subtitle><author><name>Bryon Tjanaka</name><email>bryon@btjanaka.net</email></author><entry><title type="html">Integer Replacement</title><link href="/2020/01/13/integer-replacement.html" rel="alternate" type="text/html" title="Integer Replacement" /><published>2020-01-13T11:00:00-08:00</published><updated>2020-01-13T11:00:00-08:00</updated><id>/2020/01/13/integer-replacement</id><content type="html" xml:base="/2020/01/13/integer-replacement.html">&lt;p&gt;This is a problem I brought along to the WICSxACM Technical Interview Prep
+workshop on 13 January 2020. It is also available at
+&lt;a href=&quot;https://bit.ly/integer-replacement&quot;&gt;bit.ly/integer-replacement&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h2 id=&quot;problem-description&quot;&gt;Problem Description&lt;/h2&gt;
+
+&lt;p&gt;Source: &lt;a href=&quot;https://leetcode.com/problems/integer-replacement/&quot;&gt;LeetCode 397&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Given a positive integer &lt;script type=&quot;math/tex&quot;&gt;n&lt;/script&gt;, you can perform the following operations:&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;If &lt;script type=&quot;math/tex&quot;&gt;n&lt;/script&gt; is even, replace &lt;script type=&quot;math/tex&quot;&gt;n&lt;/script&gt; with &lt;script type=&quot;math/tex&quot;&gt;n/2&lt;/script&gt;&lt;/li&gt;
+  &lt;li&gt;If &lt;script type=&quot;math/tex&quot;&gt;n&lt;/script&gt; is odd, replace &lt;script type=&quot;math/tex&quot;&gt;n&lt;/script&gt; with either &lt;script type=&quot;math/tex&quot;&gt;n + 1&lt;/script&gt; or &lt;script type=&quot;math/tex&quot;&gt;n - 1&lt;/script&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;What is the minimum number of replacements needed for &lt;script type=&quot;math/tex&quot;&gt;n&lt;/script&gt; to become &lt;script type=&quot;math/tex&quot;&gt;1&lt;/script&gt;?&lt;/p&gt;
+
+&lt;h2 id=&quot;hints&quot;&gt;Hints&lt;/h2&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;The initial temptation is to go for a fancy, math-based &lt;script type=&quot;math/tex&quot;&gt;O(1)&lt;/script&gt; solution,
+but there are more general approaches that will increase your chances of
+actually coming up with a solution. What are some other approaches you can
+think of?&lt;/li&gt;
+  &lt;li&gt;How can you think of the problem as a graph? (For this workshop, I know there
+have been quite a few other graph problems, so this will be fresh in your
+mind.)&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h2 id=&quot;solution&quot;&gt;Solution&lt;/h2&gt;
+
+&lt;p&gt;I have implemented one possible solution to the problem. I chose to use C++
+because it is the language I prefer to use in interviews. Python makes things
+too easy. IMHO interviewers will want to see your implementation skills, and C++
+is the way to do that. Of course, this will vary on a case-by-case basis. Some
+companies mainly use Python and will want to interview you in Python, for
+instance.&lt;/p&gt;
+
+&lt;h3 id=&quot;approach-1-bfs&quot;&gt;Approach 1: BFS&lt;/h3&gt;
+
+&lt;p&gt;This solution was suggested in the &lt;a href=&quot;#hints&quot;&gt;Hints&lt;/a&gt;. The idea is to think of the
+numbers as a graph, where each number is a node and there are edges connecting
+each node &lt;script type=&quot;math/tex&quot;&gt;x&lt;/script&gt; to &lt;script type=&quot;math/tex&quot;&gt;x/2&lt;/script&gt; if &lt;script type=&quot;math/tex&quot;&gt;x&lt;/script&gt; is even, or to &lt;script type=&quot;math/tex&quot;&gt;x + 1&lt;/script&gt; and &lt;script type=&quot;math/tex&quot;&gt;x - 1&lt;/script&gt; if &lt;script type=&quot;math/tex&quot;&gt;x&lt;/script&gt; is odd.
+We can then perform a BFS (Breadth-First Search) on the graph to find the length
+of the shortest path from &lt;script type=&quot;math/tex&quot;&gt;n&lt;/script&gt; to &lt;script type=&quot;math/tex&quot;&gt;1&lt;/script&gt;.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Time complexity: &lt;script type=&quot;math/tex&quot;&gt;O(n)&lt;/script&gt; – we can only encounter numbers in the range &lt;script type=&quot;math/tex&quot;&gt;[1, 2n]&lt;/script&gt;
+since if you reach &lt;script type=&quot;math/tex&quot;&gt;2n&lt;/script&gt;, you wasted a bunch of steps because &lt;script type=&quot;math/tex&quot;&gt;2n&lt;/script&gt; can just be
+divided by &lt;script type=&quot;math/tex&quot;&gt;2&lt;/script&gt; to get &lt;script type=&quot;math/tex&quot;&gt;n&lt;/script&gt;. Since we never visit the same number twice, the
+time complexity is &lt;script type=&quot;math/tex&quot;&gt;O(2n) = O(n)&lt;/script&gt;&lt;/li&gt;
+  &lt;li&gt;Space complexity: &lt;script type=&quot;math/tex&quot;&gt;O(n)&lt;/script&gt; – same reason as above.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;language-cpp highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Solution&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+ &lt;span class=&quot;nl&quot;&gt;public:&lt;/span&gt;
+  &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;integerReplacement&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;// Queue for BFS -- each pair holds a number `x` and the number&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;// of steps it is from `n`. we use `long long` to account for the&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;// edge case when `n == INT_MAX`. Note that as we pop nodes from&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;// and add nodes to this queue, the number of steps gradually&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;// increases. Furthermore, note that we are guaranteed to visit all nodes&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;// that are `k` steps from `n` before any nodes that are `k + 1` steps&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;// from `n`.&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;queue&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;pair&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;long&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;long&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;q&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+
+    &lt;span class=&quot;c1&quot;&gt;// Visited set -- holds numbers that have already been encountered.&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;// Numbers enter this set when they are first encountered by the&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;// algorithm. We do not want to revisit these numbers because we only&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;// care about the minimum number of steps to visit them.&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;unordered_set&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;long&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;long&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;visited&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+
+    &lt;span class=&quot;c1&quot;&gt;// The queue starts with `n` at 0 steps, and `n` is visited to begin with.&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;q&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;push&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;({&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;visited&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;insert&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+
+    &lt;span class=&quot;c1&quot;&gt;// BFS loop.&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;while&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;!&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;q&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;empty&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;())&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+      &lt;span class=&quot;c1&quot;&gt;// Retrieve the next `x` and `steps` from the queue.&lt;/span&gt;
+      &lt;span class=&quot;kt&quot;&gt;long&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;long&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+      &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;steps&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+      &lt;span class=&quot;n&quot;&gt;tie&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;steps&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;q&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;front&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;  &lt;span class=&quot;c1&quot;&gt;// See std::tie&lt;/span&gt;
+      &lt;span class=&quot;n&quot;&gt;q&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;pop&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
+
+      &lt;span class=&quot;c1&quot;&gt;// We solved the problem -- return the number of steps.&lt;/span&gt;
+      &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;steps&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+
+      &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;%&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;c1&quot;&gt;// If x is even, the only node connected to it will be `x/2`&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;visited&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;find&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;/&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;visited&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;end&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;())&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+          &lt;span class=&quot;c1&quot;&gt;// Make sure to record that `x/2` is visited.&lt;/span&gt;
+          &lt;span class=&quot;n&quot;&gt;visited&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;insert&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;/&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+          &lt;span class=&quot;c1&quot;&gt;// Add `x/2` with one more step than `x`.&lt;/span&gt;
+          &lt;span class=&quot;n&quot;&gt;q&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;push&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;({&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;/&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;steps&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
+        &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+      &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;c1&quot;&gt;// Same as above, except we now have `x + 1` and `x - 1`&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;visited&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;find&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;visited&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;end&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;())&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+          &lt;span class=&quot;n&quot;&gt;visited&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;insert&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+          &lt;span class=&quot;n&quot;&gt;q&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;push&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;({&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;steps&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
+        &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;visited&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;find&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;visited&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;end&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;())&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+          &lt;span class=&quot;n&quot;&gt;visited&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;insert&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+          &lt;span class=&quot;n&quot;&gt;q&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;push&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;({&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;steps&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
+        &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+      &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+    &lt;span class=&quot;c1&quot;&gt;// If for some reason no solution was found.&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;};&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;alternate-approaches&quot;&gt;Alternate Approaches&lt;/h3&gt;
+
+&lt;p&gt;If you look at the
+&lt;a href=&quot;https://leetcode.com/problems/integer-replacement/discuss/&quot;&gt;discussions&lt;/a&gt; on the
+original LeetCode problem, you will see references to dynamic programming (DP)
+and recursion. These certainly work too.&lt;/p&gt;</content><author><name>Bryon Tjanaka</name><email>bryon@btjanaka.net</email></author><category term="Algorithms" /><category term="Problems" /><category term="LeetCode" /><summary type="html">This is a problem I brought along to the WICSxACM Technical Interview Prep workshop on 13 January 2020. It is also available at bit.ly/integer-replacement. Problem Description Source: LeetCode 397 Given a positive integer , you can perform the following operations: If is even, replace with If is odd, replace with either or What is the minimum number of replacements needed for to become ? Hints The initial temptation is to go for a fancy, math-based solution, but there are more general approaches that will increase your chances of actually coming up with a solution. What are some other approaches you can think of? How can you think of the problem as a graph? (For this workshop, I know there have been quite a few other graph problems, so this will be fresh in your mind.) Solution I have implemented one possible solution to the problem. I chose to use C++ because it is the language I prefer to use in interviews. Python makes things too easy. IMHO interviewers will want to see your implementation skills, and C++ is the way to do that. Of course, this will vary on a case-by-case basis. Some companies mainly use Python and will want to interview you in Python, for instance. Approach 1: BFS This solution was suggested in the Hints. The idea is to think of the numbers as a graph, where each number is a node and there are edges connecting each node to if is even, or to and if is odd. We can then perform a BFS (Breadth-First Search) on the graph to find the length of the shortest path from to . Time complexity: – we can only encounter numbers in the range since if you reach , you wasted a bunch of steps because can just be divided by to get . Since we never visit the same number twice, the time complexity is Space complexity: – same reason as above. class Solution { public: int integerReplacement(int n) { // Queue for BFS -- each pair holds a number `x` and the number // of steps it is from `n`. we use `long long` to account for the // edge case when `n == INT_MAX`. Note that as we pop nodes from // and add nodes to this queue, the number of steps gradually // increases. Furthermore, note that we are guaranteed to visit all nodes // that are `k` steps from `n` before any nodes that are `k + 1` steps // from `n`. queue&amp;lt;pair&amp;lt;long long, int&amp;gt;&amp;gt; q; // Visited set -- holds numbers that have already been encountered. // Numbers enter this set when they are first encountered by the // algorithm. We do not want to revisit these numbers because we only // care about the minimum number of steps to visit them. unordered_set&amp;lt;long long&amp;gt; visited; // The queue starts with `n` at 0 steps, and `n` is visited to begin with. q.push({n, 0}); visited.insert(n); // BFS loop. while (!q.empty()) { // Retrieve the next `x` and `steps` from the queue. long long x; int steps; tie(x, steps) = q.front(); // See std::tie q.pop(); // We solved the problem -- return the number of steps. if (x == 1) return steps; if (x % 2 == 0) { // If x is even, the only node connected to it will be `x/2` if (visited.find(x / 2) == visited.end()) { // Make sure to record that `x/2` is visited. visited.insert(x / 2); // Add `x/2` with one more step than `x`. q.push({x / 2, steps + 1}); } } else { // Same as above, except we now have `x + 1` and `x - 1` if (visited.find(x + 1) == visited.end()) { visited.insert(x + 1); q.push({x + 1, steps + 1}); } if (visited.find(x - 1) == visited.end()) { visited.insert(x - 1); q.push({x - 1, steps + 1}); } } } // If for some reason no solution was found. return -1; } }; Alternate Approaches If you look at the discussions on the original LeetCode problem, you will see references to dynamic programming (DP) and recursion. These certainly work too.</summary></entry><entry><title type="html">Website History</title><link href="/2019/12/24/website-history.html" rel="alternate" type="text/html" title="Website History" /><published>2019-12-24T16:00:00-08:00</published><updated>2019-12-24T16:00:00-08:00</updated><id>/2019/12/24/website-history</id><content type="html" xml:base="/2019/12/24/website-history.html">&lt;p&gt;My personal website has gone through several iterations. Here, I will briefly
+describe the motivation and technologies behind each major
+version.&lt;!--excerpt-separator--&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;v1---jekyll&quot;&gt;v1 - Jekyll&lt;/h2&gt;
+
+&lt;p&gt;Inspired by several friends, I began investigating web development in
+December 2018. Using &lt;a href=&quot;https://jekyllrb.com/&quot;&gt;Jekyll&lt;/a&gt; with a
+&lt;a href=&quot;https://github.com/TaylanTatli/Moon&quot;&gt;Moon&lt;/a&gt; theme, I eventually built a personal
+website and hosted it on &lt;a href=&quot;https://pages.github.com&quot;&gt;GitHub Pages&lt;/a&gt;. Though I
+thought the website looked good, I hardly knew how it all worked, so I decided
+to explore more.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://btjanaka.net/jekyll-site&quot; class=&quot;button button--primary button--pill&quot;&gt;Archived Site&lt;/a&gt;
+&lt;a href=&quot;https://github.com/btjanaka/jekyll-site&quot; class=&quot;button button--primary button--pill&quot;&gt;Source Code&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;v2---vanilla&quot;&gt;v2 - “Vanilla”&lt;/h2&gt;
+
+&lt;p&gt;To better understand basic web technologies, I built a new website from the
+ground up, using raw/vanilla HTML, CSS, and JavaScript. Eventually, I used
+&lt;a href=&quot;http://browserify.org&quot;&gt;Browserify&lt;/a&gt; to modularize my JavaScript code. I also
+used &lt;a href=&quot;https://www.npmjs.com/package/liquidjs&quot;&gt;liquidjs&lt;/a&gt; to essentially build a
+primitive static site generator, similar to Jekyll. Overall, I learned much
+about web development from this project. I especially saw how web development is
+full of an endless, ever-changing list of libraries and tools.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://btjanaka.net/vanilla-site&quot; class=&quot;button button--primary button--pill&quot;&gt;Archived Site&lt;/a&gt;
+&lt;a href=&quot;https://github.com/btjanaka/vanilla-site&quot; class=&quot;button button--primary button--pill&quot;&gt;Source Code&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;v3---react&quot;&gt;v3 - React&lt;/h2&gt;
+
+&lt;p&gt;To gain more experience with higher-level frameworks, I used
+&lt;a href=&quot;https://reactjs.org&quot;&gt;React&lt;/a&gt; to build the next version of my website. In the
+end, though I enjoyed the flexibility React provided, I also found it a bit
+overkill for a personal website. React is tailored for large, interactive
+websites, but my personal website was small and static. Furthermore, using pure
+React on the client-side meant that JavaScript had to be executed before any
+content was rendered, so search engines had a harder time indexing my content.
+Some search engines, like Google, did execute the JavaScript and analyze the
+result, but others, like DuckDuckGo, did not, and so my website did not show up.
+Hence, I concluded that I should use a static site framework like Jekyll, while
+plugging in small React components if needed.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://btjanaka.net/react-site&quot; class=&quot;button button--primary button--pill&quot;&gt;Archived Site&lt;/a&gt;
+&lt;a href=&quot;https://github.com/btjanaka/react-site&quot; class=&quot;button button--primary button--pill&quot;&gt;Source Code&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;v4---jekyll-again&quot;&gt;v4 - Jekyll (again)&lt;/h2&gt;
+
+&lt;p&gt;Thus, I have come full circle and decided to use Jekyll once more, initially
+with the &lt;a href=&quot;https://github.com/alshedivat/al-folio&quot;&gt;al-folio&lt;/a&gt; theme, and then with
+the &lt;a href=&quot;https://github.com/kitian616/jekyll-TeXt-theme&quot;&gt;TeXt&lt;/a&gt; theme – with
+numerous custom tweaks, of course. Now that I have a better understanding of
+both how Jekyll works and why it exists, I believe I will be able to better
+leverage it in the future.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://github.com/btjanaka/academic-site&quot; class=&quot;button button--primary button--pill&quot;&gt;Source Code&lt;/a&gt;&lt;/p&gt;</content><author><name>Bryon Tjanaka</name><email>bryon@btjanaka.net</email></author><category term="Website" /><category term="Jekyll" /><category term="React" /><summary type="html">My personal website has gone through several iterations. Here, I will briefly describe the motivation and technologies behind each major version.</summary></entry></feed>

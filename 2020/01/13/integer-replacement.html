@@ -1,10 +1,10 @@
 <!DOCTYPE html><html lang="en">
   <head><meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"><title>404 - Bryon Tjanaka</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"><title>Integer Replacement - Bryon Tjanaka</title>
 
-<meta name="description" content="Computer Science @ UCI">
-<link rel="canonical" href="/404.html"><link rel="alternate" type="application/rss+xml" title="Bryon Tjanaka" href="/feed.xml"><!-- start favicons snippet, use https://realfavicongenerator.net/ -->
+<meta name="description" content="This is a problem I brought along to the WICSxACM Technical Interview Prepworkshop on 13 January 2020. It is also available atbit.ly/integer-replacement.Prob...">
+<link rel="canonical" href="/2020/01/13/integer-replacement.html"><link rel="alternate" type="application/rss+xml" title="Bryon Tjanaka" href="/feed.xml"><!-- start favicons snippet, use https://realfavicongenerator.net/ -->
 <link rel="apple-touch-icon" sizes="180x180" href="/assets/favicon/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon/favicon-16x16.png">
@@ -259,7 +259,7 @@
 </head>
   <body>
     <div class="root" data-is-touch="false">
-      <div class="layout--page js-page-root"><div class="page__main js-page-main page__viewport cell cell--auto">
+      <div class="layout--page js-page-root"><div class="page__main js-page-main page__viewport has-aside cell cell--auto">
 
       <div class="page__main-inner"><div class="page__header d-print-none"><header class="header"><div class="main">
       <div class="header__title">
@@ -450,19 +450,185 @@
   </header>
 </div><div class="page__content"><div class ="main"><div class="grid grid--reverse">
 
-              <div class="col-aside d-print-none js-col-aside"></div>
+              <div class="col-aside d-print-none js-col-aside"><aside class="page__aside js-page-aside"><div class="toc-aside js-toc-root"></div></aside></div>
 
               <div class="col-main cell cell--auto"><!-- start custom main top snippet -->
 
-<!-- end custom main top snippet --><article itemscope itemtype="http://schema.org/WebPage"><header style="display:none;"><h1>404</h1></header><meta itemprop="headline" content="404"><meta itemprop="author" content="Bryon Tjanaka"/><div class="js-article-content"><div class="layout--404">
-  <div class="sign">
-    <h1>404</h1>
-    <p>Page not found</p>
-  </div>
+<!-- end custom main top snippet --><article itemscope itemtype="http://schema.org/Article"><div class="article__header"><header><h1>Integer Replacement</h1></header><!-- Note: /src folder used because this website builds from src
+            rather than root --><span class="split-space">&nbsp;</span>
+          <a class="edit-on-github"
+            title="Edit on Github"
+            href="https://github.com/btjanaka/academic-site/tree/master/src/_posts/2020-01-13-integer-replacement.md">
+            <i class="far fa-edit"></i></a></div><meta itemprop="headline" content="Integer Replacement"><div class="article__info clearfix"><ul class="left-col menu"><li>
+              <a class="button button--secondary button--pill button--sm"
+                href="/archive.html?tag=Algorithms">Algorithms</a>
+            </li><li>
+              <a class="button button--secondary button--pill button--sm"
+                href="/archive.html?tag=Problems">Problems</a>
+            </li><li>
+              <a class="button button--secondary button--pill button--sm"
+                href="/archive.html?tag=LeetCode">LeetCode</a>
+            </li></ul><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Jan 13, 2020</span>
+            </li></ul></div><meta itemprop="author" content="Bryon Tjanaka"/><meta itemprop="datePublished" content="2020-01-13T11:00:00-08:00">
+    <meta itemprop="keywords" content="Algorithms,Problems,LeetCode"><div class="js-article-content"><div class="layout--article"><!-- start custom article top snippet -->
+
+<!-- end custom article top snippet --><div class="article__content" itemprop="articleBody"><p>This is a problem I brought along to the WICSxACM Technical Interview Prep
+workshop on 13 January 2020. It is also available at
+<a href="https://bit.ly/integer-replacement">bit.ly/integer-replacement</a>.</p>
+
+<h2 id="problem-description">Problem Description</h2>
+
+<p>Source: <a href="https://leetcode.com/problems/integer-replacement/">LeetCode 397</a></p>
+
+<p>Given a positive integer <script type="math/tex">n</script>, you can perform the following operations:</p>
+
+<ol>
+  <li>If <script type="math/tex">n</script> is even, replace <script type="math/tex">n</script> with <script type="math/tex">n/2</script></li>
+  <li>If <script type="math/tex">n</script> is odd, replace <script type="math/tex">n</script> with either <script type="math/tex">n + 1</script> or <script type="math/tex">n - 1</script></li>
+</ol>
+
+<p>What is the minimum number of replacements needed for <script type="math/tex">n</script> to become <script type="math/tex">1</script>?</p>
+
+<h2 id="hints">Hints</h2>
+
+<ol>
+  <li>The initial temptation is to go for a fancy, math-based <script type="math/tex">O(1)</script> solution,
+but there are more general approaches that will increase your chances of
+actually coming up with a solution. What are some other approaches you can
+think of?</li>
+  <li>How can you think of the problem as a graph? (For this workshop, I know there
+have been quite a few other graph problems, so this will be fresh in your
+mind.)</li>
+</ol>
+
+<h2 id="solution">Solution</h2>
+
+<p>I have implemented one possible solution to the problem. I chose to use C++
+because it is the language I prefer to use in interviews. Python makes things
+too easy. IMHO interviewers will want to see your implementation skills, and C++
+is the way to do that. Of course, this will vary on a case-by-case basis. Some
+companies mainly use Python and will want to interview you in Python, for
+instance.</p>
+
+<h3 id="approach-1-bfs">Approach 1: BFS</h3>
+
+<p>This solution was suggested in the <a href="#hints">Hints</a>. The idea is to think of the
+numbers as a graph, where each number is a node and there are edges connecting
+each node <script type="math/tex">x</script> to <script type="math/tex">x/2</script> if <script type="math/tex">x</script> is even, or to <script type="math/tex">x + 1</script> and <script type="math/tex">x - 1</script> if <script type="math/tex">x</script> is odd.
+We can then perform a BFS (Breadth-First Search) on the graph to find the length
+of the shortest path from <script type="math/tex">n</script> to <script type="math/tex">1</script>.</p>
+
+<ul>
+  <li>Time complexity: <script type="math/tex">O(n)</script> – we can only encounter numbers in the range <script type="math/tex">[1, 2n]</script>
+since if you reach <script type="math/tex">2n</script>, you wasted a bunch of steps because <script type="math/tex">2n</script> can just be
+divided by <script type="math/tex">2</script> to get <script type="math/tex">n</script>. Since we never visit the same number twice, the
+time complexity is <script type="math/tex">O(2n) = O(n)</script></li>
+  <li>Space complexity: <script type="math/tex">O(n)</script> – same reason as above.</li>
+</ul>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Solution</span> <span class="p">{</span>
+ <span class="nl">public:</span>
+  <span class="kt">int</span> <span class="n">integerReplacement</span><span class="p">(</span><span class="kt">int</span> <span class="n">n</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// Queue for BFS -- each pair holds a number `x` and the number</span>
+    <span class="c1">// of steps it is from `n`. we use `long long` to account for the</span>
+    <span class="c1">// edge case when `n == INT_MAX`. Note that as we pop nodes from</span>
+    <span class="c1">// and add nodes to this queue, the number of steps gradually</span>
+    <span class="c1">// increases. Furthermore, note that we are guaranteed to visit all nodes</span>
+    <span class="c1">// that are `k` steps from `n` before any nodes that are `k + 1` steps</span>
+    <span class="c1">// from `n`.</span>
+    <span class="n">queue</span><span class="o">&lt;</span><span class="n">pair</span><span class="o">&lt;</span><span class="kt">long</span> <span class="kt">long</span><span class="p">,</span> <span class="kt">int</span><span class="o">&gt;&gt;</span> <span class="n">q</span><span class="p">;</span>
+
+    <span class="c1">// Visited set -- holds numbers that have already been encountered.</span>
+    <span class="c1">// Numbers enter this set when they are first encountered by the</span>
+    <span class="c1">// algorithm. We do not want to revisit these numbers because we only</span>
+    <span class="c1">// care about the minimum number of steps to visit them.</span>
+    <span class="n">unordered_set</span><span class="o">&lt;</span><span class="kt">long</span> <span class="kt">long</span><span class="o">&gt;</span> <span class="n">visited</span><span class="p">;</span>
+
+    <span class="c1">// The queue starts with `n` at 0 steps, and `n` is visited to begin with.</span>
+    <span class="n">q</span><span class="p">.</span><span class="n">push</span><span class="p">({</span><span class="n">n</span><span class="p">,</span> <span class="mi">0</span><span class="p">});</span>
+    <span class="n">visited</span><span class="p">.</span><span class="n">insert</span><span class="p">(</span><span class="n">n</span><span class="p">);</span>
+
+    <span class="c1">// BFS loop.</span>
+    <span class="k">while</span> <span class="p">(</span><span class="o">!</span><span class="n">q</span><span class="p">.</span><span class="n">empty</span><span class="p">())</span> <span class="p">{</span>
+      <span class="c1">// Retrieve the next `x` and `steps` from the queue.</span>
+      <span class="kt">long</span> <span class="kt">long</span> <span class="n">x</span><span class="p">;</span>
+      <span class="kt">int</span> <span class="n">steps</span><span class="p">;</span>
+      <span class="n">tie</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">steps</span><span class="p">)</span> <span class="o">=</span> <span class="n">q</span><span class="p">.</span><span class="n">front</span><span class="p">();</span>  <span class="c1">// See std::tie</span>
+      <span class="n">q</span><span class="p">.</span><span class="n">pop</span><span class="p">();</span>
+
+      <span class="c1">// We solved the problem -- return the number of steps.</span>
+      <span class="k">if</span> <span class="p">(</span><span class="n">x</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span> <span class="k">return</span> <span class="n">steps</span><span class="p">;</span>
+
+      <span class="k">if</span> <span class="p">(</span><span class="n">x</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+        <span class="c1">// If x is even, the only node connected to it will be `x/2`</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">visited</span><span class="p">.</span><span class="n">find</span><span class="p">(</span><span class="n">x</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span> <span class="o">==</span> <span class="n">visited</span><span class="p">.</span><span class="n">end</span><span class="p">())</span> <span class="p">{</span>
+          <span class="c1">// Make sure to record that `x/2` is visited.</span>
+          <span class="n">visited</span><span class="p">.</span><span class="n">insert</span><span class="p">(</span><span class="n">x</span> <span class="o">/</span> <span class="mi">2</span><span class="p">);</span>
+          <span class="c1">// Add `x/2` with one more step than `x`.</span>
+          <span class="n">q</span><span class="p">.</span><span class="n">push</span><span class="p">({</span><span class="n">x</span> <span class="o">/</span> <span class="mi">2</span><span class="p">,</span> <span class="n">steps</span> <span class="o">+</span> <span class="mi">1</span><span class="p">});</span>
+        <span class="p">}</span>
+      <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+        <span class="c1">// Same as above, except we now have `x + 1` and `x - 1`</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">visited</span><span class="p">.</span><span class="n">find</span><span class="p">(</span><span class="n">x</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">==</span> <span class="n">visited</span><span class="p">.</span><span class="n">end</span><span class="p">())</span> <span class="p">{</span>
+          <span class="n">visited</span><span class="p">.</span><span class="n">insert</span><span class="p">(</span><span class="n">x</span> <span class="o">+</span> <span class="mi">1</span><span class="p">);</span>
+          <span class="n">q</span><span class="p">.</span><span class="n">push</span><span class="p">({</span><span class="n">x</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">steps</span> <span class="o">+</span> <span class="mi">1</span><span class="p">});</span>
+        <span class="p">}</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">visited</span><span class="p">.</span><span class="n">find</span><span class="p">(</span><span class="n">x</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">==</span> <span class="n">visited</span><span class="p">.</span><span class="n">end</span><span class="p">())</span> <span class="p">{</span>
+          <span class="n">visited</span><span class="p">.</span><span class="n">insert</span><span class="p">(</span><span class="n">x</span> <span class="o">-</span> <span class="mi">1</span><span class="p">);</span>
+          <span class="n">q</span><span class="p">.</span><span class="n">push</span><span class="p">({</span><span class="n">x</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="n">steps</span> <span class="o">+</span> <span class="mi">1</span><span class="p">});</span>
+        <span class="p">}</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="c1">// If for some reason no solution was found.</span>
+    <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">};</span>
+</code></pre></div></div>
+
+<h3 id="alternate-approaches">Alternate Approaches</h3>
+
+<p>If you look at the
+<a href="https://leetcode.com/problems/integer-replacement/discuss/">discussions</a> on the
+original LeetCode problem, you will see references to dynamic programming (DP)
+and recursion. These certainly work too.</p>
+</div><section class="article__sharing d-print-none"></section><div class="d-print-none"><footer class="article__footer"><meta itemprop="dateModified" content="2020-01-13T11:00:00-08:00"><!-- start custom article footer snippet -->
+
+<!-- end custom article footer snippet --><div class="article__subscribe"><div class="subscribe"><i class="fas fa-rss"></i> <a type="application/rss+xml" href="/feed.xml">Subscribe</a></div></div><div class="article__license"><div class="license">
+    <p>This work is licensed under a <a itemprop="license" rel="license" href="https://creativecommons.org/licenses/by-nc/4.0/">Attribution-NonCommercial 4.0 International</a> license.
+      <a rel="license" href="https://creativecommons.org/licenses/by-nc/4.0/">
+        <img alt="Attribution-NonCommercial 4.0 International" src="https://i.creativecommons.org/l/by-nc/4.0/88x31.png" />
+      </a>
+    </p>
+  </div></div></footer><div class="article__section-navigator clearfix"><div class="previous"><span>PREVIOUS</span><a href="/2019/12/24/website-history.html">Website History</a></div></div></div>
+
 </div>
 
+<script>(function() {
+  var SOURCES = window.TEXT_VARIABLES.sources;
+  window.Lazyload.js(SOURCES.jquery, function() {
+    $(function() {
+      var $this ,$scroll;
+      var $articleContent = $('.js-article-content');
+      var hasSidebar = $('.js-page-root').hasClass('layout--page--sidebar');
+      var scroll = hasSidebar ? '.js-page-main' : 'html, body';
+      $scroll = $(scroll);
 
-</div><section class="page__comments d-print-none"></section></article><!-- start custom main bottom snippet -->
+      $articleContent.find('.highlight').each(function() {
+        $this = $(this);
+        $this.attr('data-lang', $this.find('code').attr('data-lang'));
+      });
+      $articleContent.find('h1[id], h2[id], h3[id], h4[id], h5[id], h6[id]').each(function() {
+        $this = $(this);
+        $this.append($('<a class="anchor d-print-none" aria-hidden="true"></a>').html('<i class="fas fa-anchor"></i>'));
+      });
+      $articleContent.on('click', '.anchor', function() {
+        $scroll.scrollToAnchor('#' + $(this).parent().attr('id'), 400);
+      });
+    });
+  });
+})();
+</script></div><section class="page__comments d-print-none"></section></article><!-- start custom main bottom snippet -->
 
 <!-- end custom main bottom snippet --></div>
             </div></div></div><div class="page__footer d-print-none">
@@ -1012,6 +1178,68 @@ window.Lazyload.js([SOURCES.jquery, PAHTS.search_js], function() {
 /*(function () {
 
 })();*/
+</script><script>
+  /* toc must before affix, since affix need to konw toc' height. */(function() {
+  var SOURCES = window.TEXT_VARIABLES.sources;
+  var TOC_SELECTOR = window.TEXT_VARIABLES.site.toc.selectors;
+  window.Lazyload.js(SOURCES.jquery, function() {
+    var $window = $(window);
+    var $articleContent = $('.js-article-content');
+    var $tocRoot = $('.js-toc-root'), $col2 = $('.js-col-aside');
+    var toc;
+    var tocDisabled = false;
+    var hasSidebar = $('.js-page-root').hasClass('layout--page--sidebar');
+    var hasToc = $articleContent.find(TOC_SELECTOR).length > 0;
+
+    function disabled() {
+      return $col2.css('display') === 'none' || !hasToc;
+    }
+
+    tocDisabled = disabled();
+
+    toc = $tocRoot.toc({
+      selectors: TOC_SELECTOR,
+      container: $articleContent,
+      scrollTarget: hasSidebar ? '.js-page-main' : null,
+      scroller: hasSidebar ? '.js-page-main' : null,
+      disabled: tocDisabled
+    });
+
+    $window.on('resize', window.throttle(function() {
+      tocDisabled = disabled();
+      toc && toc.setOptions({
+        disabled: tocDisabled
+      });
+    }, 100));
+
+  });
+})();
+(function() {
+  var SOURCES = window.TEXT_VARIABLES.sources;
+  window.Lazyload.js(SOURCES.jquery, function() {
+    var $window = $(window), $pageFooter = $('.js-page-footer');
+    var $pageAside = $('.js-page-aside');
+    var affix;
+    var tocDisabled = false;
+    var hasSidebar = $('.js-page-root').hasClass('layout--page--sidebar');
+
+    affix = $pageAside.affix({
+      offsetBottom: $pageFooter.outerHeight(),
+      scrollTarget: hasSidebar ? '.js-page-main' : null,
+      scroller: hasSidebar ? '.js-page-main' : null,
+      scroll: hasSidebar ? $('.js-page-main').children() : null,
+      disabled: tocDisabled
+    });
+
+    $window.on('resize', window.throttle(function() {
+      affix && affix.setOptions({
+        disabled: tocDisabled
+      });
+    }, 100));
+
+    window.pageAsideAffix = affix;
+  });
+})();
 </script><script>
   window.Lazyload.js(['https://cdn.bootcss.com/jquery/3.1.1/jquery.min.js', 'https://cdn.bootcss.com/Chart.js/2.7.2/Chart.bundle.min.js'], function() {
     var $canvas = null, $this = null, _ctx = null, _text = '';
