@@ -3,7 +3,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"><title>Integer Replacement - Bryon Tjanaka</title>
 
-<meta name="description" content="This is a problem I brought along to the WICSxACM Technical Interview Prepworkshop on 13 January 2020. It is also available atbit.ly/integer-replacement.Prob...">
+<meta name="description" content="This is a problem I brought along to the WICSxACM Technical Interview Prepworkshop on 13 January 2020.">
 <link rel="canonical" href="/2020/01/13/integer-replacement.html"><link rel="alternate" type="application/rss+xml" title="Bryon Tjanaka" href="/feed.xml"><!-- start favicons snippet, use https://realfavicongenerator.net/ -->
 <link rel="apple-touch-icon" sizes="180x180" href="/assets/favicon/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon/favicon-32x32.png">
@@ -473,7 +473,7 @@
     <meta itemprop="keywords" content="Algorithms,Problems,LeetCode"><div class="js-article-content"><div class="layout--article"><!-- start custom article top snippet -->
 
 <!-- end custom article top snippet --><div class="article__content" itemprop="articleBody"><p>This is a problem I brought along to the WICSxACM Technical Interview Prep
-workshop on 13 January 2020. It is also available at
+workshop on 13 January 2020.<!--excerpt-separator--> It is also available at
 <a href="https://bit.ly/integer-replacement">bit.ly/integer-replacement</a>.</p>
 
 <h2 id="problem-description">Problem Description</h2>
@@ -514,15 +514,15 @@ instance.</p>
 
 <p>This solution was suggested in the <a href="#hints">Hints</a>. The idea is to think of the
 numbers as a graph, where each number is a node and there are edges connecting
-each node <script type="math/tex">x</script> to <script type="math/tex">x/2</script> if <script type="math/tex">x</script> is even, or to <script type="math/tex">x + 1</script> and <script type="math/tex">x - 1</script> if <script type="math/tex">x</script> is odd.
-We can then perform a BFS (Breadth-First Search) on the graph to find the length
-of the shortest path from <script type="math/tex">n</script> to <script type="math/tex">1</script>.</p>
+each node <script type="math/tex">x</script> to <script type="math/tex">x/2</script> if <script type="math/tex">x</script> is even, or to <script type="math/tex">x + 1</script> and <script type="math/tex">x - 1</script> if
+<script type="math/tex">x</script> is odd. We can then perform a BFS (Breadth-First Search) on the graph to
+find the length of the shortest path from <script type="math/tex">n</script> to <script type="math/tex">1</script>.</p>
 
 <ul>
-  <li>Time complexity: <script type="math/tex">O(n)</script> – we can only encounter numbers in the range <script type="math/tex">[1, 2n]</script>
-since if you reach <script type="math/tex">2n</script>, you wasted a bunch of steps because <script type="math/tex">2n</script> can just be
-divided by <script type="math/tex">2</script> to get <script type="math/tex">n</script>. Since we never visit the same number twice, the
-time complexity is <script type="math/tex">O(2n) = O(n)</script></li>
+  <li>Time complexity: <script type="math/tex">O(n)</script> – we can only encounter numbers in the range
+<script type="math/tex">[1, 2n]</script> since if you reach <script type="math/tex">2n</script>, you wasted a bunch of steps because
+<script type="math/tex">2n</script> can just be divided by <script type="math/tex">2</script> to get <script type="math/tex">n</script>. Since we never visit the
+same number twice, the time complexity is <script type="math/tex">O(2n) = O(n)</script></li>
   <li>Space complexity: <script type="math/tex">O(n)</script> – same reason as above.</li>
 </ul>
 
