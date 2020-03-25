@@ -2675,6 +2675,38 @@ body, html, .root, .layout--page { height: 100%; }
 
 .layout--404 .sign p { font-size: 1.8rem; width: 100%; display: block; text-align: center; }
 
+.project__tictactoe { background-color: #f2f2f2; display: block; margin-left: auto; margin-right: auto; height: 340px; width: 240px; padding: 15px; }
+
+.project__tictactoe .tictactoe-cell { background-color: white; border: 1px solid black; color: black; font-family: arial, sans-serif; float: left; font-size: 40px; font-weight: bold; height: 70px; margin: 0px; padding: 0px; width: 70px; }
+
+.project__tictactoe .tictactoe-cell:hover { background-color: #e62020; }
+
+.project__tictactoe .tictactoe-info { border: 1px solid black; border-top-width: 6px; display: block; float: left; width: 210px; margin: 0px; padding: 8px 0px; background-color: white; color: black; text-align: center; font-size: 18px; font-weight: bold; }
+
+.project__tictactoe .tictactoe-reset { -webkit-transition: all 0.2s ease-in-out; transition: all 0.2s ease-in-out; display: block; float: left; margin: 10px 10.5px 0px 10.5px; padding: 5px 0px; width: 189px; border-radius: 30px; font-size: 16px; font-weight: bold; }
+
+.project__tictactoe .tictactoe-reset svg path { -webkit-transition: all 0.2s ease-in-out; transition: all 0.2s ease-in-out; }
+
+.project__tictactoe .tictactoe-reset, .project__tictactoe .tictactoe-reset:link, .project__tictactoe .tictactoe-reset:visited { color: #fff; background-color: #e62020; }
+
+.project__tictactoe .tictactoe-reset svg path, .project__tictactoe .tictactoe-reset:link svg path, .project__tictactoe .tictactoe-reset:visited svg path { fill: #fff; }
+
+.root[data-is-touch="false"] .project__tictactoe .tictactoe-reset:hover { color: #fff; background-color: #ab1313; }
+
+.root[data-is-touch="false"] .project__tictactoe .tictactoe-reset:hover svg path { fill: #fff; }
+
+.root[data-is-touch] .project__tictactoe .tictactoe-reset.active, .root[data-is-touch] .project__tictactoe .tictactoe-reset:active { color: #fff; background-color: #670c0c; }
+
+.root[data-is-touch] .project__tictactoe .tictactoe-reset.active svg path, .root[data-is-touch] .project__tictactoe .tictactoe-reset:active svg path { fill: #fff; }
+
+.root[data-is-touch] .project__tictactoe .tictactoe-reset.focus { color: default; background-color: #ab1313; box-shadow: 0 0 0 2px rgba(171, 19, 19, 0.4); }
+
+.root[data-is-touch] .project__tictactoe .tictactoe-reset.focus svg path { fill: default; }
+
+.project__tictactoe .tictactoe-reset.disabled, .project__tictactoe .tictactoe-reset:disabled { color: rgba(255, 255, 255, 0.2) !important; background-color: #e62020 !important; }
+
+.project__tictactoe .tictactoe-reset.disabled svg path, .project__tictactoe .tictactoe-reset:disabled svg path { fill: rgba(255, 255, 255, 0.2) !important; }
+
 /* start custom scss snippet */
 /* end custom scss snippet */
 

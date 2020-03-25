@@ -1,1 +1,1 @@
-window.TEXT_SEARCH_DATA={'posts':[{'title':"Website History",'url':"/2019/12/24/website-history.html"},{'title':"Integer Replacement",'url':"/2020/01/13/integer-replacement.html"}]};
+window.TEXT_SEARCH_DATA={'posts':[{'title':"Website History",'url':"/2019/12/24/website-history.html"},{'title':"Integer Replacement",'url':"/2020/01/13/integer-replacement.html"}],'projects':[{'title':"Games",'url':"/projects/games"}]};
