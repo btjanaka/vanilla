@@ -1810,15 +1810,17 @@ a > .item__header.disabled, a > .item__header:disabled, a.item__header.disabled,
 
 .article__content table th { font-weight: 700; }
 
-.article__content div.news { border-top: 1px solid #e6e6e6; border-bottom: 1px solid #e6e6e6; padding-top: 10px; padding-bottom: 30px; margin-top: 50px; margin-bottom: 30px; }
+.article__content table.news { display: block; margin: 0px auto; }
 
-.article__content div.news h2 { border: 0px; }
+.article__content table.news td { border: 0px; }
 
-.article__content div.news table { display: block; margin: 0px auto; }
+.article__content table.news td.date { font-weight: bold; padding: 8px 8px 8px 0px; width: 9em; }
 
-.article__content div.news table td { border: 0px; }
+.article__content div.news-section { border-top: 1px solid #e6e6e6; border-bottom: 1px solid #e6e6e6; padding-top: 10px; padding-bottom: 30px; margin-top: 50px; margin-bottom: 30px; }
 
-.article__content div.news table td.date { font-weight: bold; padding-left: 0; width: 9em; }
+.article__content div.news-section h2 { border: 0px; }
+
+.article__content div.news-section details.show-more summary { padding: 4px 0px; font-weight: bold; color: #e62020; }
 
 .article__footer { margin: 1.5rem 0; font-size: 0.85rem; }
 
