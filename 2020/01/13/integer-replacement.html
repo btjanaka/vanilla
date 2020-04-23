@@ -480,19 +480,19 @@ workshop on 13 January 2020.<!--excerpt-separator--> It is also available at
 
 <p>Source: <a href="https://leetcode.com/problems/integer-replacement/">LeetCode 397</a></p>
 
-<p>Given a positive integer <script type="math/tex">n</script>, you can perform the following operations:</p>
+<p>Given a positive integer \(n\), you can perform the following operations:</p>
 
 <ol>
-  <li>If <script type="math/tex">n</script> is even, replace <script type="math/tex">n</script> with <script type="math/tex">n/2</script></li>
-  <li>If <script type="math/tex">n</script> is odd, replace <script type="math/tex">n</script> with either <script type="math/tex">n + 1</script> or <script type="math/tex">n - 1</script></li>
+  <li>If \(n\) is even, replace \(n\) with \(n/2\)</li>
+  <li>If \(n\) is odd, replace \(n\) with either \(n + 1\) or \(n - 1\)</li>
 </ol>
 
-<p>What is the minimum number of replacements needed for <script type="math/tex">n</script> to become <script type="math/tex">1</script>?</p>
+<p>What is the minimum number of replacements needed for \(n\) to become \(1\)?</p>
 
 <h2 id="hints">Hints</h2>
 
 <ol>
-  <li>The initial temptation is to go for a fancy, math-based <script type="math/tex">O(1)</script> solution,
+  <li>The initial temptation is to go for a fancy, math-based \(O(1)\) solution,
 but there are more general approaches that will increase your chances of
 actually coming up with a solution. What are some other approaches you can
 think of?</li>
@@ -514,16 +514,16 @@ instance.</p>
 
 <p>This solution was suggested in the <a href="#hints">Hints</a>. The idea is to think of the
 numbers as a graph, where each number is a node and there are edges connecting
-each node <script type="math/tex">x</script> to <script type="math/tex">x/2</script> if <script type="math/tex">x</script> is even, or to <script type="math/tex">x + 1</script> and <script type="math/tex">x - 1</script> if
-<script type="math/tex">x</script> is odd. We can then perform a BFS (Breadth-First Search) on the graph to
-find the length of the shortest path from <script type="math/tex">n</script> to <script type="math/tex">1</script>.</p>
+each node \(x\) to \(x/2\) if \(x\) is even, or to \(x + 1\) and \(x - 1\) if
+\(x\) is odd. We can then perform a BFS (Breadth-First Search) on the graph to
+find the length of the shortest path from \(n\) to \(1\).</p>
 
 <ul>
-  <li>Time complexity: <script type="math/tex">O(n)</script> – we can only encounter numbers in the range
-<script type="math/tex">[1, 2n]</script> since if you reach <script type="math/tex">2n</script>, you wasted a bunch of steps because
-<script type="math/tex">2n</script> can just be divided by <script type="math/tex">2</script> to get <script type="math/tex">n</script>. Since we never visit the
-same number twice, the time complexity is <script type="math/tex">O(2n) = O(n)</script></li>
-  <li>Space complexity: <script type="math/tex">O(n)</script> – same reason as above.</li>
+  <li>Time complexity: \(O(n)\) – we can only encounter numbers in the range
+\([1, 2n]\) since if you reach \(2n\), you wasted a bunch of steps because
+\(2n\) can just be divided by \(2\) to get \(n\). Since we never visit the
+same number twice, the time complexity is \(O(2n) = O(n)\)</li>
+  <li>Space complexity: \(O(n)\) – same reason as above.</li>
 </ul>
 
 <div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Solution</span> <span class="p">{</span>
