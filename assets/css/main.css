@@ -1,3 +1,4 @@
+/* prettier-ignore */
 figure.highlight::before { color: #8e908c !important; background-color: #f7f7f7 !important; }
 
 pre.lineno { color: #8e908c !important; }
@@ -2690,6 +2691,10 @@ body, html, .root, .layout--page { height: 100%; }
 
 .project__tictactoe .tictactoe-reset.disabled svg path, .project__tictactoe .tictactoe-reset:disabled svg path { fill: rgba(255, 255, 255, 0.2) !important; }
 
+.project__car #myGLCanvas { display: block; margin: 0px auto; text-align: center; width: 500px; height: 500px; }
+
+@media screen and (max-width: 700px) { .project__car #myGLCanvas { width: 70vw; height: 70vw; } }
+
 /* start custom scss snippet */
 /* The Modal (background) */
 .custom__modal { display: none; /* Hidden by default */ position: fixed; /* Stay in place */ z-index: 1; /* Sit on top */ left: 0; top: 0; width: 100%; /* Full width */ height: 100%; /* Full height */ overflow: auto; /* Enable scroll if needed */ background-color: black; /* Fallback color */ background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */ }
@@ -2701,10 +2706,6 @@ body, html, .root, .layout--page { height: 100%; }
 .custom__modal-close { color: #aaa; float: right; font-size: 28px; font-weight: bold; }
 
 .custom__modal-close:hover, .custom__modal-close:focus { color: black; text-decoration: none; cursor: pointer; }
-
-#canvas-holder #myGLCanvas { display: block; margin: 0px auto; text-align: center; width: 500px; height: 500px; }
-
-@media screen and (max-width: 700px) { #canvas-holder #myGLCanvas { width: 70vw; height: 70vw; } }
 
 /* end custom scss snippet */
 

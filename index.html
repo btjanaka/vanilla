@@ -660,16 +660,1359 @@ with 86868: The Resistance and won the
 </script>
 
 <!-- Scripts -->
-<script type="text/javascript" src="/assets/js/projects/car/gl-matrix-min.js"></script>
-<script type="text/javascript" src="/assets/js/projects/car/webgl-utils.js"></script>
-<script type="text/javascript" src="/assets/js/projects/car/models.js"></script>
-<script type="text/javascript" src="/assets/js/projects/car/car.js"></script>
+<script>
+  /**
+ * @fileoverview gl-matrix - High performance matrix and vector operations
+ * @author Brandon Jones
+ * @author Colin MacKenzie IV
+ * @version 2.3.2
+ */
+
+/* Copyright (c) 2015, Brandon Jones, Colin MacKenzie IV.
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+THE SOFTWARE. */
+
+!function(t,a){if("object"==typeof exports&&"object"==typeof module)module.exports=a();else if("function"==typeof define&&define.amd)define(a);else{var n=a();for(var r in n)("object"==typeof exports?exports:t)[r]=n[r]}}(this,function(){return function(t){function a(r){if(n[r])return n[r].exports;var o=n[r]={exports:{},id:r,loaded:!1};return t[r].call(o.exports,o,o.exports,a),o.loaded=!0,o.exports}var n={};return a.m=t,a.c=n,a.p="",a(0)}([function(t,a,n){a.glMatrix=n(1),a.mat2=n(2),a.mat2d=n(3),a.mat3=n(4),a.mat4=n(5),a.quat=n(6),a.vec2=n(9),a.vec3=n(7),a.vec4=n(8)},function(t,a){var n={};n.EPSILON=1e-6,n.ARRAY_TYPE="undefined"!=typeof Float32Array?Float32Array:Array,n.RANDOM=Math.random,n.ENABLE_SIMD=!1,n.SIMD_AVAILABLE=n.ARRAY_TYPE===Float32Array&&"SIMD"in this,n.USE_SIMD=n.ENABLE_SIMD&&n.SIMD_AVAILABLE,n.setMatrixArrayType=function(t){n.ARRAY_TYPE=t};var r=Math.PI/180;n.toRadian=function(t){return t*r},t.exports=n},function(t,a,n){var r=n(1),o={};o.create=function(){var t=new r.ARRAY_TYPE(4);return t[0]=1,t[1]=0,t[2]=0,t[3]=1,t},o.clone=function(t){var a=new r.ARRAY_TYPE(4);return a[0]=t[0],a[1]=t[1],a[2]=t[2],a[3]=t[3],a},o.copy=function(t,a){return t[0]=a[0],t[1]=a[1],t[2]=a[2],t[3]=a[3],t},o.identity=function(t){return t[0]=1,t[1]=0,t[2]=0,t[3]=1,t},o.transpose=function(t,a){if(t===a){var n=a[1];t[1]=a[2],t[2]=n}else t[0]=a[0],t[1]=a[2],t[2]=a[1],t[3]=a[3];return t},o.invert=function(t,a){var n=a[0],r=a[1],o=a[2],l=a[3],u=n*l-o*r;return u?(u=1/u,t[0]=l*u,t[1]=-r*u,t[2]=-o*u,t[3]=n*u,t):null},o.adjoint=function(t,a){var n=a[0];return t[0]=a[3],t[1]=-a[1],t[2]=-a[2],t[3]=n,t},o.determinant=function(t){return t[0]*t[3]-t[2]*t[1]},o.multiply=function(t,a,n){var r=a[0],o=a[1],l=a[2],u=a[3],e=n[0],M=n[1],i=n[2],s=n[3];return t[0]=r*e+l*M,t[1]=o*e+u*M,t[2]=r*i+l*s,t[3]=o*i+u*s,t},o.mul=o.multiply,o.rotate=function(t,a,n){var r=a[0],o=a[1],l=a[2],u=a[3],e=Math.sin(n),M=Math.cos(n);return t[0]=r*M+l*e,t[1]=o*M+u*e,t[2]=r*-e+l*M,t[3]=o*-e+u*M,t},o.scale=function(t,a,n){var r=a[0],o=a[1],l=a[2],u=a[3],e=n[0],M=n[1];return t[0]=r*e,t[1]=o*e,t[2]=l*M,t[3]=u*M,t},o.fromRotation=function(t,a){var n=Math.sin(a),r=Math.cos(a);return t[0]=r,t[1]=n,t[2]=-n,t[3]=r,t},o.fromScaling=function(t,a){return t[0]=a[0],t[1]=0,t[2]=0,t[3]=a[1],t},o.str=function(t){return"mat2("+t[0]+", "+t[1]+", "+t[2]+", "+t[3]+")"},o.frob=function(t){return Math.sqrt(Math.pow(t[0],2)+Math.pow(t[1],2)+Math.pow(t[2],2)+Math.pow(t[3],2))},o.LDU=function(t,a,n,r){return t[2]=r[2]/r[0],n[0]=r[0],n[1]=r[1],n[3]=r[3]-t[2]*n[1],[t,a,n]},t.exports=o},function(t,a,n){var r=n(1),o={};o.create=function(){var t=new r.ARRAY_TYPE(6);return t[0]=1,t[1]=0,t[2]=0,t[3]=1,t[4]=0,t[5]=0,t},o.clone=function(t){var a=new r.ARRAY_TYPE(6);return a[0]=t[0],a[1]=t[1],a[2]=t[2],a[3]=t[3],a[4]=t[4],a[5]=t[5],a},o.copy=function(t,a){return t[0]=a[0],t[1]=a[1],t[2]=a[2],t[3]=a[3],t[4]=a[4],t[5]=a[5],t},o.identity=function(t){return t[0]=1,t[1]=0,t[2]=0,t[3]=1,t[4]=0,t[5]=0,t},o.invert=function(t,a){var n=a[0],r=a[1],o=a[2],l=a[3],u=a[4],e=a[5],M=n*l-r*o;return M?(M=1/M,t[0]=l*M,t[1]=-r*M,t[2]=-o*M,t[3]=n*M,t[4]=(o*e-l*u)*M,t[5]=(r*u-n*e)*M,t):null},o.determinant=function(t){return t[0]*t[3]-t[1]*t[2]},o.multiply=function(t,a,n){var r=a[0],o=a[1],l=a[2],u=a[3],e=a[4],M=a[5],i=n[0],s=n[1],c=n[2],f=n[3],D=n[4],S=n[5];return t[0]=r*i+l*s,t[1]=o*i+u*s,t[2]=r*c+l*f,t[3]=o*c+u*f,t[4]=r*D+l*S+e,t[5]=o*D+u*S+M,t},o.mul=o.multiply,o.rotate=function(t,a,n){var r=a[0],o=a[1],l=a[2],u=a[3],e=a[4],M=a[5],i=Math.sin(n),s=Math.cos(n);return t[0]=r*s+l*i,t[1]=o*s+u*i,t[2]=r*-i+l*s,t[3]=o*-i+u*s,t[4]=e,t[5]=M,t},o.scale=function(t,a,n){var r=a[0],o=a[1],l=a[2],u=a[3],e=a[4],M=a[5],i=n[0],s=n[1];return t[0]=r*i,t[1]=o*i,t[2]=l*s,t[3]=u*s,t[4]=e,t[5]=M,t},o.translate=function(t,a,n){var r=a[0],o=a[1],l=a[2],u=a[3],e=a[4],M=a[5],i=n[0],s=n[1];return t[0]=r,t[1]=o,t[2]=l,t[3]=u,t[4]=r*i+l*s+e,t[5]=o*i+u*s+M,t},o.fromRotation=function(t,a){var n=Math.sin(a),r=Math.cos(a);return t[0]=r,t[1]=n,t[2]=-n,t[3]=r,t[4]=0,t[5]=0,t},o.fromScaling=function(t,a){return t[0]=a[0],t[1]=0,t[2]=0,t[3]=a[1],t[4]=0,t[5]=0,t},o.fromTranslation=function(t,a){return t[0]=1,t[1]=0,t[2]=0,t[3]=1,t[4]=a[0],t[5]=a[1],t},o.str=function(t){return"mat2d("+t[0]+", "+t[1]+", "+t[2]+", "+t[3]+", "+t[4]+", "+t[5]+")"},o.frob=function(t){return Math.sqrt(Math.pow(t[0],2)+Math.pow(t[1],2)+Math.pow(t[2],2)+Math.pow(t[3],2)+Math.pow(t[4],2)+Math.pow(t[5],2)+1)},t.exports=o},function(t,a,n){var r=n(1),o={};o.create=function(){var t=new r.ARRAY_TYPE(9);return t[0]=1,t[1]=0,t[2]=0,t[3]=0,t[4]=1,t[5]=0,t[6]=0,t[7]=0,t[8]=1,t},o.fromMat4=function(t,a){return t[0]=a[0],t[1]=a[1],t[2]=a[2],t[3]=a[4],t[4]=a[5],t[5]=a[6],t[6]=a[8],t[7]=a[9],t[8]=a[10],t},o.clone=function(t){var a=new r.ARRAY_TYPE(9);return a[0]=t[0],a[1]=t[1],a[2]=t[2],a[3]=t[3],a[4]=t[4],a[5]=t[5],a[6]=t[6],a[7]=t[7],a[8]=t[8],a},o.copy=function(t,a){return t[0]=a[0],t[1]=a[1],t[2]=a[2],t[3]=a[3],t[4]=a[4],t[5]=a[5],t[6]=a[6],t[7]=a[7],t[8]=a[8],t},o.identity=function(t){return t[0]=1,t[1]=0,t[2]=0,t[3]=0,t[4]=1,t[5]=0,t[6]=0,t[7]=0,t[8]=1,t},o.transpose=function(t,a){if(t===a){var n=a[1],r=a[2],o=a[5];t[1]=a[3],t[2]=a[6],t[3]=n,t[5]=a[7],t[6]=r,t[7]=o}else t[0]=a[0],t[1]=a[3],t[2]=a[6],t[3]=a[1],t[4]=a[4],t[5]=a[7],t[6]=a[2],t[7]=a[5],t[8]=a[8];return t},o.invert=function(t,a){var n=a[0],r=a[1],o=a[2],l=a[3],u=a[4],e=a[5],M=a[6],i=a[7],s=a[8],c=s*u-e*i,f=-s*l+e*M,D=i*l-u*M,S=n*c+r*f+o*D;return S?(S=1/S,t[0]=c*S,t[1]=(-s*r+o*i)*S,t[2]=(e*r-o*u)*S,t[3]=f*S,t[4]=(s*n-o*M)*S,t[5]=(-e*n+o*l)*S,t[6]=D*S,t[7]=(-i*n+r*M)*S,t[8]=(u*n-r*l)*S,t):null},o.adjoint=function(t,a){var n=a[0],r=a[1],o=a[2],l=a[3],u=a[4],e=a[5],M=a[6],i=a[7],s=a[8];return t[0]=u*s-e*i,t[1]=o*i-r*s,t[2]=r*e-o*u,t[3]=e*M-l*s,t[4]=n*s-o*M,t[5]=o*l-n*e,t[6]=l*i-u*M,t[7]=r*M-n*i,t[8]=n*u-r*l,t},o.determinant=function(t){var a=t[0],n=t[1],r=t[2],o=t[3],l=t[4],u=t[5],e=t[6],M=t[7],i=t[8];return a*(i*l-u*M)+n*(-i*o+u*e)+r*(M*o-l*e)},o.multiply=function(t,a,n){var r=a[0],o=a[1],l=a[2],u=a[3],e=a[4],M=a[5],i=a[6],s=a[7],c=a[8],f=n[0],D=n[1],S=n[2],I=n[3],x=n[4],F=n[5],m=n[6],h=n[7],d=n[8];return t[0]=f*r+D*u+S*i,t[1]=f*o+D*e+S*s,t[2]=f*l+D*M+S*c,t[3]=I*r+x*u+F*i,t[4]=I*o+x*e+F*s,t[5]=I*l+x*M+F*c,t[6]=m*r+h*u+d*i,t[7]=m*o+h*e+d*s,t[8]=m*l+h*M+d*c,t},o.mul=o.multiply,o.translate=function(t,a,n){var r=a[0],o=a[1],l=a[2],u=a[3],e=a[4],M=a[5],i=a[6],s=a[7],c=a[8],f=n[0],D=n[1];return t[0]=r,t[1]=o,t[2]=l,t[3]=u,t[4]=e,t[5]=M,t[6]=f*r+D*u+i,t[7]=f*o+D*e+s,t[8]=f*l+D*M+c,t},o.rotate=function(t,a,n){var r=a[0],o=a[1],l=a[2],u=a[3],e=a[4],M=a[5],i=a[6],s=a[7],c=a[8],f=Math.sin(n),D=Math.cos(n);return t[0]=D*r+f*u,t[1]=D*o+f*e,t[2]=D*l+f*M,t[3]=D*u-f*r,t[4]=D*e-f*o,t[5]=D*M-f*l,t[6]=i,t[7]=s,t[8]=c,t},o.scale=function(t,a,n){var r=n[0],o=n[1];return t[0]=r*a[0],t[1]=r*a[1],t[2]=r*a[2],t[3]=o*a[3],t[4]=o*a[4],t[5]=o*a[5],t[6]=a[6],t[7]=a[7],t[8]=a[8],t},o.fromTranslation=function(t,a){return t[0]=1,t[1]=0,t[2]=0,t[3]=0,t[4]=1,t[5]=0,t[6]=a[0],t[7]=a[1],t[8]=1,t},o.fromRotation=function(t,a){var n=Math.sin(a),r=Math.cos(a);return t[0]=r,t[1]=n,t[2]=0,t[3]=-n,t[4]=r,t[5]=0,t[6]=0,t[7]=0,t[8]=1,t},o.fromScaling=function(t,a){return t[0]=a[0],t[1]=0,t[2]=0,t[3]=0,t[4]=a[1],t[5]=0,t[6]=0,t[7]=0,t[8]=1,t},o.fromMat2d=function(t,a){return t[0]=a[0],t[1]=a[1],t[2]=0,t[3]=a[2],t[4]=a[3],t[5]=0,t[6]=a[4],t[7]=a[5],t[8]=1,t},o.fromQuat=function(t,a){var n=a[0],r=a[1],o=a[2],l=a[3],u=n+n,e=r+r,M=o+o,i=n*u,s=r*u,c=r*e,f=o*u,D=o*e,S=o*M,I=l*u,x=l*e,F=l*M;return t[0]=1-c-S,t[3]=s-F,t[6]=f+x,t[1]=s+F,t[4]=1-i-S,t[7]=D-I,t[2]=f-x,t[5]=D+I,t[8]=1-i-c,t},o.normalFromMat4=function(t,a){var n=a[0],r=a[1],o=a[2],l=a[3],u=a[4],e=a[5],M=a[6],i=a[7],s=a[8],c=a[9],f=a[10],D=a[11],S=a[12],I=a[13],x=a[14],F=a[15],m=n*e-r*u,h=n*M-o*u,d=n*i-l*u,v=r*M-o*e,z=r*i-l*e,p=o*i-l*M,w=s*I-c*S,A=s*x-f*S,R=s*F-D*S,b=c*x-f*I,q=c*F-D*I,y=f*F-D*x,Y=m*y-h*q+d*b+v*R-z*A+p*w;return Y?(Y=1/Y,t[0]=(e*y-M*q+i*b)*Y,t[1]=(M*R-u*y-i*A)*Y,t[2]=(u*q-e*R+i*w)*Y,t[3]=(o*q-r*y-l*b)*Y,t[4]=(n*y-o*R+l*A)*Y,t[5]=(r*R-n*q-l*w)*Y,t[6]=(I*p-x*z+F*v)*Y,t[7]=(x*d-S*p-F*h)*Y,t[8]=(S*z-I*d+F*m)*Y,t):null},o.str=function(t){return"mat3("+t[0]+", "+t[1]+", "+t[2]+", "+t[3]+", "+t[4]+", "+t[5]+", "+t[6]+", "+t[7]+", "+t[8]+")"},o.frob=function(t){return Math.sqrt(Math.pow(t[0],2)+Math.pow(t[1],2)+Math.pow(t[2],2)+Math.pow(t[3],2)+Math.pow(t[4],2)+Math.pow(t[5],2)+Math.pow(t[6],2)+Math.pow(t[7],2)+Math.pow(t[8],2))},t.exports=o},function(t,a,n){var r=n(1),o={scalar:{},SIMD:{}};o.create=function(){var t=new r.ARRAY_TYPE(16);return t[0]=1,t[1]=0,t[2]=0,t[3]=0,t[4]=0,t[5]=1,t[6]=0,t[7]=0,t[8]=0,t[9]=0,t[10]=1,t[11]=0,t[12]=0,t[13]=0,t[14]=0,t[15]=1,t},o.clone=function(t){var a=new r.ARRAY_TYPE(16);return a[0]=t[0],a[1]=t[1],a[2]=t[2],a[3]=t[3],a[4]=t[4],a[5]=t[5],a[6]=t[6],a[7]=t[7],a[8]=t[8],a[9]=t[9],a[10]=t[10],a[11]=t[11],a[12]=t[12],a[13]=t[13],a[14]=t[14],a[15]=t[15],a},o.copy=function(t,a){return t[0]=a[0],t[1]=a[1],t[2]=a[2],t[3]=a[3],t[4]=a[4],t[5]=a[5],t[6]=a[6],t[7]=a[7],t[8]=a[8],t[9]=a[9],t[10]=a[10],t[11]=a[11],t[12]=a[12],t[13]=a[13],t[14]=a[14],t[15]=a[15],t},o.identity=function(t){return t[0]=1,t[1]=0,t[2]=0,t[3]=0,t[4]=0,t[5]=1,t[6]=0,t[7]=0,t[8]=0,t[9]=0,t[10]=1,t[11]=0,t[12]=0,t[13]=0,t[14]=0,t[15]=1,t},o.scalar.transpose=function(t,a){if(t===a){var n=a[1],r=a[2],o=a[3],l=a[6],u=a[7],e=a[11];t[1]=a[4],t[2]=a[8],t[3]=a[12],t[4]=n,t[6]=a[9],t[7]=a[13],t[8]=r,t[9]=l,t[11]=a[14],t[12]=o,t[13]=u,t[14]=e}else t[0]=a[0],t[1]=a[4],t[2]=a[8],t[3]=a[12],t[4]=a[1],t[5]=a[5],t[6]=a[9],t[7]=a[13],t[8]=a[2],t[9]=a[6],t[10]=a[10],t[11]=a[14],t[12]=a[3],t[13]=a[7],t[14]=a[11],t[15]=a[15];return t},o.SIMD.transpose=function(t,a){var n,r,o,l,u,e,M,i,s,c;return n=SIMD.Float32x4.load(a,0),r=SIMD.Float32x4.load(a,4),o=SIMD.Float32x4.load(a,8),l=SIMD.Float32x4.load(a,12),u=SIMD.Float32x4.shuffle(n,r,0,1,4,5),e=SIMD.Float32x4.shuffle(o,l,0,1,4,5),M=SIMD.Float32x4.shuffle(u,e,0,2,4,6),i=SIMD.Float32x4.shuffle(u,e,1,3,5,7),SIMD.Float32x4.store(t,0,M),SIMD.Float32x4.store(t,4,i),u=SIMD.Float32x4.shuffle(n,r,2,3,6,7),e=SIMD.Float32x4.shuffle(o,l,2,3,6,7),s=SIMD.Float32x4.shuffle(u,e,0,2,4,6),c=SIMD.Float32x4.shuffle(u,e,1,3,5,7),SIMD.Float32x4.store(t,8,s),SIMD.Float32x4.store(t,12,c),t},o.transpose=r.USE_SIMD?o.SIMD.transpose:o.scalar.transpose,o.scalar.invert=function(t,a){var n=a[0],r=a[1],o=a[2],l=a[3],u=a[4],e=a[5],M=a[6],i=a[7],s=a[8],c=a[9],f=a[10],D=a[11],S=a[12],I=a[13],x=a[14],F=a[15],m=n*e-r*u,h=n*M-o*u,d=n*i-l*u,v=r*M-o*e,z=r*i-l*e,p=o*i-l*M,w=s*I-c*S,A=s*x-f*S,R=s*F-D*S,b=c*x-f*I,q=c*F-D*I,y=f*F-D*x,Y=m*y-h*q+d*b+v*R-z*A+p*w;return Y?(Y=1/Y,t[0]=(e*y-M*q+i*b)*Y,t[1]=(o*q-r*y-l*b)*Y,t[2]=(I*p-x*z+F*v)*Y,t[3]=(f*z-c*p-D*v)*Y,t[4]=(M*R-u*y-i*A)*Y,t[5]=(n*y-o*R+l*A)*Y,t[6]=(x*d-S*p-F*h)*Y,t[7]=(s*p-f*d+D*h)*Y,t[8]=(u*q-e*R+i*w)*Y,t[9]=(r*R-n*q-l*w)*Y,t[10]=(S*z-I*d+F*m)*Y,t[11]=(c*d-s*z-D*m)*Y,t[12]=(e*A-u*b-M*w)*Y,t[13]=(n*b-r*A+o*w)*Y,t[14]=(I*h-S*v-x*m)*Y,t[15]=(s*v-c*h+f*m)*Y,t):null},o.SIMD.invert=function(t,a){var n,r,o,l,u,e,M,i,s,c,f=SIMD.Float32x4.load(a,0),D=SIMD.Float32x4.load(a,4),S=SIMD.Float32x4.load(a,8),I=SIMD.Float32x4.load(a,12);return u=SIMD.Float32x4.shuffle(f,D,0,1,4,5),r=SIMD.Float32x4.shuffle(S,I,0,1,4,5),n=SIMD.Float32x4.shuffle(u,r,0,2,4,6),r=SIMD.Float32x4.shuffle(r,u,1,3,5,7),u=SIMD.Float32x4.shuffle(f,D,2,3,6,7),l=SIMD.Float32x4.shuffle(S,I,2,3,6,7),o=SIMD.Float32x4.shuffle(u,l,0,2,4,6),l=SIMD.Float32x4.shuffle(l,u,1,3,5,7),u=SIMD.Float32x4.mul(o,l),u=SIMD.Float32x4.swizzle(u,1,0,3,2),e=SIMD.Float32x4.mul(r,u),M=SIMD.Float32x4.mul(n,u),u=SIMD.Float32x4.swizzle(u,2,3,0,1),e=SIMD.Float32x4.sub(SIMD.Float32x4.mul(r,u),e),M=SIMD.Float32x4.sub(SIMD.Float32x4.mul(n,u),M),M=SIMD.Float32x4.swizzle(M,2,3,0,1),u=SIMD.Float32x4.mul(r,o),u=SIMD.Float32x4.swizzle(u,1,0,3,2),e=SIMD.Float32x4.add(SIMD.Float32x4.mul(l,u),e),s=SIMD.Float32x4.mul(n,u),u=SIMD.Float32x4.swizzle(u,2,3,0,1),e=SIMD.Float32x4.sub(e,SIMD.Float32x4.mul(l,u)),s=SIMD.Float32x4.sub(SIMD.Float32x4.mul(n,u),s),s=SIMD.Float32x4.swizzle(s,2,3,0,1),u=SIMD.Float32x4.mul(SIMD.Float32x4.swizzle(r,2,3,0,1),l),u=SIMD.Float32x4.swizzle(u,1,0,3,2),o=SIMD.Float32x4.swizzle(o,2,3,0,1),e=SIMD.Float32x4.add(SIMD.Float32x4.mul(o,u),e),i=SIMD.Float32x4.mul(n,u),u=SIMD.Float32x4.swizzle(u,2,3,0,1),e=SIMD.Float32x4.sub(e,SIMD.Float32x4.mul(o,u)),i=SIMD.Float32x4.sub(SIMD.Float32x4.mul(n,u),i),i=SIMD.Float32x4.swizzle(i,2,3,0,1),u=SIMD.Float32x4.mul(n,r),u=SIMD.Float32x4.swizzle(u,1,0,3,2),i=SIMD.Float32x4.add(SIMD.Float32x4.mul(l,u),i),s=SIMD.Float32x4.sub(SIMD.Float32x4.mul(o,u),s),u=SIMD.Float32x4.swizzle(u,2,3,0,1),i=SIMD.Float32x4.sub(SIMD.Float32x4.mul(l,u),i),s=SIMD.Float32x4.sub(s,SIMD.Float32x4.mul(o,u)),u=SIMD.Float32x4.mul(n,l),u=SIMD.Float32x4.swizzle(u,1,0,3,2),M=SIMD.Float32x4.sub(M,SIMD.Float32x4.mul(o,u)),i=SIMD.Float32x4.add(SIMD.Float32x4.mul(r,u),i),u=SIMD.Float32x4.swizzle(u,2,3,0,1),M=SIMD.Float32x4.add(SIMD.Float32x4.mul(o,u),M),i=SIMD.Float32x4.sub(i,SIMD.Float32x4.mul(r,u)),u=SIMD.Float32x4.mul(n,o),u=SIMD.Float32x4.swizzle(u,1,0,3,2),M=SIMD.Float32x4.add(SIMD.Float32x4.mul(l,u),M),s=SIMD.Float32x4.sub(s,SIMD.Float32x4.mul(r,u)),u=SIMD.Float32x4.swizzle(u,2,3,0,1),M=SIMD.Float32x4.sub(M,SIMD.Float32x4.mul(l,u)),s=SIMD.Float32x4.add(SIMD.Float32x4.mul(r,u),s),c=SIMD.Float32x4.mul(n,e),c=SIMD.Float32x4.add(SIMD.Float32x4.swizzle(c,2,3,0,1),c),c=SIMD.Float32x4.add(SIMD.Float32x4.swizzle(c,1,0,3,2),c),u=SIMD.Float32x4.reciprocalApproximation(c),c=SIMD.Float32x4.sub(SIMD.Float32x4.add(u,u),SIMD.Float32x4.mul(c,SIMD.Float32x4.mul(u,u))),(c=SIMD.Float32x4.swizzle(c,0,0,0,0))?(SIMD.Float32x4.store(t,0,SIMD.Float32x4.mul(c,e)),SIMD.Float32x4.store(t,4,SIMD.Float32x4.mul(c,M)),SIMD.Float32x4.store(t,8,SIMD.Float32x4.mul(c,i)),SIMD.Float32x4.store(t,12,SIMD.Float32x4.mul(c,s)),t):null},o.invert=r.USE_SIMD?o.SIMD.invert:o.scalar.invert,o.scalar.adjoint=function(t,a){var n=a[0],r=a[1],o=a[2],l=a[3],u=a[4],e=a[5],M=a[6],i=a[7],s=a[8],c=a[9],f=a[10],D=a[11],S=a[12],I=a[13],x=a[14],F=a[15];return t[0]=e*(f*F-D*x)-c*(M*F-i*x)+I*(M*D-i*f),t[1]=-(r*(f*F-D*x)-c*(o*F-l*x)+I*(o*D-l*f)),t[2]=r*(M*F-i*x)-e*(o*F-l*x)+I*(o*i-l*M),t[3]=-(r*(M*D-i*f)-e*(o*D-l*f)+c*(o*i-l*M)),t[4]=-(u*(f*F-D*x)-s*(M*F-i*x)+S*(M*D-i*f)),t[5]=n*(f*F-D*x)-s*(o*F-l*x)+S*(o*D-l*f),t[6]=-(n*(M*F-i*x)-u*(o*F-l*x)+S*(o*i-l*M)),t[7]=n*(M*D-i*f)-u*(o*D-l*f)+s*(o*i-l*M),t[8]=u*(c*F-D*I)-s*(e*F-i*I)+S*(e*D-i*c),t[9]=-(n*(c*F-D*I)-s*(r*F-l*I)+S*(r*D-l*c)),t[10]=n*(e*F-i*I)-u*(r*F-l*I)+S*(r*i-l*e),t[11]=-(n*(e*D-i*c)-u*(r*D-l*c)+s*(r*i-l*e)),t[12]=-(u*(c*x-f*I)-s*(e*x-M*I)+S*(e*f-M*c)),t[13]=n*(c*x-f*I)-s*(r*x-o*I)+S*(r*f-o*c),t[14]=-(n*(e*x-M*I)-u*(r*x-o*I)+S*(r*M-o*e)),t[15]=n*(e*f-M*c)-u*(r*f-o*c)+s*(r*M-o*e),t},o.SIMD.adjoint=function(t,a){var n,r,o,l,u,e,M,i,s,c,f,D,S,n=SIMD.Float32x4.load(a,0),r=SIMD.Float32x4.load(a,4),o=SIMD.Float32x4.load(a,8),l=SIMD.Float32x4.load(a,12);return s=SIMD.Float32x4.shuffle(n,r,0,1,4,5),e=SIMD.Float32x4.shuffle(o,l,0,1,4,5),u=SIMD.Float32x4.shuffle(s,e,0,2,4,6),e=SIMD.Float32x4.shuffle(e,s,1,3,5,7),s=SIMD.Float32x4.shuffle(n,r,2,3,6,7),i=SIMD.Float32x4.shuffle(o,l,2,3,6,7),M=SIMD.Float32x4.shuffle(s,i,0,2,4,6),i=SIMD.Float32x4.shuffle(i,s,1,3,5,7),s=SIMD.Float32x4.mul(M,i),s=SIMD.Float32x4.swizzle(s,1,0,3,2),c=SIMD.Float32x4.mul(e,s),f=SIMD.Float32x4.mul(u,s),s=SIMD.Float32x4.swizzle(s,2,3,0,1),c=SIMD.Float32x4.sub(SIMD.Float32x4.mul(e,s),c),f=SIMD.Float32x4.sub(SIMD.Float32x4.mul(u,s),f),f=SIMD.Float32x4.swizzle(f,2,3,0,1),s=SIMD.Float32x4.mul(e,M),s=SIMD.Float32x4.swizzle(s,1,0,3,2),c=SIMD.Float32x4.add(SIMD.Float32x4.mul(i,s),c),S=SIMD.Float32x4.mul(u,s),s=SIMD.Float32x4.swizzle(s,2,3,0,1),c=SIMD.Float32x4.sub(c,SIMD.Float32x4.mul(i,s)),S=SIMD.Float32x4.sub(SIMD.Float32x4.mul(u,s),S),S=SIMD.Float32x4.swizzle(S,2,3,0,1),s=SIMD.Float32x4.mul(SIMD.Float32x4.swizzle(e,2,3,0,1),i),s=SIMD.Float32x4.swizzle(s,1,0,3,2),M=SIMD.Float32x4.swizzle(M,2,3,0,1),c=SIMD.Float32x4.add(SIMD.Float32x4.mul(M,s),c),D=SIMD.Float32x4.mul(u,s),s=SIMD.Float32x4.swizzle(s,2,3,0,1),c=SIMD.Float32x4.sub(c,SIMD.Float32x4.mul(M,s)),D=SIMD.Float32x4.sub(SIMD.Float32x4.mul(u,s),D),D=SIMD.Float32x4.swizzle(D,2,3,0,1),s=SIMD.Float32x4.mul(u,e),s=SIMD.Float32x4.swizzle(s,1,0,3,2),D=SIMD.Float32x4.add(SIMD.Float32x4.mul(i,s),D),S=SIMD.Float32x4.sub(SIMD.Float32x4.mul(M,s),S),s=SIMD.Float32x4.swizzle(s,2,3,0,1),D=SIMD.Float32x4.sub(SIMD.Float32x4.mul(i,s),D),S=SIMD.Float32x4.sub(S,SIMD.Float32x4.mul(M,s)),s=SIMD.Float32x4.mul(u,i),s=SIMD.Float32x4.swizzle(s,1,0,3,2),f=SIMD.Float32x4.sub(f,SIMD.Float32x4.mul(M,s)),D=SIMD.Float32x4.add(SIMD.Float32x4.mul(e,s),D),s=SIMD.Float32x4.swizzle(s,2,3,0,1),f=SIMD.Float32x4.add(SIMD.Float32x4.mul(M,s),f),D=SIMD.Float32x4.sub(D,SIMD.Float32x4.mul(e,s)),s=SIMD.Float32x4.mul(u,M),s=SIMD.Float32x4.swizzle(s,1,0,3,2),f=SIMD.Float32x4.add(SIMD.Float32x4.mul(i,s),f),S=SIMD.Float32x4.sub(S,SIMD.Float32x4.mul(e,s)),s=SIMD.Float32x4.swizzle(s,2,3,0,1),f=SIMD.Float32x4.sub(f,SIMD.Float32x4.mul(i,s)),S=SIMD.Float32x4.add(SIMD.Float32x4.mul(e,s),S),SIMD.Float32x4.store(t,0,c),SIMD.Float32x4.store(t,4,f),SIMD.Float32x4.store(t,8,D),SIMD.Float32x4.store(t,12,S),t},o.adjoint=r.USE_SIMD?o.SIMD.adjoint:o.scalar.adjoint,o.determinant=function(t){var a=t[0],n=t[1],r=t[2],o=t[3],l=t[4],u=t[5],e=t[6],M=t[7],i=t[8],s=t[9],c=t[10],f=t[11],D=t[12],S=t[13],I=t[14],x=t[15],F=a*u-n*l,m=a*e-r*l,h=a*M-o*l,d=n*e-r*u,v=n*M-o*u,z=r*M-o*e,p=i*S-s*D,w=i*I-c*D,A=i*x-f*D,R=s*I-c*S,b=s*x-f*S,q=c*x-f*I;return F*q-m*b+h*R+d*A-v*w+z*p},o.SIMD.multiply=function(t,a,n){var r=SIMD.Float32x4.load(a,0),o=SIMD.Float32x4.load(a,4),l=SIMD.Float32x4.load(a,8),u=SIMD.Float32x4.load(a,12),e=SIMD.Float32x4.load(n,0),M=SIMD.Float32x4.add(SIMD.Float32x4.mul(SIMD.Float32x4.swizzle(e,0,0,0,0),r),SIMD.Float32x4.add(SIMD.Float32x4.mul(SIMD.Float32x4.swizzle(e,1,1,1,1),o),SIMD.Float32x4.add(SIMD.Float32x4.mul(SIMD.Float32x4.swizzle(e,2,2,2,2),l),SIMD.Float32x4.mul(SIMD.Float32x4.swizzle(e,3,3,3,3),u))));SIMD.Float32x4.store(t,0,M);var i=SIMD.Float32x4.load(n,4),s=SIMD.Float32x4.add(SIMD.Float32x4.mul(SIMD.Float32x4.swizzle(i,0,0,0,0),r),SIMD.Float32x4.add(SIMD.Float32x4.mul(SIMD.Float32x4.swizzle(i,1,1,1,1),o),SIMD.Float32x4.add(SIMD.Float32x4.mul(SIMD.Float32x4.swizzle(i,2,2,2,2),l),SIMD.Float32x4.mul(SIMD.Float32x4.swizzle(i,3,3,3,3),u))));SIMD.Float32x4.store(t,4,s);var c=SIMD.Float32x4.load(n,8),f=SIMD.Float32x4.add(SIMD.Float32x4.mul(SIMD.Float32x4.swizzle(c,0,0,0,0),r),SIMD.Float32x4.add(SIMD.Float32x4.mul(SIMD.Float32x4.swizzle(c,1,1,1,1),o),SIMD.Float32x4.add(SIMD.Float32x4.mul(SIMD.Float32x4.swizzle(c,2,2,2,2),l),SIMD.Float32x4.mul(SIMD.Float32x4.swizzle(c,3,3,3,3),u))));SIMD.Float32x4.store(t,8,f);var D=SIMD.Float32x4.load(n,12),S=SIMD.Float32x4.add(SIMD.Float32x4.mul(SIMD.Float32x4.swizzle(D,0,0,0,0),r),SIMD.Float32x4.add(SIMD.Float32x4.mul(SIMD.Float32x4.swizzle(D,1,1,1,1),o),SIMD.Float32x4.add(SIMD.Float32x4.mul(SIMD.Float32x4.swizzle(D,2,2,2,2),l),SIMD.Float32x4.mul(SIMD.Float32x4.swizzle(D,3,3,3,3),u))));return SIMD.Float32x4.store(t,12,S),t},o.scalar.multiply=function(t,a,n){var r=a[0],o=a[1],l=a[2],u=a[3],e=a[4],M=a[5],i=a[6],s=a[7],c=a[8],f=a[9],D=a[10],S=a[11],I=a[12],x=a[13],F=a[14],m=a[15],h=n[0],d=n[1],v=n[2],z=n[3];return t[0]=h*r+d*e+v*c+z*I,t[1]=h*o+d*M+v*f+z*x,t[2]=h*l+d*i+v*D+z*F,t[3]=h*u+d*s+v*S+z*m,h=n[4],d=n[5],v=n[6],z=n[7],t[4]=h*r+d*e+v*c+z*I,t[5]=h*o+d*M+v*f+z*x,t[6]=h*l+d*i+v*D+z*F,t[7]=h*u+d*s+v*S+z*m,h=n[8],d=n[9],v=n[10],z=n[11],t[8]=h*r+d*e+v*c+z*I,t[9]=h*o+d*M+v*f+z*x,t[10]=h*l+d*i+v*D+z*F,t[11]=h*u+d*s+v*S+z*m,h=n[12],d=n[13],v=n[14],z=n[15],t[12]=h*r+d*e+v*c+z*I,t[13]=h*o+d*M+v*f+z*x,t[14]=h*l+d*i+v*D+z*F,t[15]=h*u+d*s+v*S+z*m,t},o.multiply=r.USE_SIMD?o.SIMD.multiply:o.scalar.multiply,o.mul=o.multiply,o.scalar.translate=function(t,a,n){var r,o,l,u,e,M,i,s,c,f,D,S,I=n[0],x=n[1],F=n[2];return a===t?(t[12]=a[0]*I+a[4]*x+a[8]*F+a[12],t[13]=a[1]*I+a[5]*x+a[9]*F+a[13],t[14]=a[2]*I+a[6]*x+a[10]*F+a[14],t[15]=a[3]*I+a[7]*x+a[11]*F+a[15]):(r=a[0],o=a[1],l=a[2],u=a[3],e=a[4],M=a[5],i=a[6],s=a[7],c=a[8],f=a[9],D=a[10],S=a[11],t[0]=r,t[1]=o,t[2]=l,t[3]=u,t[4]=e,t[5]=M,t[6]=i,t[7]=s,t[8]=c,t[9]=f,t[10]=D,t[11]=S,t[12]=r*I+e*x+c*F+a[12],t[13]=o*I+M*x+f*F+a[13],t[14]=l*I+i*x+D*F+a[14],t[15]=u*I+s*x+S*F+a[15]),t},o.SIMD.translate=function(t,a,n){var r=SIMD.Float32x4.load(a,0),o=SIMD.Float32x4.load(a,4),l=SIMD.Float32x4.load(a,8),u=SIMD.Float32x4.load(a,12),e=SIMD.Float32x4(n[0],n[1],n[2],0);a!==t&&(t[0]=a[0],t[1]=a[1],t[2]=a[2],t[3]=a[3],t[4]=a[4],t[5]=a[5],t[6]=a[6],t[7]=a[7],t[8]=a[8],t[9]=a[9],t[10]=a[10],t[11]=a[11]),r=SIMD.Float32x4.mul(r,SIMD.Float32x4.swizzle(e,0,0,0,0)),o=SIMD.Float32x4.mul(o,SIMD.Float32x4.swizzle(e,1,1,1,1)),l=SIMD.Float32x4.mul(l,SIMD.Float32x4.swizzle(e,2,2,2,2));var M=SIMD.Float32x4.add(r,SIMD.Float32x4.add(o,SIMD.Float32x4.add(l,u)));return SIMD.Float32x4.store(t,12,M),t},o.translate=r.USE_SIMD?o.SIMD.translate:o.scalar.translate,o.scalar.scale=function(t,a,n){var r=n[0],o=n[1],l=n[2];return t[0]=a[0]*r,t[1]=a[1]*r,t[2]=a[2]*r,t[3]=a[3]*r,t[4]=a[4]*o,t[5]=a[5]*o,t[6]=a[6]*o,t[7]=a[7]*o,t[8]=a[8]*l,t[9]=a[9]*l,t[10]=a[10]*l,t[11]=a[11]*l,t[12]=a[12],t[13]=a[13],t[14]=a[14],t[15]=a[15],t},o.SIMD.scale=function(t,a,n){var r,o,l,u=SIMD.Float32x4(n[0],n[1],n[2],0);return r=SIMD.Float32x4.load(a,0),SIMD.Float32x4.store(t,0,SIMD.Float32x4.mul(r,SIMD.Float32x4.swizzle(u,0,0,0,0))),o=SIMD.Float32x4.load(a,4),SIMD.Float32x4.store(t,4,SIMD.Float32x4.mul(o,SIMD.Float32x4.swizzle(u,1,1,1,1))),l=SIMD.Float32x4.load(a,8),SIMD.Float32x4.store(t,8,SIMD.Float32x4.mul(l,SIMD.Float32x4.swizzle(u,2,2,2,2))),t[12]=a[12],t[13]=a[13],t[14]=a[14],t[15]=a[15],t},o.scale=r.USE_SIMD?o.SIMD.scale:o.scalar.scale,o.rotate=function(t,a,n,o){var l,u,e,M,i,s,c,f,D,S,I,x,F,m,h,d,v,z,p,w,A,R,b,q,y=o[0],Y=o[1],g=o[2],E=Math.sqrt(y*y+Y*Y+g*g);return Math.abs(E)<r.EPSILON?null:(E=1/E,y*=E,Y*=E,g*=E,l=Math.sin(n),u=Math.cos(n),e=1-u,M=a[0],i=a[1],s=a[2],c=a[3],f=a[4],D=a[5],S=a[6],I=a[7],x=a[8],F=a[9],m=a[10],h=a[11],d=y*y*e+u,v=Y*y*e+g*l,z=g*y*e-Y*l,p=y*Y*e-g*l,w=Y*Y*e+u,A=g*Y*e+y*l,R=y*g*e+Y*l,b=Y*g*e-y*l,q=g*g*e+u,t[0]=M*d+f*v+x*z,t[1]=i*d+D*v+F*z,t[2]=s*d+S*v+m*z,t[3]=c*d+I*v+h*z,t[4]=M*p+f*w+x*A,t[5]=i*p+D*w+F*A,t[6]=s*p+S*w+m*A,t[7]=c*p+I*w+h*A,t[8]=M*R+f*b+x*q,t[9]=i*R+D*b+F*q,t[10]=s*R+S*b+m*q,t[11]=c*R+I*b+h*q,a!==t&&(t[12]=a[12],t[13]=a[13],t[14]=a[14],t[15]=a[15]),t)},o.rotateX=function(t,a,n){var r=Math.sin(n),o=Math.cos(n),l=a[4],u=a[5],e=a[6],M=a[7],i=a[8],s=a[9],c=a[10],f=a[11];return a!==t&&(t[0]=a[0],t[1]=a[1],t[2]=a[2],t[3]=a[3],t[12]=a[12],t[13]=a[13],t[14]=a[14],t[15]=a[15]),t[4]=l*o+i*r,t[5]=u*o+s*r,t[6]=e*o+c*r,t[7]=M*o+f*r,t[8]=i*o-l*r,t[9]=s*o-u*r,t[10]=c*o-e*r,t[11]=f*o-M*r,t},o.rotateY=function(t,a,n){var r=Math.sin(n),o=Math.cos(n),l=a[0],u=a[1],e=a[2],M=a[3],i=a[8],s=a[9],c=a[10],f=a[11];return a!==t&&(t[4]=a[4],t[5]=a[5],t[6]=a[6],t[7]=a[7],t[12]=a[12],t[13]=a[13],t[14]=a[14],t[15]=a[15]),t[0]=l*o-i*r,t[1]=u*o-s*r,t[2]=e*o-c*r,t[3]=M*o-f*r,t[8]=l*r+i*o,t[9]=u*r+s*o,t[10]=e*r+c*o,t[11]=M*r+f*o,t},o.rotateZ=function(t,a,n){var r=Math.sin(n),o=Math.cos(n),l=a[0],u=a[1],e=a[2],M=a[3],i=a[4],s=a[5],c=a[6],f=a[7];return a!==t&&(t[8]=a[8],t[9]=a[9],t[10]=a[10],t[11]=a[11],t[12]=a[12],t[13]=a[13],t[14]=a[14],t[15]=a[15]),t[0]=l*o+i*r,t[1]=u*o+s*r,t[2]=e*o+c*r,t[3]=M*o+f*r,t[4]=i*o-l*r,t[5]=s*o-u*r,t[6]=c*o-e*r,t[7]=f*o-M*r,t},o.fromTranslation=function(t,a){return t[0]=1,t[1]=0,t[2]=0,t[3]=0,t[4]=0,t[5]=1,t[6]=0,t[7]=0,t[8]=0,t[9]=0,t[10]=1,t[11]=0,t[12]=a[0],t[13]=a[1],t[14]=a[2],t[15]=1,t},o.fromScaling=function(t,a){return t[0]=a[0],t[1]=0,t[2]=0,t[3]=0,t[4]=0,t[5]=a[1],t[6]=0,t[7]=0,t[8]=0,t[9]=0,t[10]=a[2],t[11]=0,t[12]=0,t[13]=0,t[14]=0,t[15]=1,t},o.fromRotation=function(t,a,n){var o,l,u,e=n[0],M=n[1],i=n[2],s=Math.sqrt(e*e+M*M+i*i);return Math.abs(s)<r.EPSILON?null:(s=1/s,e*=s,M*=s,i*=s,o=Math.sin(a),l=Math.cos(a),u=1-l,t[0]=e*e*u+l,t[1]=M*e*u+i*o,t[2]=i*e*u-M*o,t[3]=0,t[4]=e*M*u-i*o,t[5]=M*M*u+l,t[6]=i*M*u+e*o,t[7]=0,t[8]=e*i*u+M*o,t[9]=M*i*u-e*o,t[10]=i*i*u+l,t[11]=0,t[12]=0,t[13]=0,t[14]=0,t[15]=1,t)},o.fromXRotation=function(t,a){var n=Math.sin(a),r=Math.cos(a);return t[0]=1,t[1]=0,t[2]=0,t[3]=0,t[4]=0,t[5]=r,t[6]=n,t[7]=0,t[8]=0,t[9]=-n,t[10]=r,t[11]=0,t[12]=0,t[13]=0,t[14]=0,t[15]=1,t},o.fromYRotation=function(t,a){var n=Math.sin(a),r=Math.cos(a);return t[0]=r,t[1]=0,t[2]=-n,t[3]=0,t[4]=0,t[5]=1,t[6]=0,t[7]=0,t[8]=n,t[9]=0,t[10]=r,t[11]=0,t[12]=0,t[13]=0,t[14]=0,t[15]=1,t},o.fromZRotation=function(t,a){var n=Math.sin(a),r=Math.cos(a);return t[0]=r,t[1]=n,t[2]=0,t[3]=0,t[4]=-n,t[5]=r,t[6]=0,t[7]=0,t[8]=0,t[9]=0,t[10]=1,t[11]=0,t[12]=0,t[13]=0,t[14]=0,t[15]=1,t},o.fromRotationTranslation=function(t,a,n){var r=a[0],o=a[1],l=a[2],u=a[3],e=r+r,M=o+o,i=l+l,s=r*e,c=r*M,f=r*i,D=o*M,S=o*i,I=l*i,x=u*e,F=u*M,m=u*i;return t[0]=1-(D+I),t[1]=c+m,t[2]=f-F,t[3]=0,t[4]=c-m,t[5]=1-(s+I),t[6]=S+x,t[7]=0,t[8]=f+F,t[9]=S-x,t[10]=1-(s+D),t[11]=0,t[12]=n[0],t[13]=n[1],t[14]=n[2],t[15]=1,t},o.fromRotationTranslationScale=function(t,a,n,r){var o=a[0],l=a[1],u=a[2],e=a[3],M=o+o,i=l+l,s=u+u,c=o*M,f=o*i,D=o*s,S=l*i,I=l*s,x=u*s,F=e*M,m=e*i,h=e*s,d=r[0],v=r[1],z=r[2];return t[0]=(1-(S+x))*d,t[1]=(f+h)*d,t[2]=(D-m)*d,t[3]=0,t[4]=(f-h)*v,t[5]=(1-(c+x))*v,t[6]=(I+F)*v,t[7]=0,t[8]=(D+m)*z,t[9]=(I-F)*z,t[10]=(1-(c+S))*z,t[11]=0,t[12]=n[0],t[13]=n[1],t[14]=n[2],t[15]=1,t},o.fromRotationTranslationScaleOrigin=function(t,a,n,r,o){var l=a[0],u=a[1],e=a[2],M=a[3],i=l+l,s=u+u,c=e+e,f=l*i,D=l*s,S=l*c,I=u*s,x=u*c,F=e*c,m=M*i,h=M*s,d=M*c,v=r[0],z=r[1],p=r[2],w=o[0],A=o[1],R=o[2];return t[0]=(1-(I+F))*v,t[1]=(D+d)*v,t[2]=(S-h)*v,t[3]=0,t[4]=(D-d)*z,t[5]=(1-(f+F))*z,t[6]=(x+m)*z,t[7]=0,t[8]=(S+h)*p,t[9]=(x-m)*p,t[10]=(1-(f+I))*p,t[11]=0,t[12]=n[0]+w-(t[0]*w+t[4]*A+t[8]*R),t[13]=n[1]+A-(t[1]*w+t[5]*A+t[9]*R),t[14]=n[2]+R-(t[2]*w+t[6]*A+t[10]*R),t[15]=1,t},o.fromQuat=function(t,a){var n=a[0],r=a[1],o=a[2],l=a[3],u=n+n,e=r+r,M=o+o,i=n*u,s=r*u,c=r*e,f=o*u,D=o*e,S=o*M,I=l*u,x=l*e,F=l*M;return t[0]=1-c-S,t[1]=s+F,t[2]=f-x,t[3]=0,t[4]=s-F,t[5]=1-i-S,t[6]=D+I,t[7]=0,t[8]=f+x,t[9]=D-I,t[10]=1-i-c,t[11]=0,t[12]=0,t[13]=0,t[14]=0,t[15]=1,t},o.frustum=function(t,a,n,r,o,l,u){var e=1/(n-a),M=1/(o-r),i=1/(l-u);return t[0]=2*l*e,t[1]=0,t[2]=0,t[3]=0,t[4]=0,t[5]=2*l*M,t[6]=0,t[7]=0,t[8]=(n+a)*e,t[9]=(o+r)*M,t[10]=(u+l)*i,t[11]=-1,t[12]=0,t[13]=0,t[14]=u*l*2*i,t[15]=0,t},o.perspective=function(t,a,n,r,o){var l=1/Math.tan(a/2),u=1/(r-o);return t[0]=l/n,t[1]=0,t[2]=0,t[3]=0,t[4]=0,t[5]=l,t[6]=0,t[7]=0,t[8]=0,t[9]=0,t[10]=(o+r)*u,t[11]=-1,t[12]=0,t[13]=0,t[14]=2*o*r*u,t[15]=0,t},o.perspectiveFromFieldOfView=function(t,a,n,r){var o=Math.tan(a.upDegrees*Math.PI/180),l=Math.tan(a.downDegrees*Math.PI/180),u=Math.tan(a.leftDegrees*Math.PI/180),e=Math.tan(a.rightDegrees*Math.PI/180),M=2/(u+e),i=2/(o+l);return t[0]=M,t[1]=0,t[2]=0,t[3]=0,t[4]=0,t[5]=i,t[6]=0,t[7]=0,t[8]=-((u-e)*M*.5),t[9]=(o-l)*i*.5,t[10]=r/(n-r),t[11]=-1,t[12]=0,t[13]=0,t[14]=r*n/(n-r),t[15]=0,t},o.ortho=function(t,a,n,r,o,l,u){var e=1/(a-n),M=1/(r-o),i=1/(l-u);return t[0]=-2*e,t[1]=0,t[2]=0,t[3]=0,t[4]=0,t[5]=-2*M,t[6]=0,t[7]=0,t[8]=0,t[9]=0,t[10]=2*i,t[11]=0,t[12]=(a+n)*e,t[13]=(o+r)*M,t[14]=(u+l)*i,t[15]=1,t},o.lookAt=function(t,a,n,l){var u,e,M,i,s,c,f,D,S,I,x=a[0],F=a[1],m=a[2],h=l[0],d=l[1],v=l[2],z=n[0],p=n[1],w=n[2];return Math.abs(x-z)<r.EPSILON&&Math.abs(F-p)<r.EPSILON&&Math.abs(m-w)<r.EPSILON?o.identity(t):(f=x-z,D=F-p,S=m-w,I=1/Math.sqrt(f*f+D*D+S*S),f*=I,D*=I,S*=I,u=d*S-v*D,e=v*f-h*S,M=h*D-d*f,I=Math.sqrt(u*u+e*e+M*M),I?(I=1/I,u*=I,e*=I,M*=I):(u=0,e=0,M=0),i=D*M-S*e,s=S*u-f*M,c=f*e-D*u,I=Math.sqrt(i*i+s*s+c*c),I?(I=1/I,i*=I,s*=I,c*=I):(i=0,s=0,c=0),t[0]=u,t[1]=i,t[2]=f,t[3]=0,t[4]=e,t[5]=s,t[6]=D,t[7]=0,t[8]=M,t[9]=c,t[10]=S,t[11]=0,t[12]=-(u*x+e*F+M*m),t[13]=-(i*x+s*F+c*m),t[14]=-(f*x+D*F+S*m),t[15]=1,t)},o.str=function(t){return"mat4("+t[0]+", "+t[1]+", "+t[2]+", "+t[3]+", "+t[4]+", "+t[5]+", "+t[6]+", "+t[7]+", "+t[8]+", "+t[9]+", "+t[10]+", "+t[11]+", "+t[12]+", "+t[13]+", "+t[14]+", "+t[15]+")"},o.frob=function(t){return Math.sqrt(Math.pow(t[0],2)+Math.pow(t[1],2)+Math.pow(t[2],2)+Math.pow(t[3],2)+Math.pow(t[4],2)+Math.pow(t[5],2)+Math.pow(t[6],2)+Math.pow(t[7],2)+Math.pow(t[8],2)+Math.pow(t[9],2)+Math.pow(t[10],2)+Math.pow(t[11],2)+Math.pow(t[12],2)+Math.pow(t[13],2)+Math.pow(t[14],2)+Math.pow(t[15],2))},t.exports=o},function(t,a,n){var r=n(1),o=n(4),l=n(7),u=n(8),e={};e.create=function(){var t=new r.ARRAY_TYPE(4);return t[0]=0,t[1]=0,t[2]=0,t[3]=1,t},e.rotationTo=function(){var t=l.create(),a=l.fromValues(1,0,0),n=l.fromValues(0,1,0);return function(r,o,u){var M=l.dot(o,u);return-.999999>M?(l.cross(t,a,o),l.length(t)<1e-6&&l.cross(t,n,o),l.normalize(t,t),e.setAxisAngle(r,t,Math.PI),r):M>.999999?(r[0]=0,r[1]=0,r[2]=0,r[3]=1,r):(l.cross(t,o,u),r[0]=t[0],r[1]=t[1],r[2]=t[2],r[3]=1+M,e.normalize(r,r))}}(),e.setAxes=function(){var t=o.create();return function(a,n,r,o){return t[0]=r[0],t[3]=r[1],t[6]=r[2],t[1]=o[0],t[4]=o[1],t[7]=o[2],t[2]=-n[0],t[5]=-n[1],t[8]=-n[2],e.normalize(a,e.fromMat3(a,t))}}(),e.clone=u.clone,e.fromValues=u.fromValues,e.copy=u.copy,e.set=u.set,e.identity=function(t){return t[0]=0,t[1]=0,t[2]=0,t[3]=1,t},e.setAxisAngle=function(t,a,n){n=.5*n;var r=Math.sin(n);return t[0]=r*a[0],t[1]=r*a[1],t[2]=r*a[2],t[3]=Math.cos(n),t},e.add=u.add,e.multiply=function(t,a,n){var r=a[0],o=a[1],l=a[2],u=a[3],e=n[0],M=n[1],i=n[2],s=n[3];return t[0]=r*s+u*e+o*i-l*M,t[1]=o*s+u*M+l*e-r*i,t[2]=l*s+u*i+r*M-o*e,t[3]=u*s-r*e-o*M-l*i,t},e.mul=e.multiply,e.scale=u.scale,e.rotateX=function(t,a,n){n*=.5;var r=a[0],o=a[1],l=a[2],u=a[3],e=Math.sin(n),M=Math.cos(n);return t[0]=r*M+u*e,t[1]=o*M+l*e,t[2]=l*M-o*e,t[3]=u*M-r*e,t},e.rotateY=function(t,a,n){n*=.5;var r=a[0],o=a[1],l=a[2],u=a[3],e=Math.sin(n),M=Math.cos(n);return t[0]=r*M-l*e,t[1]=o*M+u*e,t[2]=l*M+r*e,t[3]=u*M-o*e,t},e.rotateZ=function(t,a,n){n*=.5;var r=a[0],o=a[1],l=a[2],u=a[3],e=Math.sin(n),M=Math.cos(n);return t[0]=r*M+o*e,t[1]=o*M-r*e,t[2]=l*M+u*e,t[3]=u*M-l*e,t},e.calculateW=function(t,a){var n=a[0],r=a[1],o=a[2];return t[0]=n,t[1]=r,t[2]=o,t[3]=Math.sqrt(Math.abs(1-n*n-r*r-o*o)),t},e.dot=u.dot,e.lerp=u.lerp,e.slerp=function(t,a,n,r){var o,l,u,e,M,i=a[0],s=a[1],c=a[2],f=a[3],D=n[0],S=n[1],I=n[2],x=n[3];return l=i*D+s*S+c*I+f*x,0>l&&(l=-l,D=-D,S=-S,I=-I,x=-x),1-l>1e-6?(o=Math.acos(l),u=Math.sin(o),e=Math.sin((1-r)*o)/u,M=Math.sin(r*o)/u):(e=1-r,M=r),t[0]=e*i+M*D,t[1]=e*s+M*S,t[2]=e*c+M*I,t[3]=e*f+M*x,t},e.sqlerp=function(){var t=e.create(),a=e.create();return function(n,r,o,l,u,M){return e.slerp(t,r,u,M),e.slerp(a,o,l,M),e.slerp(n,t,a,2*M*(1-M)),n}}(),e.invert=function(t,a){var n=a[0],r=a[1],o=a[2],l=a[3],u=n*n+r*r+o*o+l*l,e=u?1/u:0;return t[0]=-n*e,t[1]=-r*e,t[2]=-o*e,t[3]=l*e,t},e.conjugate=function(t,a){return t[0]=-a[0],t[1]=-a[1],t[2]=-a[2],t[3]=a[3],t},e.length=u.length,e.len=e.length,e.squaredLength=u.squaredLength,e.sqrLen=e.squaredLength,e.normalize=u.normalize,e.fromMat3=function(t,a){var n,r=a[0]+a[4]+a[8];if(r>0)n=Math.sqrt(r+1),t[3]=.5*n,n=.5/n,t[0]=(a[5]-a[7])*n,t[1]=(a[6]-a[2])*n,t[2]=(a[1]-a[3])*n;else{var o=0;a[4]>a[0]&&(o=1),a[8]>a[3*o+o]&&(o=2);var l=(o+1)%3,u=(o+2)%3;n=Math.sqrt(a[3*o+o]-a[3*l+l]-a[3*u+u]+1),t[o]=.5*n,n=.5/n,t[3]=(a[3*l+u]-a[3*u+l])*n,t[l]=(a[3*l+o]+a[3*o+l])*n,t[u]=(a[3*u+o]+a[3*o+u])*n}return t},e.str=function(t){return"quat("+t[0]+", "+t[1]+", "+t[2]+", "+t[3]+")"},t.exports=e},function(t,a,n){var r=n(1),o={};o.create=function(){var t=new r.ARRAY_TYPE(3);return t[0]=0,t[1]=0,t[2]=0,t},o.clone=function(t){var a=new r.ARRAY_TYPE(3);return a[0]=t[0],a[1]=t[1],a[2]=t[2],a},o.fromValues=function(t,a,n){var o=new r.ARRAY_TYPE(3);return o[0]=t,o[1]=a,o[2]=n,o},o.copy=function(t,a){return t[0]=a[0],t[1]=a[1],t[2]=a[2],t},o.set=function(t,a,n,r){return t[0]=a,t[1]=n,t[2]=r,t},o.add=function(t,a,n){return t[0]=a[0]+n[0],t[1]=a[1]+n[1],t[2]=a[2]+n[2],t},o.subtract=function(t,a,n){return t[0]=a[0]-n[0],t[1]=a[1]-n[1],t[2]=a[2]-n[2],t},o.sub=o.subtract,o.multiply=function(t,a,n){return t[0]=a[0]*n[0],t[1]=a[1]*n[1],t[2]=a[2]*n[2],t},o.mul=o.multiply,o.divide=function(t,a,n){return t[0]=a[0]/n[0],t[1]=a[1]/n[1],t[2]=a[2]/n[2],t},o.div=o.divide,o.min=function(t,a,n){return t[0]=Math.min(a[0],n[0]),t[1]=Math.min(a[1],n[1]),t[2]=Math.min(a[2],n[2]),
+t},o.max=function(t,a,n){return t[0]=Math.max(a[0],n[0]),t[1]=Math.max(a[1],n[1]),t[2]=Math.max(a[2],n[2]),t},o.scale=function(t,a,n){return t[0]=a[0]*n,t[1]=a[1]*n,t[2]=a[2]*n,t},o.scaleAndAdd=function(t,a,n,r){return t[0]=a[0]+n[0]*r,t[1]=a[1]+n[1]*r,t[2]=a[2]+n[2]*r,t},o.distance=function(t,a){var n=a[0]-t[0],r=a[1]-t[1],o=a[2]-t[2];return Math.sqrt(n*n+r*r+o*o)},o.dist=o.distance,o.squaredDistance=function(t,a){var n=a[0]-t[0],r=a[1]-t[1],o=a[2]-t[2];return n*n+r*r+o*o},o.sqrDist=o.squaredDistance,o.length=function(t){var a=t[0],n=t[1],r=t[2];return Math.sqrt(a*a+n*n+r*r)},o.len=o.length,o.squaredLength=function(t){var a=t[0],n=t[1],r=t[2];return a*a+n*n+r*r},o.sqrLen=o.squaredLength,o.negate=function(t,a){return t[0]=-a[0],t[1]=-a[1],t[2]=-a[2],t},o.inverse=function(t,a){return t[0]=1/a[0],t[1]=1/a[1],t[2]=1/a[2],t},o.normalize=function(t,a){var n=a[0],r=a[1],o=a[2],l=n*n+r*r+o*o;return l>0&&(l=1/Math.sqrt(l),t[0]=a[0]*l,t[1]=a[1]*l,t[2]=a[2]*l),t},o.dot=function(t,a){return t[0]*a[0]+t[1]*a[1]+t[2]*a[2]},o.cross=function(t,a,n){var r=a[0],o=a[1],l=a[2],u=n[0],e=n[1],M=n[2];return t[0]=o*M-l*e,t[1]=l*u-r*M,t[2]=r*e-o*u,t},o.lerp=function(t,a,n,r){var o=a[0],l=a[1],u=a[2];return t[0]=o+r*(n[0]-o),t[1]=l+r*(n[1]-l),t[2]=u+r*(n[2]-u),t},o.hermite=function(t,a,n,r,o,l){var u=l*l,e=u*(2*l-3)+1,M=u*(l-2)+l,i=u*(l-1),s=u*(3-2*l);return t[0]=a[0]*e+n[0]*M+r[0]*i+o[0]*s,t[1]=a[1]*e+n[1]*M+r[1]*i+o[1]*s,t[2]=a[2]*e+n[2]*M+r[2]*i+o[2]*s,t},o.bezier=function(t,a,n,r,o,l){var u=1-l,e=u*u,M=l*l,i=e*u,s=3*l*e,c=3*M*u,f=M*l;return t[0]=a[0]*i+n[0]*s+r[0]*c+o[0]*f,t[1]=a[1]*i+n[1]*s+r[1]*c+o[1]*f,t[2]=a[2]*i+n[2]*s+r[2]*c+o[2]*f,t},o.random=function(t,a){a=a||1;var n=2*r.RANDOM()*Math.PI,o=2*r.RANDOM()-1,l=Math.sqrt(1-o*o)*a;return t[0]=Math.cos(n)*l,t[1]=Math.sin(n)*l,t[2]=o*a,t},o.transformMat4=function(t,a,n){var r=a[0],o=a[1],l=a[2],u=n[3]*r+n[7]*o+n[11]*l+n[15];return u=u||1,t[0]=(n[0]*r+n[4]*o+n[8]*l+n[12])/u,t[1]=(n[1]*r+n[5]*o+n[9]*l+n[13])/u,t[2]=(n[2]*r+n[6]*o+n[10]*l+n[14])/u,t},o.transformMat3=function(t,a,n){var r=a[0],o=a[1],l=a[2];return t[0]=r*n[0]+o*n[3]+l*n[6],t[1]=r*n[1]+o*n[4]+l*n[7],t[2]=r*n[2]+o*n[5]+l*n[8],t},o.transformQuat=function(t,a,n){var r=a[0],o=a[1],l=a[2],u=n[0],e=n[1],M=n[2],i=n[3],s=i*r+e*l-M*o,c=i*o+M*r-u*l,f=i*l+u*o-e*r,D=-u*r-e*o-M*l;return t[0]=s*i+D*-u+c*-M-f*-e,t[1]=c*i+D*-e+f*-u-s*-M,t[2]=f*i+D*-M+s*-e-c*-u,t},o.rotateX=function(t,a,n,r){var o=[],l=[];return o[0]=a[0]-n[0],o[1]=a[1]-n[1],o[2]=a[2]-n[2],l[0]=o[0],l[1]=o[1]*Math.cos(r)-o[2]*Math.sin(r),l[2]=o[1]*Math.sin(r)+o[2]*Math.cos(r),t[0]=l[0]+n[0],t[1]=l[1]+n[1],t[2]=l[2]+n[2],t},o.rotateY=function(t,a,n,r){var o=[],l=[];return o[0]=a[0]-n[0],o[1]=a[1]-n[1],o[2]=a[2]-n[2],l[0]=o[2]*Math.sin(r)+o[0]*Math.cos(r),l[1]=o[1],l[2]=o[2]*Math.cos(r)-o[0]*Math.sin(r),t[0]=l[0]+n[0],t[1]=l[1]+n[1],t[2]=l[2]+n[2],t},o.rotateZ=function(t,a,n,r){var o=[],l=[];return o[0]=a[0]-n[0],o[1]=a[1]-n[1],o[2]=a[2]-n[2],l[0]=o[0]*Math.cos(r)-o[1]*Math.sin(r),l[1]=o[0]*Math.sin(r)+o[1]*Math.cos(r),l[2]=o[2],t[0]=l[0]+n[0],t[1]=l[1]+n[1],t[2]=l[2]+n[2],t},o.forEach=function(){var t=o.create();return function(a,n,r,o,l,u){var e,M;for(n||(n=3),r||(r=0),M=o?Math.min(o*n+r,a.length):a.length,e=r;M>e;e+=n)t[0]=a[e],t[1]=a[e+1],t[2]=a[e+2],l(t,t,u),a[e]=t[0],a[e+1]=t[1],a[e+2]=t[2];return a}}(),o.angle=function(t,a){var n=o.fromValues(t[0],t[1],t[2]),r=o.fromValues(a[0],a[1],a[2]);o.normalize(n,n),o.normalize(r,r);var l=o.dot(n,r);return l>1?0:Math.acos(l)},o.str=function(t){return"vec3("+t[0]+", "+t[1]+", "+t[2]+")"},t.exports=o},function(t,a,n){var r=n(1),o={};o.create=function(){var t=new r.ARRAY_TYPE(4);return t[0]=0,t[1]=0,t[2]=0,t[3]=0,t},o.clone=function(t){var a=new r.ARRAY_TYPE(4);return a[0]=t[0],a[1]=t[1],a[2]=t[2],a[3]=t[3],a},o.fromValues=function(t,a,n,o){var l=new r.ARRAY_TYPE(4);return l[0]=t,l[1]=a,l[2]=n,l[3]=o,l},o.copy=function(t,a){return t[0]=a[0],t[1]=a[1],t[2]=a[2],t[3]=a[3],t},o.set=function(t,a,n,r,o){return t[0]=a,t[1]=n,t[2]=r,t[3]=o,t},o.add=function(t,a,n){return t[0]=a[0]+n[0],t[1]=a[1]+n[1],t[2]=a[2]+n[2],t[3]=a[3]+n[3],t},o.subtract=function(t,a,n){return t[0]=a[0]-n[0],t[1]=a[1]-n[1],t[2]=a[2]-n[2],t[3]=a[3]-n[3],t},o.sub=o.subtract,o.multiply=function(t,a,n){return t[0]=a[0]*n[0],t[1]=a[1]*n[1],t[2]=a[2]*n[2],t[3]=a[3]*n[3],t},o.mul=o.multiply,o.divide=function(t,a,n){return t[0]=a[0]/n[0],t[1]=a[1]/n[1],t[2]=a[2]/n[2],t[3]=a[3]/n[3],t},o.div=o.divide,o.min=function(t,a,n){return t[0]=Math.min(a[0],n[0]),t[1]=Math.min(a[1],n[1]),t[2]=Math.min(a[2],n[2]),t[3]=Math.min(a[3],n[3]),t},o.max=function(t,a,n){return t[0]=Math.max(a[0],n[0]),t[1]=Math.max(a[1],n[1]),t[2]=Math.max(a[2],n[2]),t[3]=Math.max(a[3],n[3]),t},o.scale=function(t,a,n){return t[0]=a[0]*n,t[1]=a[1]*n,t[2]=a[2]*n,t[3]=a[3]*n,t},o.scaleAndAdd=function(t,a,n,r){return t[0]=a[0]+n[0]*r,t[1]=a[1]+n[1]*r,t[2]=a[2]+n[2]*r,t[3]=a[3]+n[3]*r,t},o.distance=function(t,a){var n=a[0]-t[0],r=a[1]-t[1],o=a[2]-t[2],l=a[3]-t[3];return Math.sqrt(n*n+r*r+o*o+l*l)},o.dist=o.distance,o.squaredDistance=function(t,a){var n=a[0]-t[0],r=a[1]-t[1],o=a[2]-t[2],l=a[3]-t[3];return n*n+r*r+o*o+l*l},o.sqrDist=o.squaredDistance,o.length=function(t){var a=t[0],n=t[1],r=t[2],o=t[3];return Math.sqrt(a*a+n*n+r*r+o*o)},o.len=o.length,o.squaredLength=function(t){var a=t[0],n=t[1],r=t[2],o=t[3];return a*a+n*n+r*r+o*o},o.sqrLen=o.squaredLength,o.negate=function(t,a){return t[0]=-a[0],t[1]=-a[1],t[2]=-a[2],t[3]=-a[3],t},o.inverse=function(t,a){return t[0]=1/a[0],t[1]=1/a[1],t[2]=1/a[2],t[3]=1/a[3],t},o.normalize=function(t,a){var n=a[0],r=a[1],o=a[2],l=a[3],u=n*n+r*r+o*o+l*l;return u>0&&(u=1/Math.sqrt(u),t[0]=n*u,t[1]=r*u,t[2]=o*u,t[3]=l*u),t},o.dot=function(t,a){return t[0]*a[0]+t[1]*a[1]+t[2]*a[2]+t[3]*a[3]},o.lerp=function(t,a,n,r){var o=a[0],l=a[1],u=a[2],e=a[3];return t[0]=o+r*(n[0]-o),t[1]=l+r*(n[1]-l),t[2]=u+r*(n[2]-u),t[3]=e+r*(n[3]-e),t},o.random=function(t,a){return a=a||1,t[0]=r.RANDOM(),t[1]=r.RANDOM(),t[2]=r.RANDOM(),t[3]=r.RANDOM(),o.normalize(t,t),o.scale(t,t,a),t},o.transformMat4=function(t,a,n){var r=a[0],o=a[1],l=a[2],u=a[3];return t[0]=n[0]*r+n[4]*o+n[8]*l+n[12]*u,t[1]=n[1]*r+n[5]*o+n[9]*l+n[13]*u,t[2]=n[2]*r+n[6]*o+n[10]*l+n[14]*u,t[3]=n[3]*r+n[7]*o+n[11]*l+n[15]*u,t},o.transformQuat=function(t,a,n){var r=a[0],o=a[1],l=a[2],u=n[0],e=n[1],M=n[2],i=n[3],s=i*r+e*l-M*o,c=i*o+M*r-u*l,f=i*l+u*o-e*r,D=-u*r-e*o-M*l;return t[0]=s*i+D*-u+c*-M-f*-e,t[1]=c*i+D*-e+f*-u-s*-M,t[2]=f*i+D*-M+s*-e-c*-u,t[3]=a[3],t},o.forEach=function(){var t=o.create();return function(a,n,r,o,l,u){var e,M;for(n||(n=4),r||(r=0),M=o?Math.min(o*n+r,a.length):a.length,e=r;M>e;e+=n)t[0]=a[e],t[1]=a[e+1],t[2]=a[e+2],t[3]=a[e+3],l(t,t,u),a[e]=t[0],a[e+1]=t[1],a[e+2]=t[2],a[e+3]=t[3];return a}}(),o.str=function(t){return"vec4("+t[0]+", "+t[1]+", "+t[2]+", "+t[3]+")"},t.exports=o},function(t,a,n){var r=n(1),o={};o.create=function(){var t=new r.ARRAY_TYPE(2);return t[0]=0,t[1]=0,t},o.clone=function(t){var a=new r.ARRAY_TYPE(2);return a[0]=t[0],a[1]=t[1],a},o.fromValues=function(t,a){var n=new r.ARRAY_TYPE(2);return n[0]=t,n[1]=a,n},o.copy=function(t,a){return t[0]=a[0],t[1]=a[1],t},o.set=function(t,a,n){return t[0]=a,t[1]=n,t},o.add=function(t,a,n){return t[0]=a[0]+n[0],t[1]=a[1]+n[1],t},o.subtract=function(t,a,n){return t[0]=a[0]-n[0],t[1]=a[1]-n[1],t},o.sub=o.subtract,o.multiply=function(t,a,n){return t[0]=a[0]*n[0],t[1]=a[1]*n[1],t},o.mul=o.multiply,o.divide=function(t,a,n){return t[0]=a[0]/n[0],t[1]=a[1]/n[1],t},o.div=o.divide,o.min=function(t,a,n){return t[0]=Math.min(a[0],n[0]),t[1]=Math.min(a[1],n[1]),t},o.max=function(t,a,n){return t[0]=Math.max(a[0],n[0]),t[1]=Math.max(a[1],n[1]),t},o.scale=function(t,a,n){return t[0]=a[0]*n,t[1]=a[1]*n,t},o.scaleAndAdd=function(t,a,n,r){return t[0]=a[0]+n[0]*r,t[1]=a[1]+n[1]*r,t},o.distance=function(t,a){var n=a[0]-t[0],r=a[1]-t[1];return Math.sqrt(n*n+r*r)},o.dist=o.distance,o.squaredDistance=function(t,a){var n=a[0]-t[0],r=a[1]-t[1];return n*n+r*r},o.sqrDist=o.squaredDistance,o.length=function(t){var a=t[0],n=t[1];return Math.sqrt(a*a+n*n)},o.len=o.length,o.squaredLength=function(t){var a=t[0],n=t[1];return a*a+n*n},o.sqrLen=o.squaredLength,o.negate=function(t,a){return t[0]=-a[0],t[1]=-a[1],t},o.inverse=function(t,a){return t[0]=1/a[0],t[1]=1/a[1],t},o.normalize=function(t,a){var n=a[0],r=a[1],o=n*n+r*r;return o>0&&(o=1/Math.sqrt(o),t[0]=a[0]*o,t[1]=a[1]*o),t},o.dot=function(t,a){return t[0]*a[0]+t[1]*a[1]},o.cross=function(t,a,n){var r=a[0]*n[1]-a[1]*n[0];return t[0]=t[1]=0,t[2]=r,t},o.lerp=function(t,a,n,r){var o=a[0],l=a[1];return t[0]=o+r*(n[0]-o),t[1]=l+r*(n[1]-l),t},o.random=function(t,a){a=a||1;var n=2*r.RANDOM()*Math.PI;return t[0]=Math.cos(n)*a,t[1]=Math.sin(n)*a,t},o.transformMat2=function(t,a,n){var r=a[0],o=a[1];return t[0]=n[0]*r+n[2]*o,t[1]=n[1]*r+n[3]*o,t},o.transformMat2d=function(t,a,n){var r=a[0],o=a[1];return t[0]=n[0]*r+n[2]*o+n[4],t[1]=n[1]*r+n[3]*o+n[5],t},o.transformMat3=function(t,a,n){var r=a[0],o=a[1];return t[0]=n[0]*r+n[3]*o+n[6],t[1]=n[1]*r+n[4]*o+n[7],t},o.transformMat4=function(t,a,n){var r=a[0],o=a[1];return t[0]=n[0]*r+n[4]*o+n[12],t[1]=n[1]*r+n[5]*o+n[13],t},o.forEach=function(){var t=o.create();return function(a,n,r,o,l,u){var e,M;for(n||(n=2),r||(r=0),M=o?Math.min(o*n+r,a.length):a.length,e=r;M>e;e+=n)t[0]=a[e],t[1]=a[e+1],l(t,t,u),a[e]=t[0],a[e+1]=t[1];return a}}(),o.str=function(t){return"vec2("+t[0]+", "+t[1]+")"},t.exports=o}])});
+  /*
+ * Copyright 2010, Google Inc.
+ * All rights reserved.
+ *
+ * Redistribution and use in source and binary forms, with or without
+ * modification, are permitted provided that the following conditions are
+ * met:
+ *
+ *     * Redistributions of source code must retain the above copyright
+ * notice, this list of conditions and the following disclaimer.
+ *     * Redistributions in binary form must reproduce the above
+ * copyright notice, this list of conditions and the following disclaimer
+ * in the documentation and/or other materials provided with the
+ * distribution.
+ *     * Neither the name of Google Inc. nor the names of its
+ * contributors may be used to endorse or promote products derived from
+ * this software without specific prior written permission.
+ *
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+ * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+ * LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+ * A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
+ * OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+ * SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
+ * LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+ * DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+ * THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+ * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+ * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ */
+
+
+/**
+ * @fileoverview This file contains functions every webgl program will need
+ * a version of one way or another.
+ *
+ * Instead of setting up a context manually it is recommended to
+ * use. This will check for success or failure. On failure it
+ * will attempt to present an approriate message to the user.
+ *
+ *       gl = WebGLUtils.setupWebGL(canvas);
+ *
+ * For animated WebGL apps use of setTimeout or setInterval are
+ * discouraged. It is recommended you structure your rendering
+ * loop like this.
+ *
+ *       function render() {
+ *         window.requestAnimFrame(render, canvas);
+ *
+ *         // do rendering
+ *         ...
+ *       }
+ *       render();
+ *
+ * This will call your rendering function up to the refresh rate
+ * of your display but will stop rendering if your app is not
+ * visible.
+ */
+
+WebGLUtils = function() {
+
+/**
+ * Creates the HTLM for a failure message
+ * @param {string} canvasContainerId id of container of th
+ *        canvas.
+ * @return {string} The html.
+ */
+var makeFailHTML = function(msg) {
+  return '' +
+    '<table style="background-color: #8CE; width: 100%; height: 100%;"><tr>' +
+    '<td align="center">' +
+    '<div style="display: table-cell; vertical-align: middle;">' +
+    '<div style="">' + msg + '</div>' +
+    '</div>' +
+    '</td></tr></table>';
+};
+
+/**
+ * Mesasge for getting a webgl browser
+ * @type {string}
+ */
+var GET_A_WEBGL_BROWSER = '' +
+  'This page requires a browser that supports WebGL.<br/>' +
+  '<a href="http://get.webgl.org">Click here to upgrade your browser.</a>';
+
+/**
+ * Mesasge for need better hardware
+ * @type {string}
+ */
+var OTHER_PROBLEM = '' +
+  "It doesn't appear your computer can support WebGL.<br/>" +
+  '<a href="http://get.webgl.org/troubleshooting/">Click here for more information.</a>';
+
+/**
+ * Creates a webgl context. If creation fails it will
+ * change the contents of the container of the <canvas>
+ * tag to an error message with the correct links for WebGL.
+ * @param {Element} canvas. The canvas element to create a
+ *     context from.
+ * @param {WebGLContextCreationAttirbutes} opt_attribs Any
+ *     creation attributes you want to pass in.
+ * @return {WebGLRenderingContext} The created context.
+ */
+var setupWebGL = function(canvas, opt_attribs) {
+  function showLink(str) {
+    var container = canvas.parentNode;
+    if (container) {
+      container.innerHTML = makeFailHTML(str);
+    }
+  };
+
+  if (!window.WebGLRenderingContext) {
+    showLink(GET_A_WEBGL_BROWSER);
+    return null;
+  }
+
+  var context = create3DContext(canvas, opt_attribs);
+  if (!context) {
+    showLink(OTHER_PROBLEM);
+  }
+  return context;
+};
+
+/**
+ * Creates a webgl context.
+ * @param {!Canvas} canvas The canvas tag to get context
+ *     from. If one is not passed in one will be created.
+ * @return {!WebGLContext} The created context.
+ */
+var create3DContext = function(canvas, opt_attribs) {
+  var names = ["webgl", "experimental-webgl", "webkit-3d", "moz-webgl"];
+  var context = null;
+  for (var ii = 0; ii < names.length; ++ii) {
+    try {
+      context = canvas.getContext(names[ii], opt_attribs);
+    } catch(e) {}
+    if (context) {
+      break;
+    }
+  }
+  return context;
+};
+
+return {
+  create3DContext: create3DContext,
+  setupWebGL: setupWebGL
+};
+}();
+
+/**
+ * Provides requestAnimationFrame in a cross browser way.
+ */
+window.requestAnimFrame = (function() {
+  return window.requestAnimationFrame ||
+         window.webkitRequestAnimationFrame ||
+         window.mozRequestAnimationFrame ||
+         window.oRequestAnimationFrame ||
+         window.msRequestAnimationFrame ||
+         function(/* function FrameRequestCallback */ callback, /* DOMElement Element */ element) {
+           return window.setTimeout(callback, 1000/60);
+         };
+})();
+
+/**
+ * Provides cancelAnimationFrame in a cross browser way.
+ */
+window.cancelAnimFrame = (function() {
+  return window.cancelAnimationFrame ||
+         window.webkitCancelAnimationFrame ||
+         window.mozCancelAnimationFrame ||
+         window.oCancelAnimationFrame ||
+         window.msCancelAnimationFrame ||
+         window.clearTimeout;
+})();
+
+
+
+  /**
+ * The functions in this file create models in an
+ * IFS format that can be drawn using gl.drawElements
+ * with primitive type gl.TRIANGLES.  Objects have
+ * vertex coordinates, normal vectors, and texture
+ * coordinates for each vertex, plus a list of indicies
+ * for the element array buffer.  The return value
+ * of each function is an object, model, with properties:
+ * 
+ *    model.vertexPositions -- the vertex coordinates;
+ *    model.vertexNormals -- the normal vectors;
+ *    model.vertexTextureCoords -- the texture coordinates;
+ *    model.indices -- the face indices.
+ *
+ * The first three properties are of type Float32Array, while
+ * model.indicesis of type Uint16Array.
+ */
+
+ 
+ /**
+  * Create a model of a cube, centered at the origin.
+  * @side the length of a side of the cube.  If not given, the value will be 1.
+  */
+function cube(side) {
+   var s = (side || 1)/2;
+   var coords = [];
+   var normals = [];
+   var texCoords = [];
+   var indices = [];
+   function face(xyz, nrm) {
+      var start = coords.length/3;
+      var i;
+      for (i = 0; i < 12; i++) {
+         coords.push(xyz[i]);
+      }
+      for (i = 0; i < 4; i++) {
+         normals.push(nrm[0],nrm[1],nrm[2]);
+      }
+      texCoords.push(0,0,1,0,1,1,0,1);
+      indices.push(start,start+1,start+2,start,start+2,start+3);
+   }
+   face( [-s,-s,s, s,-s,s, s,s,s, -s,s,s], [0,0,1] );
+   face( [-s,-s,-s, -s,s,-s, s,s,-s, s,-s,-s], [0,0,-1] );
+   face( [-s,s,-s, -s,s,s, s,s,s, s,s,-s], [0,1,0] );
+   face( [-s,-s,-s, s,-s,-s, s,-s,s, -s,-s,s], [0,-1,0] );
+   face( [s,-s,-s, s,s,-s, s,s,s, s,-s,s], [1,0,0] );
+   face( [-s,-s,-s, -s,-s,s, -s,s,s, -s,s,-s], [-1,0,0] );
+   return {
+      vertexPositions: new Float32Array(coords),
+      vertexNormals: new Float32Array(normals),
+      vertexTextureCoords: new Float32Array(texCoords),
+      indices: new Uint16Array(indices)
+   }
+}
+
+
+/**
+ * Creates a model of an annulus or disk lying in the xy plane,
+ * centered at the origin.
+ * @param innerRadius the radius of the hole in the radius; a value of
+ *    zero will give a disk rather than a ring.  If not present,
+ *    the default value is 0.25.
+ * @param outerRadius the radius of the ring, from the center to the
+ *    outer edge.  Must be greater than innerRadius.  If not provided,
+ *    the default value is 2*innerRadius or is 0.5 if innerRadius is 0.
+ * @slices the number of radial subdivisions in the circular approximation
+ *    of an annulus.  If not provided, the value will be 32.
+ */
+function ring(innerRadius, outerRadius, slices) {
+   if (arguments.length == 0)
+      innerRadius = 0.25;
+   outerRadius = outerRadius || innerRadius * 2 || 0.5;
+   slices = slices || 32;
+   var vertexCount, vertices, normals, texCoords, indices, i;
+   vertexCount = (innerRadius == 0)? slices + 1 : slices * 2;
+   vertices = new Float32Array( 3*vertexCount );
+   normals = new Float32Array( 3* vertexCount );
+   texCoords = new Float32Array( 2*vertexCount );
+   indices = new Uint16Array( innerRadius == 0 ?  3*slices : 3*2*slices );
+   var d = 2*Math.PI/slices;
+   var k = 0;
+   var t = 0;
+   var n = 0;
+   if (innerRadius == 0) {
+      for (i = 0; i < slices; i++) {
+         c = Math.cos(d*i);
+         s = Math.sin(d*i);
+         vertices[k++] = c*outerRadius;
+         vertices[k++] = s*outerRadius;
+         vertices[k++] = 0;
+         texCoords[t++] = 0.5 + 0.5*c;
+         texCoords[t++] = 0.5 + 0.5*s;
+         indices[n++] = slices;
+         indices[n++] = i;
+         indices[n++] = i == slices-1 ? 0 : i + 1;
+      }
+      vertices[k++] = vertices[k++] = vertices[k++] = 0;
+      texCoords[t++] = texCoords[t++] = 0;
+   }
+   else {
+      var r = innerRadius / outerRadius;
+      for (i = 0; i < slices; i++) {
+         c = Math.cos(d*i);
+         s = Math.sin(d*i);
+         vertices[k++] = c*innerRadius;
+         vertices[k++] = s*innerRadius;
+         vertices[k++] = 0;
+         texCoords[t++] = 0.5 + 0.5*c*r;
+         texCoords[t++] = 0.5 + 0.5*s*r;
+         vertices[k++] = c*outerRadius;
+         vertices[k++] = s*outerRadius;
+         vertices[k++] = 0;
+         texCoords[t++] = 0.5 + 0.5*c;
+         texCoords[t++] = 0.5 + 0.5*s;
+      }
+      for (i = 0; i < slices - 1; i++) {
+         indices[n++] = 2*i;
+         indices[n++] = 2*i+1;
+         indices[n++] = 2*i+3;
+         indices[n++] = 2*i;
+         indices[n++] = 2*i+3;
+         indices[n++] = 2*i+2;
+      }
+      indices[n++] = 2*i;
+      indices[n++] = 2*i+1;
+      indices[n++] = 1;
+      indices[n++] = 2*i;
+      indices[n++] = 1;
+      indices[n++] = 0;
+   }
+   for (i = 0; i < vertexCount; i++) {
+      normals[3*i] = normals[3*i+1] = 0;
+      normals[3*i+2] = 1;
+   }
+   return {
+       vertexPositions: vertices,
+       vertexNormals: normals,
+       vertexTextureCoords: texCoords,
+       indices: indices
+   };
+}
+
+/**
+ * Create a model of a sphere.  The z-axis is the axis of the sphere,
+ * with the north pole on the positive z-axis and the center at (0,0,0).
+ * @param radius the radius of the sphere, default 0.5 if not specified.
+ * @param slices the number of lines of longitude, default 32
+ * @param stacks the number of lines of latitude plus 1, default 16.  (This 
+ *    is the number of vertical slices, bounded by lines of latitude, the
+ *    north pole and the south pole.)
+ */
+function uvSphere(radius, slices, stacks) {
+   radius = radius || 0.5;
+   slices = slices || 32;
+   stacks = stacks || 16;
+   var vertexCount = (slices+1)*(stacks+1);
+   var vertices = new Float32Array( 3*vertexCount );
+   var normals = new Float32Array( 3* vertexCount );
+   var texCoords = new Float32Array( 2*vertexCount );
+   var indices = new Uint16Array( 2*slices*stacks*3 );
+   var du = 2*Math.PI/slices;
+   var dv = Math.PI/stacks;
+   var i,j,u,v,x,y,z;
+   var indexV = 0;
+   var indexT = 0;
+   for (i = 0; i <= stacks; i++) {
+      v = -Math.PI/2 + i*dv;
+      for (j = 0; j <= slices; j++) {
+         u = j*du;
+         x = Math.cos(u)*Math.cos(v);
+         y = Math.sin(u)*Math.cos(v);
+         z = Math.sin(v);
+         vertices[indexV] = radius*x;
+         normals[indexV++] = x;
+         vertices[indexV] = radius*y;
+         normals[indexV++] = y;
+         vertices[indexV] = radius*z;
+         normals[indexV++] = z;
+         texCoords[indexT++] = j/slices;
+         texCoords[indexT++] = i/stacks;
+      } 
+   }
+   var k = 0;
+   for (j = 0; j < stacks; j++) {
+      var row1 = j*(slices+1);
+      var row2 = (j+1)*(slices+1);
+      for (i = 0; i < slices; i++) {
+          indices[k++] = row1 + i;
+          indices[k++] = row2 + i + 1;
+          indices[k++] = row2 + i;
+          indices[k++] = row1 + i;
+          indices[k++] = row1 + i + 1;
+          indices[k++] = row2 + i + 1;
+      }
+   }
+   return {
+       vertexPositions: vertices,
+       vertexNormals: normals,
+       vertexTextureCoords: texCoords,
+       indices: indices
+   };
+}
+
+
+/**
+ * Create a model of a torus (surface of a doughnut).  The z-axis goes through the doughnut hole,
+ * and the center of the torus is at (0,0,0).
+ * @param outerRadius the distance from the center to the outside of the tube, 0.5 if not specified.
+ * @param innerRadius the distance from the center to the inside of the tube, outerRadius/3 if not
+ *    specified.  (This is the radius of the doughnut hole.)
+ * @param slices the number of lines of longitude, default 32.  These are slices parallel to the
+ * z-axis and go around the tube the short way (through the hole).
+ * @param stacks the number of lines of latitude plus 1, default 16.  These lines are perpendicular
+ * to the z-axis and go around the tube the long way (arouind the hole).
+ */
+function uvTorus(outerRadius, innerRadius, slices, stacks) {
+   outerRadius = outerRadius || 0.5;
+   innerRadius = innerRadius || outerRadius/3;
+   slices = slices || 32;
+   stacks = stacks || 16;
+   var vertexCount = (slices+1)*(stacks+1);
+   var vertices = new Float32Array( 3*vertexCount );
+   var normals = new Float32Array( 3* vertexCount );
+   var texCoords = new Float32Array( 2*vertexCount );
+   var indices = new Uint16Array( 2*slices*stacks*3 );
+   var du = 2*Math.PI/slices;
+   var dv = 2*Math.PI/stacks;
+   var centerRadius = (innerRadius+outerRadius)/2;
+   var tubeRadius = outerRadius - centerRadius;
+   var i,j,u,v,cx,cy,sin,cos,x,y,z;
+   var indexV = 0;
+   var indexT = 0;
+   for (j = 0; j <= stacks; j++) {
+      v = -Math.PI + j*dv;
+      cos = Math.cos(v);
+      sin = Math.sin(v);
+      for (i = 0; i <= slices; i++) {
+         u = i*du;
+         cx = Math.cos(u);
+         cy = Math.sin(u);
+         x = cx*(centerRadius + tubeRadius*cos);
+         y = cy*(centerRadius + tubeRadius*cos);
+         z = sin*tubeRadius;
+         vertices[indexV] = x;
+         normals[indexV++] = cx*cos;
+         vertices[indexV] = y
+         normals[indexV++] = cy*cos;
+         vertices[indexV] = z
+         normals[indexV++] = sin;
+         texCoords[indexT++] = i/slices;
+         texCoords[indexT++] = j/stacks;
+      } 
+   }
+   var k = 0;
+   for (j = 0; j < stacks; j++) {
+      var row1 = j*(slices+1);
+      var row2 = (j+1)*(slices+1);
+      for (i = 0; i < slices; i++) {
+          indices[k++] = row1 + i;
+          indices[k++] = row2 + i + 1;
+          indices[k++] = row2 + i;
+          indices[k++] = row1 + i;
+          indices[k++] = row1 + i + 1;
+          indices[k++] = row2 + i + 1;
+      }
+   }
+   return {
+       vertexPositions: vertices,
+       vertexNormals: normals,
+       vertexTextureCoords: texCoords,
+       indices: indices
+   };
+}
+
+/**
+ * Defines a model of a cylinder.  The axis of the cylinder is the z-axis,
+ * and the center is at (0,0,0).
+ * @param radius the radius of the cylinder
+ * @param height the height of the cylinder.  The cylinder extends from -height/2
+ * to height/2 along the z-axis.
+ * @param slices the number of slices, like the slices of an orange.
+ * @param noTop if missing or false, the cylinder has a top; if set to true,
+ *   the cylinder has a top. The top is a disk at the positive end of the cylinder.
+ * @param noBottom if missing or false, the cylinder has a bottom; if set to true,
+ *   the cylinder has a bottom. The bottom is a disk at the negtive end of the cylinder.
+ */
+function uvCylinder(radius, height, slices, noTop, noBottom) {
+   radius = radius || 0.5;
+   height = height || 2*radius;
+   slices = slices || 32;
+   var vertexCount = 2*(slices+1);
+   if (!noTop)
+      vertexCount += slices + 2;
+   if (!noBottom)
+      vertexCount += slices + 2;
+   var triangleCount = 2*slices;
+   if (!noTop)
+      triangleCount += slices;
+   if (!noBottom)
+      triangleCount += slices; 
+   var vertices = new Float32Array(vertexCount*3);
+   var normals = new Float32Array(vertexCount*3);
+   var texCoords = new Float32Array(vertexCount*2);
+   var indices = new Uint16Array(triangleCount*3);
+   var du = 2*Math.PI / slices;
+   var kv = 0;
+   var kt = 0;
+   var k = 0;
+   var i,u;
+   for (i = 0; i <= slices; i++) {
+      u = i*du;
+      var c = Math.cos(u);
+      var s = Math.sin(u);
+      vertices[kv] = c*radius;
+      normals[kv++] = c;
+      vertices[kv] = s*radius;
+      normals[kv++] = s;
+      vertices[kv] = -height/2;
+      normals[kv++] = 0;
+      texCoords[kt++] = i/slices;
+      texCoords[kt++] = 0;
+      vertices[kv] = c*radius;
+      normals[kv++] = c;
+      vertices[kv] = s*radius;
+      normals[kv++] = s;
+      vertices[kv] = height/2;
+      normals[kv++] = 0;
+      texCoords[kt++] = i/slices;
+      texCoords[kt++] = 1;
+   }
+   for (i = 0; i < slices; i++) {
+          indices[k++] = 2*i;
+          indices[k++] = 2*i+3;
+          indices[k++] = 2*i+1;
+          indices[k++] = 2*i;
+          indices[k++] = 2*i+2;
+          indices[k++] = 2*i+3;
+   }
+   var startIndex = kv/3;
+   if (!noBottom) {
+      vertices[kv] = 0;
+      normals[kv++] = 0;
+      vertices[kv] = 0;
+      normals[kv++] = 0;
+      vertices[kv] = -height/2;
+      normals[kv++] = -1;
+      texCoords[kt++] = 0.5;
+      texCoords[kt++] = 0.5; 
+      for (i = 0; i <= slices; i++) {
+         u = 2*Math.PI - i*du;
+         var c = Math.cos(u);
+         var s = Math.sin(u);
+         vertices[kv] = c*radius;
+         normals[kv++] = 0;
+         vertices[kv] = s*radius;
+         normals[kv++] = 0;
+         vertices[kv] = -height/2;
+         normals[kv++] = -1;
+         texCoords[kt++] = 0.5 - 0.5*c;
+         texCoords[kt++] = 0.5 + 0.5*s;
+      }
+      for (i = 0; i < slices; i++) {
+         indices[k++] = startIndex;
+         indices[k++] = startIndex + i + 1;
+         indices[k++] = startIndex + i + 2;
+      }
+   }
+   var startIndex = kv/3;
+   if (!noTop) {
+      vertices[kv] = 0;
+      normals[kv++] = 0;
+      vertices[kv] = 0;
+      normals[kv++] = 0;
+      vertices[kv] = height/2;
+      normals[kv++] = 1;
+      texCoords[kt++] = 0.5;
+      texCoords[kt++] = 0.5; 
+      for (i = 0; i <= slices; i++) {
+         u = i*du;
+         var c = Math.cos(u);
+         var s = Math.sin(u);
+         vertices[kv] = c*radius;
+         normals[kv++] = 0;
+         vertices[kv] = s*radius;
+         normals[kv++] = 0;
+         vertices[kv] = height/2;
+         normals[kv++] = 1;
+         texCoords[kt++] = 0.5 + 0.5*c;
+         texCoords[kt++] = 0.5 + 0.5*s;
+      }
+      for (i = 0; i < slices; i++) {
+         indices[k++] = startIndex;
+         indices[k++] = startIndex + i + 1;
+         indices[k++] = startIndex + i + 2;
+      }
+   }
+   return {
+       vertexPositions: vertices,
+       vertexNormals: normals,
+       vertexTextureCoords: texCoords,
+       indices: indices
+   };
+}
+
+
+/**
+ * Defines a model of a cone.  The axis of the cone is the z-axis,
+ * and the center is at (0,0,0).
+ * @param radius the radius of the cone
+ * @param height the height of the cone.  The cone extends from -height/2
+ * to height/2 along the z-axis, with the tip at (0,0,height/2).
+ * @param slices the number of slices, like the slices of an orange.
+ * @param noBottom if missing or false, the cone has a bottom; if set to true,
+ *   the cone has a bottom. The bottom is a disk at the wide end of the cone.
+ */
+function uvCone(radius, height, slices, noBottom) {
+   radius = radius || 0.5;
+   height = height || 2*radius;
+   slices = slices || 32;
+   var fractions = [ 0, 0.5, 0.75, 0.875, 0.9375 ];
+   var vertexCount = fractions.length*(slices+1) + slices;
+   if (!noBottom)
+      vertexCount += slices + 2;
+   var triangleCount = (fractions.length-1)*slices*2 + slices;
+   if (!noBottom)
+      triangleCount += slices;
+   var vertices = new Float32Array(vertexCount*3);
+   var normals = new Float32Array(vertexCount*3);
+   var texCoords = new Float32Array(vertexCount*2);
+   var indices = new Uint16Array(triangleCount*3);
+   var normallength = Math.sqrt(height*height+radius*radius);
+   var n1 = height/normallength;
+   var n2 = radius/normallength; 
+   var du = 2*Math.PI / slices;
+   var kv = 0;
+   var kt = 0;
+   var k = 0;
+   var i,j,u;
+   for (j = 0; j < fractions.length; j++) {
+      var uoffset = (j % 2 == 0? 0 : 0.5);
+      for (i = 0; i <= slices; i++) {
+         var h1 = -height/2 + fractions[j]*height;
+         u = (i+uoffset)*du;
+         var c = Math.cos(u);
+         var s = Math.sin(u);
+         vertices[kv] = c*radius*(1-fractions[j]);
+         normals[kv++] = c*n1;
+         vertices[kv] = s*radius*(1-fractions[j]);
+         normals[kv++] = s*n1;
+         vertices[kv] = h1;
+         normals[kv++] = n2;
+         texCoords[kt++] = (i+uoffset)/slices;
+         texCoords[kt++] = fractions[j];
+      }
+   }
+   var k = 0;
+   for (j = 0; j < fractions.length-1; j++) {
+      var row1 = j*(slices+1);
+      var row2 = (j+1)*(slices+1);
+      for (i = 0; i < slices; i++) {
+          indices[k++] = row1 + i;
+          indices[k++] = row2 + i + 1;
+          indices[k++] = row2 + i;
+          indices[k++] = row1 + i;
+          indices[k++] = row1 + i + 1;
+          indices[k++] = row2 + i + 1;
+      }
+   }
+   var start = kv/3 - (slices+1);
+   for (i = 0; i < slices; i++) { // slices points at top, with different normals, texcoords
+      u = (i+0.5)*du;
+      var c = Math.cos(u);
+      var s = Math.sin(u);
+      vertices[kv] = 0;
+      normals[kv++] = c*n1;
+      vertices[kv] = 0;
+      normals[kv++] = s*n1;
+      vertices[kv] = height/2;
+      normals[kv++] = n2;
+      texCoords[kt++] = (i+0.5)/slices;
+      texCoords[kt++] = 1;
+   }
+   for (i = 0; i < slices; i++) {
+      indices[k++] = start+i;
+      indices[k++] = start+i+1;
+      indices[k++] = start+(slices+1)+i;
+   }
+   if (!noBottom) {
+      var startIndex = kv/3;
+      vertices[kv] = 0;
+      normals[kv++] = 0;
+      vertices[kv] = 0;
+      normals[kv++] = 0;
+      vertices[kv] = -height/2;
+      normals[kv++] = -1;
+      texCoords[kt++] = 0.5;
+      texCoords[kt++] = 0.5; 
+      for (i = 0; i <= slices; i++) {
+         u = 2*Math.PI - i*du;
+         var c = Math.cos(u);
+         var s = Math.sin(u);
+         vertices[kv] = c*radius;
+         normals[kv++] = 0;
+         vertices[kv] = s*radius;
+         normals[kv++] = 0;
+         vertices[kv] = -height/2;
+         normals[kv++] = -1;
+         texCoords[kt++] = 0.5 - 0.5*c;
+         texCoords[kt++] = 0.5 + 0.5*s;
+      }
+      for (i = 0; i < slices; i++) {
+         indices[k++] = startIndex;
+         indices[k++] = startIndex + i + 1;
+         indices[k++] = startIndex + i + 2;
+      }
+   } 
+   return {
+       vertexPositions: vertices,
+       vertexNormals: normals,
+       vertexTextureCoords: texCoords,
+       indices: indices
+   };   
+}
+
+
+  function _toConsumableArray(arr) {
+  return (
+    _arrayWithoutHoles(arr) || _iterableToArray(arr) || _nonIterableSpread()
+  );
+}
+
+function _nonIterableSpread() {
+  throw new TypeError("Invalid attempt to spread non-iterable instance");
+}
+
+function _iterableToArray(iter) {
+  if (
+    Symbol.iterator in Object(iter) ||
+    Object.prototype.toString.call(iter) === "[object Arguments]"
+  )
+    return Array.from(iter);
+}
+
+function _arrayWithoutHoles(arr) {
+  if (Array.isArray(arr)) {
+    for (var i = 0, arr2 = new Array(arr.length); i < arr.length; i++) {
+      arr2[i] = arr[i];
+    }
+    return arr2;
+  }
+}
+
+var gl; // The webgl context.
+
+var a_coords_loc; // Location of the a_coords attribute variable in the shader program.
+
+var a_coords_buffer; // Buffer to hold the values for a_coords.
+
+var a_normal_loc; // Location of a_normal attribute.
+
+var a_normal_buffer; // Buffer for a_normal.
+
+var index_buffer; // Buffer to hold vertex indices from model.
+// Locations of uniform variables in the shader program
+
+var u_diffuseColor;
+var u_specularColor;
+var u_specularExponent;
+var u_sunlightPosition;
+var u_sunlightOn;
+var u_streetLampPosition;
+var u_streetLampOn;
+var u_leftHeadlightPosition;
+var u_rightHeadlightPosition;
+var u_headlightDirection;
+var u_headlightsOn;
+var u_shouldGlow;
+var u_modelview;
+var u_projection;
+var u_normalMatrix;
+var projection = mat4.create();
+var modelview;
+var normalMatrix = mat3.create(); // Derived from modelview; transforms normal vectors.
+// Determined empirically.
+
+var defaultView = mat4.create();
+defaultView[0] = 0.9995833135482293;
+defaultView[1] = 0.013607273073579325;
+defaultView[2] = 0.025456657193019497;
+defaultView[3] = 0;
+defaultView[4] = -0.025484098542111575;
+defaultView[5] = 0.8301858078129865;
+defaultView[6] = 0.5569040179666492;
+defaultView[7] = 0;
+defaultView[8] = -0.013555810467758334;
+defaultView[9] = -0.5573207035678862;
+defaultView[10] = 0.8301866497223305;
+defaultView[11] = 0;
+defaultView[12] = 0;
+defaultView[13] = 0;
+defaultView[14] = -15;
+defaultView[15] = 1;
+
+function newModelView() {
+  return mat4.clone(defaultView);
+} //
+// Utilities
+//
+
+function degToRad(degrees) {
+  return (degrees * Math.PI) / 180;
+}
+
+function mat4TimesVec4(m, v) {
+  return [
+    m[0] * v[0] + m[4] * v[1] + m[8] * v[2] + m[12] * v[3],
+    m[1] * v[0] + m[5] * v[1] + m[9] * v[2] + m[13] * v[3],
+    m[2] * v[0] + m[6] * v[1] + m[10] * v[2] + m[14] * v[3],
+    m[3] * v[0] + m[7] * v[1] + m[11] * v[2] + m[15] * v[3]
+  ];
+}
+
+//
+// Drawing
+//
+
+var colors = {
+  brown: [0.6, 0.3, 0.0, 1],
+  darkGray: [0.3, 0.3, 0.3, 1.0],
+  forestGreen: [0.13, 0.55, 0.12, 1.0],
+  gray: [0.7, 0.7, 0.7, 1.0],
+  red: [1.0, 0.0, 0.0, 1.0],
+  yellow: [1.0, 1.0, 0.0, 1.0]
+};
+var models = {
+  road: {
+    model: ring(2.2, 3.5),
+    color: {
+      diffuse: colors.gray
+    }
+  },
+  grass: {
+    model: uvCylinder(4.0, 0.5),
+    color: {
+      diffuse: colors.forestGreen
+    }
+  },
+  tree: {
+    model: uvCone(0.3, 0.8),
+    color: {
+      diffuse: colors.forestGreen
+    }
+  },
+  trunk: {
+    model: uvCylinder(0.15, 0.3),
+    color: {
+      diffuse: colors.brown
+    }
+  },
+  sun: {
+    model: uvSphere(0.3),
+    rotation: {
+      deg: 0.0,
+      inc: 1.0,
+      rad: 0.0
+    },
+    color: {
+      diffuse: colors.yellow,
+      glow: true
+    },
+    light: {
+      pos: [5, 0, 0, 0],
+      on: true
+    }
+  },
+  lampPole: {
+    model: uvCylinder(0.07, 0.8),
+    color: {
+      diffuse: colors.darkGray
+    }
+  },
+  streetLamp: {
+    model: uvSphere(0.16),
+    color: {
+      diffuse: colors.darkGray,
+      glow: true
+    },
+    light: {
+      pos: [0, 0.88, 0, 1],
+      on: false
+    }
+  },
+  carBody: {
+    model: cube(1, 1, 1),
+    rotation: {
+      deg: 0.0,
+      inc: -3.0,
+      rad: 0.0
+    },
+    color: {
+      diffuse: colors.red
+    }
+  },
+  carRoof: {
+    model: cube(1, 1, 1),
+    color: {
+      diffuse: colors.red
+    }
+  },
+  carAxle: {
+    model: uvCylinder(0.04, 1.1),
+    color: {
+      diffuse: colors.gray
+    }
+  },
+  carWheel: {
+    model: uvTorus(0.2, 0.3),
+    color: {
+      diffuse: colors.darkGray
+    }
+  },
+  carWheelSpoke: {
+    model: uvCylinder(0.02, 0.4),
+    rotation: {
+      deg: 0.0,
+      inc: 15.0,
+      rad: 0.0
+    },
+    color: {
+      diffuse: colors.darkGray
+    }
+  },
+  carHeadlight: {
+    model: uvCylinder(0.05, 0.01),
+    color: {
+      diffuse: colors.yellow,
+      glow: true
+    },
+    light: {
+      on: false
+    }
+  }
+}; // Copies model data to the appropriate buffers and draws the scene.
+
+function installModel(model) {
+  // Color
+  var d = model.color.diffuse;
+  gl.uniform4f(u_diffuseColor, d[0], d[1], d[2], d[3]);
+  gl.uniform1f(u_shouldGlow, model.color.glow ? 1.0 : 0.0); // Positions
+
+  var modelData = model.model;
+  gl.bindBuffer(gl.ARRAY_BUFFER, a_coords_buffer);
+  gl.bufferData(gl.ARRAY_BUFFER, modelData.vertexPositions, gl.STATIC_DRAW);
+  gl.vertexAttribPointer(a_coords_loc, 3, gl.FLOAT, false, 0, 0);
+  gl.enableVertexAttribArray(a_coords_loc);
+  gl.bindBuffer(gl.ARRAY_BUFFER, a_normal_buffer);
+  gl.bufferData(gl.ARRAY_BUFFER, modelData.vertexNormals, gl.STATIC_DRAW);
+  gl.vertexAttribPointer(a_normal_loc, 3, gl.FLOAT, false, 0, 0);
+  gl.enableVertexAttribArray(a_normal_loc);
+  gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, index_buffer);
+  gl.bufferData(gl.ELEMENT_ARRAY_BUFFER, modelData.indices, gl.STATIC_DRAW);
+} // Assigns computed values to the uniforms for the model, view and projection
+// transform.
+
+function update_uniform(modelview, projection, modelName) {
+  // Get the matrix for transforming normal vectors from the modelview matrix,
+  // and send matrices to the shader program.
+  mat3.normalFromMat4(normalMatrix, modelview);
+  gl.uniformMatrix3fv(u_normalMatrix, false, normalMatrix);
+  gl.uniformMatrix4fv(u_modelview, false, modelview);
+  gl.uniformMatrix4fv(u_projection, false, projection);
+  gl.drawElements(
+    gl.TRIANGLES,
+    models[modelName].model.indices.length,
+    gl.UNSIGNED_SHORT,
+    0
+  );
+} // Loads the given model and applies transformations to it. |transformations| is
+// a list where each element is a list of [function, transformationArgument].
+
+function loadModel(name, transformations) {
+  installModel(models[name]);
+  modelview = newModelView();
+
+  for (var i = 0; i < transformations.length; ++i) {
+    transformations[i][0](modelview, modelview, transformations[i][1]);
+  }
+
+  update_uniform(modelview, projection, name);
+  return modelview;
+}
+
+function drawTree(scale, position) {
+  loadModel("tree", [
+    [mat4.translate, position],
+    [mat4.translate, [0, scale * 0.7, 0]],
+    [mat4.rotateX, -Math.PI / 2],
+    [mat4.scale, [scale, scale, scale]]
+  ]);
+  loadModel("trunk", [
+    [mat4.translate, position],
+    [mat4.translate, [0, scale * 0.15, 0]],
+    [mat4.rotateX, -Math.PI / 2],
+    [mat4.scale, [scale, scale, scale]]
+  ]);
+}
+
+function draw() {
+  var _gl2, _gl3, _gl4;
+
+  gl.clearColor(0.0, 0.0, 0.0, 1);
+  gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
+  mat4.perspective(projection, Math.PI / 4, 1, 10, 20); // Ground
+
+  loadModel("road", [
+    [mat4.translate, [0, 0.01, 0]],
+    [mat4.rotateX, (3 * Math.PI) / 2]
+  ]);
+  loadModel("grass", [
+    [mat4.translate, [0, -0.25, 0]],
+    [mat4.rotateX, Math.PI / 2]
+  ]); // Trees
+
+  drawTree(1.0, [-0.4, 0, -0.5]); // Left of lamp
+
+  drawTree(1.3, [0.7, 0, 0]); // Right of lamp
+
+  drawTree(1.3, [-1.2, 0, 1.2]); // Edge of island
+
+  drawTree(0.6, [-1.0, 0, 3.6]); // Front left edge
+
+  drawTree(0.9, [-2.0, 0, -3.2]); // Back left edge
+
+  drawTree(0.7, [0.4, 0, -3.7]); // Back right edge, left
+
+  drawTree(0.6, [1.1, 0, -3.5]); // Back right edge, right
+
+  drawTree(0.7, [3.7, 0, -0.5]); // Right edge, back
+
+  drawTree(1.0, [3.8, 0, 0]); // Right edge, middle
+
+  drawTree(0.6, [3.65, 0, 0.35]); // Right edge, front
+  // Car
+
+  var carRadius = 2.7;
+  var sharedCarTransform = [
+    [mat4.rotateY, models["carBody"].rotation.rad],
+    [mat4.translate, [-carRadius, 0, 0]]
+  ];
+  loadModel(
+    "carBody",
+    [].concat(sharedCarTransform, [
+      [mat4.translate, [0, 0.4, 0]],
+      [mat4.scale, [0.8, 0.3, 1.3]]
+    ])
+  );
+  loadModel(
+    "carRoof",
+    [].concat(sharedCarTransform, [
+      [mat4.translate, [0, 0.6, 0]],
+      [mat4.scale, [0.8, 0.2, 0.6]]
+    ])
+  );
+  loadModel(
+    "carAxle",
+    [].concat(sharedCarTransform, [
+      [mat4.translate, [0, 0.35, -0.4]],
+      [mat4.rotateY, Math.PI / 2]
+    ])
+  );
+  loadModel(
+    "carAxle",
+    [].concat(sharedCarTransform, [
+      [mat4.translate, [0, 0.35, 0.4]],
+      [mat4.rotateY, Math.PI / 2]
+    ])
+  ); // Car wheels
+
+  var wheelPositions = [
+    [-0.5, 0.35, 0.4],
+    [-0.5, 0.35, -0.4],
+    [0.5, 0.35, -0.4],
+    [0.5, 0.35, 0.4]
+  ];
+  var numSpokes = 3;
+
+  for (var i = 0; i < wheelPositions.length; ++i) {
+    loadModel(
+      "carWheel",
+      [].concat(sharedCarTransform, [
+        [mat4.translate, wheelPositions[i]],
+        [mat4.rotateY, Math.PI / 2]
+      ])
+    );
+
+    for (var j = 0; j < numSpokes; ++j) {
+      loadModel(
+        "carWheelSpoke",
+        [].concat(sharedCarTransform, [
+          [mat4.translate, wheelPositions[i]],
+          [mat4.rotateY, -Math.PI / 2],
+          [mat4.rotateZ, models["carWheelSpoke"].rotation.rad],
+          [mat4.rotateZ, (j * Math.PI) / numSpokes],
+          [mat4.rotateY, Math.PI / 2]
+        ])
+      );
+    }
+  } // Headlights
+
+  var headlightUniforms = [u_leftHeadlightPosition, u_rightHeadlightPosition];
+  var headlightPositions = [
+    [-0.25, 0.35, -0.655],
+    [0.25, 0.35, -0.655]
+  ];
+
+  for (var i = 0; i < 2; ++i) {
+    var _gl;
+
+    modelview = loadModel(
+      "carHeadlight",
+      [].concat(sharedCarTransform, [[mat4.translate, headlightPositions[i]]])
+    );
+    vec4.transformMat4(headlightPositions[i], [0, 0, 0, 1], modelview);
+
+    (_gl = gl).uniform4f.apply(
+      _gl,
+      [headlightUniforms[i]].concat(_toConsumableArray(headlightPositions[i]))
+    );
+  }
+
+  var headlightNormalMatrix = mat3.create();
+  mat3.normalFromMat4(headlightNormalMatrix, modelview);
+  var headlightDirection = new Float32Array(3);
+  vec3.transformMat3(headlightDirection, [0, 0, -1], headlightNormalMatrix);
+
+  (_gl2 = gl).uniform3f.apply(
+    _gl2,
+    [u_headlightDirection].concat(_toConsumableArray(headlightDirection))
+  );
+
+  gl.uniform1i(u_headlightsOn, models["carHeadlight"].light.on); // Sun
+
+  loadModel("sun", [
+    [mat4.rotateZ, models["sun"].rotation.rad],
+    [mat4.translate, [5, 0, 0]]
+  ]);
+
+  (_gl3 = gl).uniform4f.apply(
+    _gl3,
+    [u_sunlightPosition].concat(_toConsumableArray(models["sun"].light.pos))
+  );
+
+  gl.uniform1i(u_sunlightOn, models["sun"].light.on); // Street lamp
+
+  loadModel("lampPole", [
+    [mat4.translate, [0, 0.4, 0]],
+    [mat4.rotateX, Math.PI / 2]
+  ]);
+  modelview = loadModel("streetLamp", [[mat4.translate, [0, 0.88, 0]]]);
+  vec4.transformMat4(models["streetLamp"].light.pos, [0, 0, 0, 1], modelview);
+
+  (_gl4 = gl).uniform4f.apply(
+    _gl4,
+    [u_streetLampPosition].concat(
+      _toConsumableArray(models["streetLamp"].light.pos)
+    )
+  );
+
+  gl.uniform1i(u_streetLampOn, models["streetLamp"].light.on);
+} // Applies changes to the scene (but does not render any of the changes).
+
+function animate() {
+  // Turn off animation if the car is not being shown.
+  if (!window.showing_car) return;
+  var rotationMultiplier = 1.0; // Rotations
+
+  for (var name in models) {
+    var m = models[name];
+    if (!m.rotation) continue;
+    m.rotation.deg =
+      (m.rotation.deg + rotationMultiplier * m.rotation.inc) % 360.0;
+    m.rotation.rad = degToRad(m.rotation.deg);
+  } // Lights
+
+  models["sun"].light.pos = [
+    5 * Math.cos(models["sun"].rotation.rad),
+    5 * Math.sin(models["sun"].rotation.rad),
+    5,
+    0
+  ];
+
+  if (models["sun"].rotation.deg > 180.0) {
+    models["sun"].color.diffuse = colors.gray;
+    models["sun"].color.glow = false;
+    models["sun"].light.on = false;
+    models["streetLamp"].color.diffuse = colors.yellow;
+    models["streetLamp"].light.on = true;
+    models["carHeadlight"].light.on = true;
+    models["carHeadlight"].color.diffuse = colors.yellow;
+    models["carHeadlight"].color.glow = true;
+  } else {
+    models["sun"].color.diffuse = colors.yellow;
+    models["sun"].color.glow = true;
+    models["sun"].light.on = true;
+    models["streetLamp"].color.diffuse = colors.darkGray;
+    models["streetLamp"].light.on = false;
+    models["carHeadlight"].light.on = false;
+    models["carHeadlight"].color.diffuse = colors.gray;
+    models["carHeadlight"].color.glow = false;
+  }
+} //
+// WebGL setup
+//
+
+/* Initialize the WebGL context.  Called from init() */
+
+function initGL() {
+  var prog = createProgram(gl, "vshader-source", "fshader-source");
+  gl.useProgram(prog);
+  a_coords_loc = gl.getAttribLocation(prog, "a_coords");
+  a_normal_loc = gl.getAttribLocation(prog, "a_normal");
+  u_modelview = gl.getUniformLocation(prog, "modelview");
+  u_projection = gl.getUniformLocation(prog, "projection");
+  u_normalMatrix = gl.getUniformLocation(prog, "normalMatrix");
+  u_sunlightPosition = gl.getUniformLocation(prog, "sunlightPosition");
+  u_sunlightOn = gl.getUniformLocation(prog, "sunlightOn");
+  u_streetLampPosition = gl.getUniformLocation(prog, "streetLampPosition");
+  u_streetLampOn = gl.getUniformLocation(prog, "streetLampOn");
+  u_leftHeadlightPosition = gl.getUniformLocation(
+    prog,
+    "leftHeadlightPosition"
+  );
+  u_rightHeadlightPosition = gl.getUniformLocation(
+    prog,
+    "rightHeadlightPosition"
+  );
+  u_headlightDirection = gl.getUniformLocation(prog, "headlightDirection");
+  u_headlightsOn = gl.getUniformLocation(prog, "headlightsOn");
+  u_shouldGlow = gl.getUniformLocation(prog, "shouldGlow");
+  u_diffuseColor = gl.getUniformLocation(prog, "diffuseColor");
+  u_specularColor = gl.getUniformLocation(prog, "specularColor");
+  u_specularExponent = gl.getUniformLocation(prog, "specularExponent");
+  a_coords_buffer = gl.createBuffer();
+  a_normal_buffer = gl.createBuffer();
+  index_buffer = gl.createBuffer();
+  gl.enable(gl.DEPTH_TEST);
+  gl.uniform3f(u_specularColor, 0.5, 0.5, 0.5);
+  gl.uniform1f(u_specularExponent, 10);
+} // Creates a program for use in the WebGL context gl, and returns the
+// identifier for that program.
+
+function createProgram(gl, vertexShaderID, fragmentShaderID) {
+  function getTextContent(elementID) {
+    // This nested function retrieves the text content of an
+    // element on the web page.  It is used here to get the shader
+    // source code from the script elements that contain it.
+    var element = document.getElementById(elementID);
+    var node = element.firstChild;
+    var str = "";
+
+    while (node) {
+      if (node.nodeType == 3)
+        // this is a text node
+        str += node.textContent;
+      node = node.nextSibling;
+    }
+
+    return str;
+  }
+
+  try {
+    var vertexShaderSource = getTextContent(vertexShaderID);
+    var fragmentShaderSource = getTextContent(fragmentShaderID);
+  } catch (e) {
+    throw "Error: Could not get shader source code from script elements.";
+  }
+
+  var vsh = gl.createShader(gl.VERTEX_SHADER);
+  gl.shaderSource(vsh, vertexShaderSource);
+  gl.compileShader(vsh);
+
+  if (!gl.getShaderParameter(vsh, gl.COMPILE_STATUS)) {
+    throw "Error in vertex shader:  " + gl.getShaderInfoLog(vsh);
+  }
+
+  var fsh = gl.createShader(gl.FRAGMENT_SHADER);
+  gl.shaderSource(fsh, fragmentShaderSource);
+  gl.compileShader(fsh);
+
+  if (!gl.getShaderParameter(fsh, gl.COMPILE_STATUS)) {
+    throw "Error in fragment shader:  " + gl.getShaderInfoLog(fsh);
+  }
+
+  var prog = gl.createProgram();
+  gl.attachShader(prog, vsh);
+  gl.attachShader(prog, fsh);
+  gl.linkProgram(prog);
+
+  if (!gl.getProgramParameter(prog, gl.LINK_STATUS)) {
+    throw "Link error in program:  " + gl.getProgramInfoLog(prog);
+  }
+
+  return prog;
+} // Initializes everything once the page loads.
+
+function startup() {
+  try {
+    var canvas = document.getElementById("myGLCanvas");
+    gl = canvas.getContext("webgl") || canvas.getContext("experimental-webgl");
+
+    if (!gl) {
+      throw "Browser does not support WebGL";
+    }
+  } catch (e) {
+    document.getElementById("canvas-holder").innerHTML =
+      "<p>Sorry, could not get a WebGL graphics context.</p>";
+    return;
+  }
+
+  try {
+    initGL(); // initialize the WebGL graphics context
+  } catch (e) {
+    document.getElementById("canvas-holder").innerHTML =
+      "<p>Sorry, could not initialize the WebGL graphics context:" + e + "</p>";
+    return;
+  }
+
+  window.showing_car = false;
+  tick();
+}
+
+function tick() {
+  setTimeout(function () {
+    requestAnimFrame(tick);
+    draw();
+    animate();
+  }, 50);
+}
+
+</script>
 
 <script type="text/javascript">
   window.onload = startup;
 </script>
 
-<div id="canvas-holder">
+<div class="project__car" id="canvas-holder">
   <!-- Optional checkbox for animation -->
   <!-- <label class="checkLabel"> -->
   <!--   <input type="checkbox" id="animate"/> -->
