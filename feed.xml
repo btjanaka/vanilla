@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.0.1">Jekyll</generator><link href="https://btjanaka.net/feed.xml" rel="self" type="application/atom+xml" /><link href="https://btjanaka.net/" rel="alternate" type="text/html" /><updated>2020-05-21T19:03:00-07:00</updated><id>https://btjanaka.net/feed.xml</id><title type="html">Bryon Tjanaka</title><subtitle>Personal website of Bryon Tjanaka</subtitle><author><name>Bryon Tjanaka</name><email>bryon@btjanaka.net</email></author><entry><title type="html">Integer Replacement</title><link href="https://btjanaka.net/2020/01/13/integer-replacement.html" rel="alternate" type="text/html" title="Integer Replacement" /><published>2020-01-13T11:00:00-08:00</published><updated>2020-01-13T11:00:00-08:00</updated><id>https://btjanaka.net/2020/01/13/integer-replacement</id><content type="html" xml:base="https://btjanaka.net/2020/01/13/integer-replacement.html">&lt;p&gt;This is a problem I brought along to the WICSxACM Technical Interview Prep
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.0.1">Jekyll</generator><link href="https://btjanaka.net/feed.xml" rel="self" type="application/atom+xml" /><link href="https://btjanaka.net/" rel="alternate" type="text/html" /><updated>2020-05-24T21:04:17-07:00</updated><id>https://btjanaka.net/feed.xml</id><title type="html">Bryon Tjanaka</title><subtitle>Personal website of Bryon Tjanaka</subtitle><author><name>Bryon Tjanaka</name><email>bryon@btjanaka.net</email></author><entry><title type="html">Integer Replacement</title><link href="https://btjanaka.net/2020/01/13/integer-replacement.html" rel="alternate" type="text/html" title="Integer Replacement" /><published>2020-01-13T11:00:00-08:00</published><updated>2020-01-13T11:00:00-08:00</updated><id>https://btjanaka.net/2020/01/13/integer-replacement</id><content type="html" xml:base="https://btjanaka.net/2020/01/13/integer-replacement.html">&lt;p&gt;This is a problem I brought along to the WICSxACM Technical Interview Prep
 workshop on 13 January 2020.&lt;!--excerpt-separator--&gt; It is also available at
 &lt;a href=&quot;https://bit.ly/integer-replacement&quot;&gt;bit.ly/integer-replacement&lt;/a&gt;.&lt;/p&gt;
 
@@ -128,10 +128,7 @@ December 2018. Using &lt;a href=&quot;https://jekyllrb.com/&quot;&gt;Jekyll&lt;/
 &lt;a href=&quot;https://github.com/TaylanTatli/Moon&quot;&gt;Moon&lt;/a&gt; theme, I eventually built a personal
 website and hosted it on &lt;a href=&quot;https://pages.github.com&quot;&gt;GitHub Pages&lt;/a&gt;. Though I
 thought the website looked good, I hardly knew how it all worked, so I decided
-to explore more.&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;https://btjanaka.net/jekyll-site&quot; class=&quot;button button--primary button--pill&quot;&gt;&lt;i class=&quot;fas fa-link&quot;&gt;&lt;/i&gt; Archived Site&lt;/a&gt;
-&lt;a href=&quot;https://github.com/btjanaka/jekyll-site&quot; class=&quot;button button--primary button--pill&quot;&gt;&lt;i class=&quot;far fa-file-code&quot;&gt;&lt;/i&gt; Source Code&lt;/a&gt;&lt;/p&gt;
+to explore further.&lt;/p&gt;
 
 &lt;h2 id=&quot;v2---vanilla&quot;&gt;v2 - “Vanilla”&lt;/h2&gt;
 
@@ -142,9 +139,6 @@ used &lt;a href=&quot;https://www.npmjs.com/package/liquidjs&quot;&gt;liquidjs&l
 primitive static site generator, similar to Jekyll. Overall, I learned much
 about web development from this project. I especially saw how web development is
 full of an endless, ever-changing list of libraries and tools.&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;https://btjanaka.net/vanilla-site&quot; class=&quot;button button--primary button--pill&quot;&gt;&lt;i class=&quot;fas fa-link&quot;&gt;&lt;/i&gt; Archived Site&lt;/a&gt;
-&lt;a href=&quot;https://github.com/btjanaka/vanilla-site&quot; class=&quot;button button--primary button--pill&quot;&gt;&lt;i class=&quot;far fa-file-code&quot;&gt;&lt;/i&gt; Source Code&lt;/a&gt;&lt;/p&gt;
 
 &lt;h2 id=&quot;v3---react&quot;&gt;v3 - React&lt;/h2&gt;
 
@@ -160,16 +154,14 @@ result, but others, like DuckDuckGo, did not, and so my website did not show up.
 Hence, I concluded that I should use a static site framework like Jekyll, while
 plugging in small React components if needed.&lt;/p&gt;
 
-&lt;p&gt;&lt;a href=&quot;https://btjanaka.net/react-site&quot; class=&quot;button button--primary button--pill&quot;&gt;&lt;i class=&quot;fas fa-link&quot;&gt;&lt;/i&gt; Archived Site&lt;/a&gt;
-&lt;a href=&quot;https://github.com/btjanaka/react-site&quot; class=&quot;button button--primary button--pill&quot;&gt;&lt;i class=&quot;far fa-file-code&quot;&gt;&lt;/i&gt; Source Code&lt;/a&gt;&lt;/p&gt;
-
 &lt;h2 id=&quot;v4---jekyll-again&quot;&gt;v4 - Jekyll (again)&lt;/h2&gt;
 
 &lt;p&gt;Thus, I have come full circle and decided to use Jekyll once more, initially
 with the &lt;a href=&quot;https://github.com/alshedivat/al-folio&quot;&gt;al-folio&lt;/a&gt; theme, and then with
 the &lt;a href=&quot;https://github.com/kitian616/jekyll-TeXt-theme&quot;&gt;TeXt&lt;/a&gt; theme – with
-numerous custom tweaks, of course. Now that I have a better understanding of
-both how Jekyll works and why it exists, I believe I will be able to better
-leverage it in the future.&lt;/p&gt;
+numerous custom tweaks, of course. Furthermore, I have integrated React into
+this theme, allowing me to add interactive components if need be. Now that I
+have a better understanding of both how Jekyll works and why it exists, I will
+be able to better leverage it in the future.&lt;/p&gt;
 
 &lt;p&gt;&lt;a href=&quot;https://github.com/btjanaka/academic-site&quot; class=&quot;button button--primary button--pill&quot;&gt;&lt;i class=&quot;far fa-file-code&quot;&gt;&lt;/i&gt; Source Code&lt;/a&gt;&lt;/p&gt;</content><author><name>Bryon Tjanaka</name><email>bryon@btjanaka.net</email></author><category term="Website" /><category term="Jekyll" /><category term="React" /><summary type="html">My personal website has gone through several iterations. Here, I will briefly describe the motivation and technologies behind each major version.</summary></entry></feed>
