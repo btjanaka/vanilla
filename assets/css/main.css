@@ -2659,7 +2659,7 @@ body, html, .root, .layout--page { height: 100%; }
 
 .layout--404 .sign p { font-size: 1.8rem; width: 100%; display: block; text-align: center; }
 
-.project__tictactoe { background-color: #f2f2f2; display: block; margin-left: auto; margin-right: auto; height: 340px; width: 240px; padding: 15px; }
+.project__tictactoe { border-radius: 0.4rem; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.23), 0 1px 3px rgba(0, 0, 0, 0.08), 0 6px 12px rgba(0, 0, 0, 0.02); background-color: white; display: block; margin-left: auto; margin-right: auto; height: 340px; width: 240px; padding: 15px; }
 
 .project__tictactoe .tictactoe-cell { background-color: white; border: 1px solid black; color: black; font-family: arial, sans-serif; float: left; font-size: 40px; font-weight: bold; height: 70px; margin: 0px; padding: 0px; width: 70px; }
 

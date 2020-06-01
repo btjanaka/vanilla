@@ -1,7 +1,7 @@
 <!DOCTYPE html><html lang="en">
   <head><meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"><title>Widgets - Bryon Tjanaka</title><meta name="description" content="Clock">
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"><title>Widgets - Bryon Tjanaka</title><meta name="description" content="ClockTic-Tac-Toe                    x's turn  Reset">
 
 <link rel="canonical" href="https://btjanaka.net/widgets">
 
@@ -10,7 +10,7 @@
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://btjanaka.net/widgets" />
 <meta property="og:image" content="https://btjanaka.net/assets/img/graphic-design/mountain-explorer-blue.png" />
-<meta property="og:description" content="Clock" /><link rel="alternate" type="application/rss+xml" title="Bryon Tjanaka" href="/feed.xml"><!-- start favicons snippet, use https://realfavicongenerator.net/ -->
+<meta property="og:description" content="ClockTic-Tac-Toe                    x's turn  Reset" /><link rel="alternate" type="application/rss+xml" title="Bryon Tjanaka" href="/feed.xml"><!-- start favicons snippet, use https://realfavicongenerator.net/ -->
 <link rel="apple-touch-icon" sizes="180x180" href="/assets/favicon/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon/favicon-16x16.png">
@@ -463,12 +463,180 @@
 
               <div class="col-main cell cell--auto"><!-- start custom main top snippet -->
 
-<!-- end custom main top snippet --><article itemscope itemtype="http://schema.org/Article"><div class="article__header"><header><h1>Widgets</h1></header></div><meta itemprop="headline" content="Widgets"><meta itemprop="author" content="Bryon Tjanaka"/><meta itemprop="datePublished" content="2020-06-01T01:17:00-07:00"><div class="js-article-content"><div class="layout--article"><!-- start custom article top snippet -->
+<!-- end custom main top snippet --><article itemscope itemtype="http://schema.org/Article"><div class="article__header"><header><h1>Widgets</h1></header></div><meta itemprop="headline" content="Widgets"><meta itemprop="author" content="Bryon Tjanaka"/><meta itemprop="datePublished" content="2020-06-01T01:54:56-07:00"><div class="js-article-content"><div class="layout--article"><!-- start custom article top snippet -->
 
 <!-- end custom article top snippet --><div class="article__content" itemprop="articleBody"><h2 id="clock">Clock</h2>
 
 <div class="react" id="clock"></div>
-</div><div class="d-print-none"><footer class="article__footer"><meta itemprop="dateModified" content="2020-06-01T01:17:00-07:00"><!-- start custom article footer snippet -->
+
+<h2 id="tic-tac-toe">Tic-Tac-Toe</h2>
+
+<!-- A tic-tac-toe game -->
+
+<script>
+  // Implementation of a tictactoe game
+
+"use strict";
+
+const tictactoe = (function() {
+  //
+  // Constants
+  //
+
+  const NUM_CELLS = 9;
+  const CELL_EMPTY = "";
+  const CELL_X = "x";
+  const CELL_O = "o";
+  const WINNER_NONE = "none";
+  const WINNER_TIE = "tie";
+  const NEXT_TURN = {};
+  NEXT_TURN[CELL_X] = CELL_O;
+  NEXT_TURN[CELL_O] = CELL_X;
+
+  // Combos of cells that have to be the same to result in a win
+  const WIN_COMBOS = [
+    [0, 1, 2],
+    [3, 4, 5],
+    [6, 7, 8],
+    [0, 3, 6],
+    [1, 4, 7],
+    [2, 5, 8],
+    [0, 4, 8],
+    [2, 4, 6]
+  ];
+
+  //
+  // Utility
+  //
+
+  // Returns a string saying it is the given player's turn
+  function moveString(player) {
+    return `${player}'s turn`;
+  }
+
+  // Checks for a winner in the given array of cells, where each cell is an HTML
+  // button. Returns the player that won if there was any, and CELL_EMPTY
+  // otherwise.
+  function checkWinner(cells) {
+    for (const combo of WIN_COMBOS) {
+      if (
+        cells[combo[2]].innerHTML == cells[combo[0]].innerHTML &&
+        cells[combo[1]].innerHTML == cells[combo[0]].innerHTML &&
+        cells[combo[0]].innerHTML != CELL_EMPTY
+      ) {
+        return cells[combo[0]].innerHTML;
+      }
+    }
+    return CELL_EMPTY;
+  }
+
+  // Returns a bool telling whether the given cells indicate a game that is
+  // a tie
+  function checkTie(cells) {
+    return (
+      checkWinner(cells) == CELL_EMPTY &&
+      cells.every(c => c.innerHTML != CELL_EMPTY)
+    );
+  }
+
+  // Finds all the tictactoe cells
+  function findCells() {
+    const cells = [];
+    for (let i = 0; i < NUM_CELLS; ++i) {
+      cells.push(document.getElementById(`tictactoe-cell${i}`));
+    }
+    return cells;
+  }
+
+  //
+  // Event handling
+  //
+
+  // Returns a function which can reset the game to a new state
+  function newGame(game) {
+    return function() {
+      game["turn"] = CELL_X;
+      game["winner"] = WINNER_NONE;
+      for (const cell of game["cells"]) {
+        cell.innerHTML = CELL_EMPTY;
+      }
+      game["infobox"].innerHTML = moveString(game["turn"]);
+    };
+  }
+
+  // Returns a function which can handle a click for the given game and cell
+  function handleClick(game, cell) {
+    return function() {
+      if (cell.innerHTML != CELL_EMPTY) return;
+      if (game["winner"] != WINNER_NONE) return;
+
+      cell.innerHTML = game["turn"];
+      game["turn"] = NEXT_TURN[game["turn"]];
+      game["infobox"].innerHTML = moveString(game["turn"]);
+
+      const winner = checkWinner(game["cells"]);
+      if (winner != CELL_EMPTY) {
+        game["winner"] = winner;
+        game["infobox"].innerHTML = winner + " wins!";
+        return;
+      }
+
+      if (checkTie(game["cells"])) {
+        game["winner"] = WINNER_TIE;
+        game["infobox"].innerHTML = "cat scratch!";
+        return;
+      }
+    };
+  }
+
+  return {
+    // Builds the entire game, with event listeners for appropriate buttons.
+    // The page should have the following items:
+    // - #tictactoe - a div with all the game elements
+    // - #tictactoe-cell[0-8] - 9 buttons for the game cells, arranged as:
+    //     0 1 2
+    //     3 4 5
+    //     6 7 8
+    // - #tictactoe-info - a box for the game to write information
+    // - #tictactoe-reset - a reset button for the game
+    buildGame: function() {
+      const game = {
+        div: document.getElementById("tictactoe"),
+        cells: findCells(),
+        infobox: document.getElementById("tictactoe-info"),
+        reset: document.getElementById("tictactoe-reset"),
+        turn: "",
+        winner: ""
+      };
+      game["reset"].onclick = newGame(game);
+      for (let i = 0; i < game["cells"].length; ++i) {
+        game["cells"][i].onclick = handleClick(game, game["cells"][i]);
+      }
+      newGame(game)();
+    }
+  };
+})();
+
+</script>
+
+<div class="project__tictactoe" id="tictactoe">
+  <button class="tictactoe-cell" id="tictactoe-cell0"></button>
+  <button class="tictactoe-cell" id="tictactoe-cell1"></button>
+  <button class="tictactoe-cell" id="tictactoe-cell2"></button>
+  <button class="tictactoe-cell" id="tictactoe-cell3"></button>
+  <button class="tictactoe-cell" id="tictactoe-cell4"></button>
+  <button class="tictactoe-cell" id="tictactoe-cell5"></button>
+  <button class="tictactoe-cell" id="tictactoe-cell6"></button>
+  <button class="tictactoe-cell" id="tictactoe-cell7"></button>
+  <button class="tictactoe-cell" id="tictactoe-cell8"></button>
+  <p class="tictactoe-info" id="tictactoe-info">x's turn</p>
+  <button class="tictactoe-reset" id="tictactoe-reset">Reset</button>
+</div>
+<script>
+  tictactoe.buildGame();
+</script>
+
+</div><div class="d-print-none"><footer class="article__footer"><meta itemprop="dateModified" content="2020-06-01T01:54:56-07:00"><!-- start custom article footer snippet -->
 
 <!-- end custom article footer snippet --></footer></div>
 
