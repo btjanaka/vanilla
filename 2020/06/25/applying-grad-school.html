@@ -1,16 +1,16 @@
 <!DOCTYPE html><html lang="en">
   <head><meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"><title>CPSM - Competitive Programming Solutions Manager - Bryon Tjanaka</title><meta name="description" content="">
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"><title>Applying to Grad School - Bryon Tjanaka</title><meta name="description" content="Having applied to CS PhD programs over the past year or so, I decided to writedown a few lessons I learned.">
 
-<link rel="canonical" href="https://btjanaka.net/cpsm">
+<link rel="canonical" href="https://btjanaka.net/2020/06/25/applying-grad-school.html">
 
 <!-- Open Graph -->
-<meta property="og:title" content="CPSM - Competitive Programming Solutions Manager - Bryon Tjanaka" />
+<meta property="og:title" content="Applying to Grad School - Bryon Tjanaka" />
 <meta property="og:type" content="website" />
-<meta property="og:url" content="https://btjanaka.net/cpsm" />
+<meta property="og:url" content="https://btjanaka.net/2020/06/25/applying-grad-school.html" />
 <meta property="og:image" content="https://btjanaka.net/assets/img/graphic-design/mountain-explorer-blue.png" />
-<meta property="og:description" content="" /><link rel="alternate" type="application/rss+xml" title="Bryon Tjanaka" href="/feed.xml"><!-- start favicons snippet, use https://realfavicongenerator.net/ -->
+<meta property="og:description" content="Having applied to CS PhD programs over the past year or so, I decided to writedown a few lessons I learned." /><link rel="alternate" type="application/rss+xml" title="Bryon Tjanaka" href="/feed.xml"><!-- start favicons snippet, use https://realfavicongenerator.net/ -->
 <link rel="apple-touch-icon" sizes="180x180" href="/assets/favicon/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon/favicon-16x16.png">
@@ -348,295 +348,192 @@
               <div class="col-main cell cell--auto">
 <!-- start custom main top snippet -->
 
-<!-- end custom main top snippet --><article itemscope itemtype="http://schema.org/Article"><div class="article__header"><header><h1>CPSM - Competitive Programming Solutions Manager</h1></header></div>
-<meta itemprop="headline" content="CPSM - Competitive Programming Solutions Manager">
+<!-- end custom main top snippet --><article itemscope itemtype="http://schema.org/Article"><div class="article__header">
+<header><h1>Applying to Grad School</h1></header><!-- Note: /src folder used because this website builds from src
+            rather than root --><span class="split-space"> </span>
+          <a class="edit-on-github" title="Edit on Github" href="https://github.com/btjanaka/academic-site/tree/master/src/_posts/2020-06-25-applying-grad-school.md">
+            <i class="far fa-edit"></i></a>
+</div>
+<meta itemprop="headline" content="Applying to Grad School">
+<div class="article__info clearfix">
+<ul class="left-col menu">
+<li>
+              <a class="button button--secondary button--pill button--sm" href="/archive.html?tag=Advice">Advice</a>
+            </li>
+<li>
+              <a class="button button--secondary button--pill button--sm" href="/archive.html?tag=Grad-School">Grad-School</a>
+            </li>
+</ul>
+<ul class="right-col menu"><li>
+<i class="far fa-calendar-alt"></i> <span>Jun 25, 2020</span>
+            </li></ul>
+</div>
 <meta itemprop="author" content="Bryon Tjanaka">
-<meta itemprop="datePublished" content="2020-06-25T10:11:52-07:00">
+<meta itemprop="datePublished" content="2020-06-25T11:00:00-07:00">
+    <meta itemprop="keywords" content="Advice,Grad-School">
 <div class="js-article-content">
 <div class="layout--article">
 <!-- start custom article top snippet -->
 
 <!-- end custom article top snippet --><div class="article__content" itemprop="articleBody">
-<!--excerpt-separator-->
+<p>Having applied to CS PhD programs over the past year or so, I decided to write
+down a few lessons I learned.<!--excerpt-separator--> To begin, I will talk
+about my overall experience. The summer after high school (2017), I took the
+GRE, as I knew I wanted to pursue some kind of graduate education, and the GRE
+was not much of a stretch after the SAT. Then, around March or April of last
+year (2019), I began talking to various professors about what grad school
+entailed, and whether it would be a good fit for me. Eventually, I decided to
+pursue a PhD, so I began applying to the <a href="https://nsfgrfp.org">NSF GRFP</a> (a
+fellowship for grad students) around May. Then in fall (October/November), I
+began applying to CS PhD programs. Ultimately, I applied to 9 grad schools and
+was accepted into 2 (UCI and USC). Eventually, I chose to go to USC. With that
+said, below is a list of things I learned. Some items come from first-hand
+experience, while others were passed along to me.</p>
 
-<p><a class="button button--primary button--pill" href="https://github.com/btjanaka/cpsm"><i class="fab fa-github"></i> GitHub</a>
-<a class="button button--primary button--pill" href="https://pypi.org/project/cpsm"><i class="fab fa-python"></i> PyPI</a></p>
-
-<p align="center">
-<img src="/assets/img/projects/cpsm-demo.gif" alt="cpsm demo">
-</p>
-
-<p>CPSM is a tool for managing solutions to programming problems, particularly
-competitive programming problems. It allows one to easily create and save new
-solution files from templates.</p>
-
-<p>CPSM assumes that, in a given directory, you have several directories holding
-solutions to problems. Furthermore, within each directory, there should be a
-<code class="language-plaintext highlighter-rouge">solving</code> directory holding problems that you are working on. Thus, the
-structure should look something like this:</p>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>.
-├── cpsm_config.py             &lt;-- configuration file
-├── website-1
-│   ├── solution1.cpp
-│   ├── solution2.py
-│   ├── ...
-│   └── solving
-│       ├── solving1.cpp
-│       └── solving2.py
-└── website-2
-    ├── solution1.cpp
-    ├── solution2.py
-    ├── ...
-    └── solving
-        ├── solving1.cpp
-        └── solving2.py
-</code></pre></div></div>
-
-<p>Then, when you decide to save a file, it moves from the solving directory to its
-main directory.</p>
-
-<h2 id="installation">Installation</h2>
-
-<p>CPSM requires Python 3.6 or later (compatibility with earlier versions may be
-coming soon, however). To install, run:</p>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>pip install cpsm
-</code></pre></div></div>
-
-<p>In a directory where you want to create solutions, do</p>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cpsm init
-</code></pre></div></div>
-
-<p>This will walk you through a few steps and eventually create a <code class="language-plaintext highlighter-rouge">cpsm_config.py</code>
-file with your configuration. You can modify this <code class="language-plaintext highlighter-rouge">cpsm_config.py</code> file as you
-wish, as long as you retain at least the original variables, as they are needed
-by cpsm.</p>
-
-<h2 id="usage">Usage</h2>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>USAGE: cpsm MODE [ARGS...]
-  cpsm init | Initialize a directory for CPSM
-  cpsm n abbrev problem template | Create a new solution (or open existing)
-  cpsm r abbrev problem filetype | Run a solution
-  cpsm s abbrev problem filetype | Save an existing solution
-  cpsm h | Display this help message
-</code></pre></div></div>
-
-<h3 id="examples">Examples</h3>
-
-<p>Create a new solution for the HackerRank problem <code class="language-plaintext highlighter-rouge">Journey to the Moon</code> using the
-<code class="language-plaintext highlighter-rouge">cpp</code> template, where the abbreviation for HackerRank is <code class="language-plaintext highlighter-rouge">hr</code> and the directory
-for it is hackerrank. Note that the template need not be named <code class="language-plaintext highlighter-rouge">cpp</code>; it just so
-happens that the template name matches the file extension here.</p>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cpsm n hr "Journey to the Moon" cpp
-</code></pre></div></div>
-
-<p>This creates a journey-to-the-moon.cpp and journey-to-the-moon.txt file in the
-hackerrank/solving directory and opens up an editor where you can work on the
-files. <em>Note that if any of these files exist already, they will simply be
-opened.</em></p>
-
-<p>While coding, you can run your solution with the input file by doing:</p>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cpsm r hr "Journey to the Moon" cpp
-</code></pre></div></div>
-
-<p>Behind the scenes, this uses <code class="language-plaintext highlighter-rouge">g++</code> to compile journey-to-the-moon.cpp to create
-a journey-to-the-moon.out file in the hackerrank/solving directory and runs it
-with journey-to-the-moon.txt as input.</p>
-
-<p>Once you are done, you can move the files to the main hackerrank directory (i.e.
-“save” them) with the following command. If your configuration file allows it,
-the files will also be added and committed to the git repo. A prompt will be
-provided if these files already exist in the directory.</p>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cpsm s hr "Journey to the Moon" cpp
-</code></pre></div></div>
-
-<p>Note that you do not need quotes around your problem title if your problem title
-has no spaces. For example, you can do <code class="language-plaintext highlighter-rouge">cpsm n uva 12345 cpp</code>.</p>
-
-<h2 id="customization">Customization</h2>
-
-<h3 id="cpsm_configpy">cpsm_config.py</h3>
-
-<p>Configurations for CPSM are handled in a <code class="language-plaintext highlighter-rouge">cpsm_config.py</code> file, which is created
-upon running <code class="language-plaintext highlighter-rouge">cpsm init</code>. An example is shown below.</p>
-
-<p>You can change the <code class="language-plaintext highlighter-rouge">cpsm_config.py</code> file at any time, as long as you maintain at
-least the original variables, since they are used in CPSM. Here are some common
-ways you might modify the file:</p>
-
-<ul>
+<ol>
   <li>
-<strong>Adding a template</strong> - You can do this by adding an entry into the
-<code class="language-plaintext highlighter-rouge">templates</code> variable. You will need to provide the name of the template, the
-<code class="language-plaintext highlighter-rouge">filetype</code> that it is for, and the <code class="language-plaintext highlighter-rouge">code</code> used for it.
-    <ul>
-      <li>The <code class="language-plaintext highlighter-rouge">code</code> is a <a href="http://jinja.pocoo.org/">Jinja</a> template. You can
-add “template variables” into it by putting them in double curly braces,
-e.g. ``. Then, you can define these variables in the
-<code class="language-plaintext highlighter-rouge">mappings</code> variable.</li>
-    </ul>
-  </li>
+<strong>Figure out what you’re getting yourself into.</strong> Grad school is no small
+undertaking. Basically, you’ll be spending 6 years (hopefully not more)
+working full-time as a researcher in your advisor’s lab. Unlike in
+undergraduate, courses will be secondary; i.e. you’ll have to take a few, but
+they will mostly be aimed at supplementing your research. In short, grad
+school is more like a job than “school.” One article I found particularly
+helpful in understanding grad school was
+<a href="https://stefanosnikolaidis.blogspot.com/2018/12/7-rules-of-grad-school-game.html">this blog post</a>
+from my advisor at USC.</li>
   <li>
-<strong>Adding an abbreviation</strong> - Modify the <code class="language-plaintext highlighter-rouge">abbreviations</code> variable, providing
-the <code class="language-plaintext highlighter-rouge">name</code>, <code class="language-plaintext highlighter-rouge">dir</code>, and <code class="language-plaintext highlighter-rouge">create_input_file</code> along with the new abbreviation.</li>
+<strong>Talk to as many people as possible.</strong> Get advice from lots of people when
+you are trying to figure out the program and school to which you should
+apply. Anyone familiar with a PhD (especially professors and other folks who
+have done one) can help you decide 1) whether you actually want a PhD (hint:
+it’s not for everybody) and 2) what you would study during it. Keep in mind
+that during all this, you will receive many viewpoints, some conflicting with
+each other. It is up to you to distill the information that is helpful for
+your situation. Side note: there are tons of online articles with PhD advice
+(such as this one <img class="emoji" title=":wink:" alt=":wink:" src="https://github.githubassets.com/images/icons/emoji/unicode/1f609.png" height="20" width="20">). I also found these helpful, but only for figuring
+out the basics.</li>
   <li>
-<strong>Adding a new filetype for running</strong> - Modify the <code class="language-plaintext highlighter-rouge">run_commands</code> variable,
-providing a list of commands to run for the filetype.</li>
-</ul>
-
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Configuration file for CPSM
-</span>
-<span class="c1"># Command to run for opening the files when starting a new solution
-</span><span class="n">editor</span> <span class="o">=</span> <span class="s">"vim -p"</span>
-
-<span class="c1"># Should CPSM open the input file along with the code file? This is particularly
-# useful if your editor does not support opening multiple files
-</span><span class="n">open_input</span> <span class="o">=</span> <span class="bp">True</span>
-
-<span class="c1"># When saving, should CPSM add and commit the files to git? You can choose to
-# do this for one, both, or none of the code and input files
-</span><span class="n">save_code_to_git</span> <span class="o">=</span> 
-<span class="n">save_input_to_git</span> <span class="o">=</span> 
-
-<span class="c1"># Abbreviations for directories and full names of websites/competitions/etc.
-# Abbreviations should be of the following form:
-#   "(abbrev)": {
-#       "name": "(full name of website/competition/etc)",
-#       "dir": "(name of directory)",
-#       # Whether or not to create input files for problems in this directory
-#       "create_input_file": True/False,
-#   },
-</span><span class="n">abbreviations</span> <span class="o">=</span> <span class="p">{</span>
-<span class="s">"hr"</span><span class="p">:</span> <span class="p">{</span>
-        <span class="s">"name"</span><span class="p">:</span> <span class="s">"HackerRank"</span><span class="p">,</span>
-        <span class="s">"dir"</span><span class="p">:</span> <span class="s">"hackerrank"</span><span class="p">,</span>
-        <span class="s">"create_input_file"</span><span class="p">:</span> <span class="bp">True</span><span class="p">,</span>
-    <span class="p">},</span>
-<span class="p">}</span>
-
-<span class="c1"># Mapping of strings that can be inserted into the templates below. Note that
-# the following keys are reserved for use by CPSM:
-#   "name" - the name of the website/competition/etc for the problem
-#   "problem_name" - the title of the problem
-# If you include these keys, they simply will not be used.
-</span><span class="n">mappings</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s">"username"</span><span class="p">:</span> <span class="s">"anonymous"</span><span class="p">,</span>
-    <span class="s">"fullname"</span><span class="p">:</span> <span class="s">"Anonymous Sample"</span><span class="p">,</span>
-<span class="p">}</span>
-
-<span class="c1"># Mapping of template names. Each template should be of the following form:
-#   "(template name)": {
-#       "filetype": "(file extension to use with this template)",
-#       "code": "(code for the template)",
-#   },
-# Substitution in the code is done using Jinja's Template.render(), with the
-# mappings above. In short, you can represent variables from the mappings above
-# by putting them in double curly braces, e.g. . Refer to the
-# Jinja docs at http://jinja.pocoo.org/docs/2.10/ for more info.
-</span><span class="n">templates</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s">"cpp"</span><span class="p">:</span> <span class="p">{</span>
-        <span class="s">"filetype"</span><span class="p">:</span> <span class="s">"cpp"</span><span class="p">,</span>
-        <span class="s">"code"</span><span class="p">:</span>
-        <span class="s">"""</span><span class="se">\
-</span><span class="s">// Author:  ()
-// Problem: () 
-#include &lt;bits/stdc++.h&gt;
-#define GET(x) scanf("%d", &amp;x)
-#define GED(x) scanf("%lf", &amp;x)
-typedef long long ll;
-using namespace std;
-typedef pair&lt;int, int&gt; ii;
-
-int main() {
-
-  return 0;
-}
-"""</span><span class="p">,</span>
-    <span class="p">},</span>
-    <span class="s">"cpp-blank"</span><span class="p">:</span> <span class="p">{</span>
-        <span class="s">"filetype"</span><span class="p">:</span> <span class="s">"cpp"</span><span class="p">,</span>
-        <span class="s">"code"</span><span class="p">:</span>
-        <span class="s">"""</span><span class="se">\
-</span><span class="s">// Author:  ()
-// Problem: () 
-"""</span><span class="p">,</span>
-    <span class="p">},</span>
-    <span class="s">"py"</span><span class="p">:</span> <span class="p">{</span>
-        <span class="s">"filetype"</span><span class="p">:</span> <span class="s">"py"</span><span class="p">,</span>
-        <span class="s">"code"</span><span class="p">:</span>
-        <span class="s">"""</span><span class="se">\
-</span><span class="s"># Author:  ()
-# Problem: () 
-
-import sys
-from collections import defaultdict
-
-"""</span><span class="p">,</span>
-    <span class="p">},</span>
-    <span class="s">"py-blank"</span><span class="p">:</span> <span class="p">{</span>
-        <span class="s">"filetype"</span><span class="p">:</span> <span class="s">"py"</span><span class="p">,</span>
-        <span class="s">"code"</span><span class="p">:</span>
-        <span class="s">"""</span><span class="se">\
-</span><span class="s"># Author:  ()
-# Problem: () 
-"""</span><span class="p">,</span>
-    <span class="p">},</span>
-<span class="p">}</span>
-
-<span class="c1"># A mapping of filetypes to a list of commands that should be run during run
-# mode. Each command should be of the form:
-#   "(filetype)": {
-#       ["(command 1)", "(command 2)", ...],
-#   },
-# Each command is interpreted as a jinja template, and there is only one
-# variable, "problem_name", that is used during substitution. "problem_name"
-# consists of the filename of the problem, with directories prepended to it.
-</span><span class="n">run_commands</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s">"cpp"</span><span class="p">:</span> <span class="p">[</span>
-        <span class="s">"g++ .cpp -o .out"</span><span class="p">,</span>
-        <span class="s">".out &lt; .txt"</span><span class="p">,</span>
-    <span class="p">],</span>
-    <span class="s">"py"</span><span class="p">:</span> <span class="p">[</span>
-        <span class="s">"python .py &lt; .txt"</span><span class="p">,</span>
-    <span class="p">],</span>
-<span class="p">}</span>
-</code></pre></div></div>
-
-<h2 id="uninstallation">Uninstallation</h2>
-
-<p>Should you ever decide to uninstall cpsm <img class="emoji" title=":scream:" alt=":scream:" src="https://github.githubassets.com/images/icons/emoji/unicode/1f631.png" height="20" width="20">, simply run:</p>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>pip uninstall cpsm
-</code></pre></div></div>
-
-<p>You may also want to remove your <code class="language-plaintext highlighter-rouge">cpsm_config.py</code> files if you are truly done
-with CPSM.</p>
-
-<h2 id="contributing">Contributing</h2>
-
-<p>See <a href="https://github.com/btjanaka/cpsm/blob/master/CONTRIBUTING.md">CONTRIBUTING.md</a>.</p>
-
-<h2 id="credits">Credits</h2>
-
-<ul>
+<strong>Choose the professor, not (just) the school.</strong> Grad school is all about the
+professor and the people, since you are basically picking your boss and
+coworkers for the next several years. Thus, as you select schools, make sure
+you are looking through professors’ publications/websites and finding ones
+who interest you. Notably, some people say you should completely ignore the
+school, as it is only a “brand name.” Surprise, the best professors tend to
+be at the best schools. In short, pick the best professors at the best
+schools. To this end, <a href="http://csrankings.org">CS rankings</a> is a great website
+for finding prominent schools and professors in your field of interest.</li>
   <li>
-<a href="https://github.com/vitamintk">Kevin Wang</a>, for encouraging me to push this to
-a full project</li>
+<strong>Aim for a young professor.</strong> Someone who is early in their career, such as
+an assistant professor, will have more time to work with you, and they will
+need to ensure the success of their students so that they can obtain tenure.
+While an older professor (i.e. one who has tenure) may still be enthusiastic
+about working with you, they likely also have administrative or other
+responsibilities that prevent them from spending as much time with students.</li>
   <li>
-<a href="https://github.com/tjhu">Tianjiao Huang</a>, for being a pre-pre-pre-beta tester and suggesting the use
-of Jinja</li>
-</ul>
+<strong>Email professors who you may be interested in working with.</strong> If you are
+genuinely interested in working with certain professors, spend some time to
+compose an email asking about their recent research. Importantly, <strong>do not</strong>
+go around asking professors if they will accept you, but <strong>do</strong> ask if they
+are accepting students for their lab. If a professor is not taking any
+students, your application will be wasted. For those afraid to cold-email
+professors, I can only say that the worst that can happen is that you get
+ignored. As a disclaimer, I did not email too many professors, but the ones
+at USC that I did email ended up replying and accepting me <img class="emoji" title=":grin:" alt=":grin:" src="https://github.githubassets.com/images/icons/emoji/unicode/1f601.png" height="20" width="20">. Also: Some
+professors will explicitly ask that you <em>not</em> email them – in this case, I
+suggest not emailing them.</li>
+  <li>
+<strong>Choose your recommenders carefully.</strong> Recommenders must be people who know
+you well enough that they can write a letter about your ability to do
+independent research. Ideally, they are professors with whom you have done
+research. If you have not done research with enough professors, I would
+suggest getting to know some other professors in your classes by going to
+their office hours. A quarter/semester of going to a professor’s office hours
+to ask about class material and grad school advice can end up being enough to
+write a recommendation. Above all, do not be afraid to ask for a
+recommendation. Writing recommendations is a regular part of a professor’s
+job, and if they know you well enough, they will be more than willing to help
+you.</li>
+  <li>
+<strong>Ask your recommenders early, and keep them in the loop.</strong> Give your
+recommenders as much time as possible to write your recommendations. By June
+of last year, I had asked two of my recommenders, and by the end of the
+summer, I had asked my third. As I applied, I kept them updated on my list of
+grad schools, and I let them know when I had sent out requests for letters
+(usually, the application system lets you send a letter request to your
+recommender; the recommender then opens this email and submits the letter).</li>
+  <li>
+<strong>The personal statement is the part that you can control.</strong> Most of your
+application will already be set by the time you start applying. Your GPA
+probably will not change much, your GRE scores will be set (unless you want
+to torture yourself again), your recommenders will write what they want to
+write, and you will not suddenly gain a plethora of new research experiences.
+However, the personal statement is something that you can change <em>right now</em>,
+so make sure that it is pristine.</li>
+  <li>
+<strong>Get everyone to review your application.</strong> This is especially true for the
+personal statement. Send it to as many people as you can – not just the
+professors / recommenders you are working with, but also counselors, family
+members, and (especially) peers. In particular, I found it really helpful to
+get advice from friends who had just applied to and entered grad school, as
+well as friends who were currently applying to grad school. As for the other
+parts of the application, such as the CV, I would recommend sending them to
+just a few people, as there’s not as much wriggle room in them (i.e. your CV
+is not going to change much).</li>
+  <li>
+<strong>Consider if you want to go abroad.</strong> The advice in this list is tailored to
+US programs, but you can always consider places like the UK (e.g.
+<a href="https://www.ucl.ac.uk">UCL</a>), Canada (e.g. <a href="https://mila.quebec/en/">MILA</a>),
+and Singapore (e.g. <a href="http://nus.edu.sg">NUS</a>). Keep in mind that the
+processes and programs in other countries may be different. For instance, UK
+PhD programs tend to be much shorter than US ones. I myself briefly
+considered going abroad, but decided that immigration would be too much of a
+hassle.</li>
+  <li>
+<strong>Apply to fellowships too.</strong> Fellowships like the
+<a href="https://nsfgrfp.org">NSF GRFP</a> provide funding to graduate students and look
+great on your CV. Some schools also have offices dedicated to helping
+students apply to such awards. For example, UCI has the
+<a href="http://scholars.uci.edu">Scholarship Opportunities Program</a>.</li>
+  <li>
+<strong>Start early.</strong> Applying to grad school is a very long and tiring process,
+and you will need as much time as you can get. Starting early means you have
+more time to write your essays and get reviews from professors and anyone
+else helping you. If you’re reading this article a couple months before you
+would apply, I suppose you’re already on the right track <img class="emoji" title=":smiley:" alt=":smiley:" src="https://github.githubassets.com/images/icons/emoji/unicode/1f603.png" height="20" width="20">.</li>
+  <li>
+<strong>The application process does not end with <em>submit</em>.</strong> Sorry, but you’re not
+done when you hit the submit button on your application. Though applications
+are typically due in mid-December (with some in late November or early
+January), expect to be contacted for interviews and visits with professors
+starting in January. Essentially, before choosing to work with you for the
+next several years, professors will want to know more about you than they can
+glean from your application. In general, to prepare for these interviews, I
+would suggest reviewing the professor’s recent work and making sure you can
+answer questions about everything on your application, especially research
+experiences. Of course, make sure to ask if there is anything you should
+prepare when a professor contacts you.</li>
+</ol>
+
+<p>With that, I hope this list helped clarify some areas of the PhD application
+process. Good luck, and feel free to leave your thoughts in the comments below!</p>
 </div>
-<div class="d-print-none"><footer class="article__footer"><meta itemprop="dateModified" content="2020-06-25T10:11:52-07:00">
+<section class="article__sharing d-print-none"></section><div class="d-print-none">
+<footer class="article__footer"><meta itemprop="dateModified" content="2020-06-25T11:00:00-07:00">
 <!-- start custom article footer snippet -->
 
-<!-- end custom article footer snippet --></footer></div>
+<!-- end custom article footer snippet --><div class="article__subscribe"><div class="subscribe">
+<i class="fas fa-rss"></i> <a type="application/rss+xml" href="/feed.xml">Subscribe</a>
+</div></div>
+<div class="article__license"><div class="license">
+    <p>This work is licensed under a <a itemprop="license" rel="license" href="https://creativecommons.org/licenses/by-nc/4.0/">Attribution-NonCommercial 4.0 International</a> license.
+      <a rel="license" href="https://creativecommons.org/licenses/by-nc/4.0/">
+        <img alt="Attribution-NonCommercial 4.0 International" src="https://i.creativecommons.org/l/by-nc/4.0/88x31.png">
+      </a>
+    </p>
+  </div></div></footer><div class="article__section-navigator clearfix"><div class="previous">
+<span>PREVIOUS</span><a href="/2020/01/13/integer-replacement.html">Integer Replacement</a>
+</div></div>
+</div>
 
 </div>
 
@@ -666,7 +563,24 @@ of Jinja</li>
 })();
 </script>
 </div>
-<section class="page__comments d-print-none"></section></article><!-- start custom main bottom snippet -->
+<section class="page__comments d-print-none"><div id="disqus_thread"></div>
+  <script>
+  /**
+  *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+  *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+  var disqus_config = function () {
+    this.page.url = 'https://btjanaka.net/2020/06/25/applying-grad-school.html';
+    this.page.identifier = '2020-06-25-applying-grad-school';
+  };
+  (function() { // DON'T EDIT BELOW THIS LINE
+    var d = document, s = d.createElement('script');
+    s.src = 'https://btjanaka.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+  })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+</noscript></section></article><!-- start custom main bottom snippet -->
 
 <!-- end custom main bottom snippet -->
 </div>
