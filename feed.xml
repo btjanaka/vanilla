@@ -1,4 +1,58 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en"><generator uri="https://jekyllrb.com/" version="4.1.1">Jekyll</generator><link href="https://btjanaka.net/feed.xml" rel="self" type="application/atom+xml" /><link href="https://btjanaka.net/" rel="alternate" type="text/html" hreflang="en" /><updated>2020-06-25T10:11:52-07:00</updated><id>https://btjanaka.net/feed.xml</id><title type="html">Bryon Tjanaka</title><subtitle>Personal website of Bryon Tjanaka</subtitle><author><name>Bryon Tjanaka</name><email>bryon@btjanaka.net</email></author><entry><title type="html">Applying to Grad School</title><link href="https://btjanaka.net/2020/06/25/applying-grad-school.html" rel="alternate" type="text/html" title="Applying to Grad School" /><published>2020-06-25T11:00:00-07:00</published><updated>2020-06-25T11:00:00-07:00</updated><id>https://btjanaka.net/2020/06/25/applying-grad-school</id><content type="html" xml:base="https://btjanaka.net/2020/06/25/applying-grad-school.html">&lt;p&gt;Having applied to CS PhD programs over the past year or so, I decided to write
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en"><generator uri="https://jekyllrb.com/" version="4.1.1">Jekyll</generator><link href="https://btjanaka.net/feed.xml" rel="self" type="application/atom+xml" /><link href="https://btjanaka.net/" rel="alternate" type="text/html" hreflang="en" /><updated>2020-06-25T21:35:42-07:00</updated><id>https://btjanaka.net/feed.xml</id><title type="html">Bryon Tjanaka</title><subtitle>Personal website of Bryon Tjanaka</subtitle><author><name>Bryon Tjanaka</name><email>bryon@btjanaka.net</email></author><entry><title type="html">Finding An Internship at Google</title><link href="https://btjanaka.net/2020/06/26/finding-an-internship.html" rel="alternate" type="text/html" title="Finding An Internship at Google" /><published>2020-06-26T22:00:00-07:00</published><updated>2020-06-26T22:00:00-07:00</updated><id>https://btjanaka.net/2020/06/26/finding-an-internship</id><content type="html" xml:base="https://btjanaka.net/2020/06/26/finding-an-internship.html">&lt;p&gt;As someone who has interned three times at Google, I have been asked several
+times for advice on finding an internship.&lt;!--excerpt-separator--&gt; To avoid
+repeating myself, I figured I would compile my tips into this blog post. Without
+further ado, here they are.&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;&lt;strong&gt;Recognize what you’re applying to.&lt;/strong&gt; At a company like Google, you won’t be
+running around grabbing coffee. Rather, you’ll be working next to engineers
+on real projects. The same goes for other roles like BOLD (the business
+internship) and APM (the product manager internship).&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;You’re never going to feel ready.&lt;/strong&gt; Most of the time, you’re probably going
+to feel that you still do not have “enough” skills, or that all your peers
+are somehow “ahead” of you. Don’t be your own worst enemy – just apply!&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Talk to as many people as you can.&lt;/strong&gt; Everyone has something to share, and
+by listening to their advice, you will be able to distill the bits that are
+important to your specific case.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Get your resume reviewed.&lt;/strong&gt; Pass your resume around to your friends and/or
+visit the career center at your school (such as the
+&lt;a href=&quot;https://career.uci.edu&quot;&gt;Division of Career Pathways&lt;/a&gt; at UCI) to get it
+reviewed.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Practice for the interview.&lt;/strong&gt; This should go without saying, but when it
+comes time for the interview, you need to make sure that technical skills are
+not the issue. Use websites such as
+&lt;a href=&quot;https://leetcode.com/problemset/all/&quot;&gt;LeetCode&lt;/a&gt; and
+&lt;a href=&quot;https://www.hackerrank.com/&quot;&gt;HackerRank&lt;/a&gt; to hone your skills, and practice
+coding on a Google doc while being mock-interviewed by a friend on the phone
+(intern interviews tend to be phone interviews). There’s plenty of other
+interview tips scattered throughout the web; just do a Google search :wink:.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Pay attention to networking opportunities.&lt;/strong&gt; Companies will often partner
+with student organizations to host information sessions about their company.
+These are a great way to learn the nuances of the application process and
+(potentially) give your resume to a recruiter. Career fairs are another
+opportunity to meet recruiters, though the lines are often very long.
+Finally, attending conferences like the
+&lt;a href=&quot;https://ghc.anitab.org&quot;&gt;Grace Hopper Celebration&lt;/a&gt; (for women) can greatly
+enhance your chances of getting an internship.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Ask for referrrals.&lt;/strong&gt; If there are any Google employees in your network,
+even current interns, make sure to ask if they would be willing to refer you.
+Keep in mind that the better someone knows you, the more genuine their
+referral will be.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Don’t give up!&lt;/strong&gt; You might not get in on your first attempt, so keep on
+trying.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;It’s a lot easier to go back once you get in.&lt;/strong&gt; This is more of a statement
+than a tip, but after interning at Google once, it is relatively easy to
+return as an intern. I interned as an EP (now known as STEP) intern in my
+first year, and returned twice as a SWE intern.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Keep in mind that Google is not necessarily the end of the line.&lt;/strong&gt; As many
+will tell you,
+&lt;a href=&quot;https://www.businessinsider.com/average-employee-tenure-retention-at-top-tech-companies-2018-4?op=1#at-facebook-a-25-year-stint-is-the-average-5&quot;&gt;the average employee tenure at Google is only 3.2 years&lt;/a&gt;.
+Personally, I find this statistic hard to believe, as so many of the people I
+have met at Google have been around for much longer – the article does not
+mention it, but maybe they include interns in the calculations? Regardless,
+the point is the same: Google is great, but for many, it is just one step in
+a long journey.&lt;/li&gt;
+&lt;/ol&gt;</content><author><name>Bryon Tjanaka</name><email>bryon@btjanaka.net</email></author><category term="Advice" /><summary type="html">As someone who has interned three times at Google, I have been asked several times for advice on finding an internship.</summary></entry><entry><title type="html">Applying to Grad School</title><link href="https://btjanaka.net/2020/06/25/applying-grad-school.html" rel="alternate" type="text/html" title="Applying to Grad School" /><published>2020-06-25T11:00:00-07:00</published><updated>2020-06-25T11:00:00-07:00</updated><id>https://btjanaka.net/2020/06/25/applying-grad-school</id><content type="html" xml:base="https://btjanaka.net/2020/06/25/applying-grad-school.html">&lt;p&gt;Having applied to CS PhD programs over the past year or so, I decided to write
 down a few lessons I learned.&lt;!--excerpt-separator--&gt; To begin, I will talk
 about my overall experience. The summer after high school (2017), I took the
 GRE, as I knew I wanted to pursue some kind of graduate education, and the GRE
