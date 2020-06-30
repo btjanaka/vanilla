@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en"><generator uri="https://jekyllrb.com/" version="4.1.1">Jekyll</generator><link href="https://btjanaka.net/feed.xml" rel="self" type="application/atom+xml" /><link href="https://btjanaka.net/" rel="alternate" type="text/html" hreflang="en" /><updated>2020-06-26T23:12:57-07:00</updated><id>https://btjanaka.net/feed.xml</id><title type="html">Bryon Tjanaka</title><subtitle>Personal website of Bryon Tjanaka</subtitle><author><name>Bryon Tjanaka</name><email>bryon@btjanaka.net</email></author><entry><title type="html">Finding An Internship at Google</title><link href="https://btjanaka.net/2020/06/26/finding-an-internship.html" rel="alternate" type="text/html" title="Finding An Internship at Google" /><published>2020-06-26T22:00:00-07:00</published><updated>2020-06-26T22:00:00-07:00</updated><id>https://btjanaka.net/2020/06/26/finding-an-internship</id><content type="html" xml:base="https://btjanaka.net/2020/06/26/finding-an-internship.html">&lt;p&gt;As someone who has interned three times at Google, I have been asked several
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en"><generator uri="https://jekyllrb.com/" version="4.1.1">Jekyll</generator><link href="https://btjanaka.net/feed.xml" rel="self" type="application/atom+xml" /><link href="https://btjanaka.net/" rel="alternate" type="text/html" hreflang="en" /><updated>2020-06-29T18:39:18-07:00</updated><id>https://btjanaka.net/feed.xml</id><title type="html">Bryon Tjanaka</title><subtitle>Personal website of Bryon Tjanaka</subtitle><author><name>Bryon Tjanaka</name><email>bryon@btjanaka.net</email></author><entry><title type="html">Finding An Internship at Google</title><link href="https://btjanaka.net/2020/06/26/finding-an-internship.html" rel="alternate" type="text/html" title="Finding An Internship at Google" /><published>2020-06-26T22:00:00-07:00</published><updated>2020-06-26T22:00:00-07:00</updated><id>https://btjanaka.net/2020/06/26/finding-an-internship</id><content type="html" xml:base="https://btjanaka.net/2020/06/26/finding-an-internship.html">&lt;p&gt;As someone who has interned three times at Google, I have been asked several
 times for advice on finding an internship.&lt;!--excerpt-separator--&gt; To avoid
 repeating myself, I figured I would compile my tips into this blog post. Without
 further ado, here they are.&lt;/p&gt;
@@ -56,19 +56,19 @@ a long journey.&lt;/li&gt;
 down a few lessons I learned.&lt;!--excerpt-separator--&gt; To begin, I will talk
 about my overall experience. The summer after high school (2017), I took the
 GRE, as I knew I wanted to pursue some kind of graduate education, and the GRE
-was not much of a stretch after the SAT. Then, around March or April of last
-year (2019), I began talking to various professors about what grad school
+was not much of a stretch after the SAT and ACT. Then, around March or April of
+last year (2019), I began talking to various professors about what grad school
 entailed, and whether it would be a good fit for me. Eventually, I decided to
 pursue a PhD, so I began applying to the &lt;a href=&quot;https://nsfgrfp.org&quot;&gt;NSF GRFP&lt;/a&gt; (a
 fellowship for grad students) around May. Then in fall (October/November), I
-began applying to CS PhD programs. Ultimately, I applied to 9 grad schools and
-was accepted into 2 (UCI and USC). Eventually, I chose to go to USC. With that
-said, below is a list of things I learned. Some items come from first-hand
-experience, while others were passed along to me.&lt;/p&gt;
+began applying to CS PhD programs. Ultimately, I applied to nine grad schools
+and was accepted into two. Eventually, I chose to go to USC. With that said,
+below is a list of things I learned. Some items come from first-hand experience,
+while others were passed along to me.&lt;/p&gt;
 
 &lt;ol&gt;
   &lt;li&gt;&lt;strong&gt;Figure out what you’re getting yourself into.&lt;/strong&gt; Grad school is no small
-undertaking. Basically, you’ll be spending 6 years (hopefully not more)
+undertaking. Basically, you’ll be spending up to 6 years (hopefully not more)
 working full-time as a researcher in your advisor’s lab. Unlike in
 undergraduate, courses will be secondary; i.e. you’ll have to take a few, but
 they will mostly be aimed at supplementing your research. In short, grad
@@ -86,21 +86,21 @@ each other. It is up to you to distill the information that is helpful for
 your situation. Side note: there are tons of online articles with PhD advice
 (such as this one :wink:). I also found these helpful, but only for figuring
 out the basics.&lt;/li&gt;
-  &lt;li&gt;&lt;strong&gt;Choose the professor, not (just) the school.&lt;/strong&gt; Grad school is all about the
-professor and the people, since you are basically picking your boss and
+  &lt;li&gt;&lt;strong&gt;Choose the professor(s), not just the school.&lt;/strong&gt; Grad school is all about
+the professor and the people, since you are basically picking your boss and
 coworkers for the next several years. Thus, as you select schools, make sure
 you are looking through professors’ publications/websites and finding ones
-who interest you. Notably, some people say you should completely ignore the
-school, as it is only a “brand name.” Surprise, the best professors tend to
-be at the best schools. In short, pick the best professors at the best
-schools. To this end, &lt;a href=&quot;http://csrankings.org&quot;&gt;CS rankings&lt;/a&gt; is a great website
-for finding prominent schools and professors in your field of interest.&lt;/li&gt;
+who interest you. You may also want to check whether the school has multiple
+professors working in your field of interest, as having a community of
+like-minded researchers can be helpful. To this end,
+&lt;a href=&quot;http://csrankings.org&quot;&gt;CS rankings&lt;/a&gt; is a great website for finding prominent
+schools and professors in your field of interest.&lt;/li&gt;
   &lt;li&gt;&lt;strong&gt;Aim for a young professor.&lt;/strong&gt; Someone who is early in their career, such as
 an assistant professor, will have more time to work with you, and they will
 need to ensure the success of their students so that they can obtain tenure.
-While an older professor (i.e. one who has tenure) may still be enthusiastic
-about working with you, they likely also have administrative or other
-responsibilities that prevent them from spending as much time with students.&lt;/li&gt;
+Older professors will of course be enthusiastic about working with you, but
+they may also be bogged down by administrative or other responsibilities that
+prevent them from spending as much time with students.&lt;/li&gt;
   &lt;li&gt;&lt;strong&gt;Email professors who you may be interested in working with.&lt;/strong&gt; If you are
 genuinely interested in working with certain professors, spend some time to
 compose an email asking about their recent research. Importantly, &lt;strong&gt;do not&lt;/strong&gt;
