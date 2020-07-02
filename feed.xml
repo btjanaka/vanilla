@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en"><generator uri="https://jekyllrb.com/" version="4.1.1">Jekyll</generator><link href="https://btjanaka.net/feed.xml" rel="self" type="application/atom+xml" /><link href="https://btjanaka.net/" rel="alternate" type="text/html" hreflang="en" /><updated>2020-07-01T22:39:25-07:00</updated><id>https://btjanaka.net/feed.xml</id><title type="html">Bryon Tjanaka</title><subtitle>Personal website of Bryon Tjanaka</subtitle><author><name>Bryon Tjanaka</name><email>bryon@btjanaka.net</email></author><entry><title type="html">Finding An Internship at Google</title><link href="https://btjanaka.net/2020/06/26/finding-an-internship.html" rel="alternate" type="text/html" title="Finding An Internship at Google" /><published>2020-06-26T22:00:00-07:00</published><updated>2020-06-26T22:00:00-07:00</updated><id>https://btjanaka.net/2020/06/26/finding-an-internship</id><content type="html" xml:base="https://btjanaka.net/2020/06/26/finding-an-internship.html">&lt;p&gt;As someone who has interned three times at Google, I have been asked several
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en"><generator uri="https://jekyllrb.com/" version="4.1.1">Jekyll</generator><link href="https://btjanaka.net/feed.xml" rel="self" type="application/atom+xml" /><link href="https://btjanaka.net/" rel="alternate" type="text/html" hreflang="en" /><updated>2020-07-02T14:43:51-07:00</updated><id>https://btjanaka.net/feed.xml</id><title type="html">Bryon Tjanaka</title><subtitle>Personal website of Bryon Tjanaka</subtitle><author><name>Bryon Tjanaka</name><email>bryon@btjanaka.net</email></author><entry><title type="html">Finding An Internship at Google</title><link href="https://btjanaka.net/2020/06/26/finding-an-internship.html" rel="alternate" type="text/html" title="Finding An Internship at Google" /><published>2020-06-26T22:00:00-07:00</published><updated>2020-06-26T22:00:00-07:00</updated><id>https://btjanaka.net/2020/06/26/finding-an-internship</id><content type="html" xml:base="https://btjanaka.net/2020/06/26/finding-an-internship.html">&lt;p&gt;As someone who has interned three times at Google, I have been asked several
 times for advice on finding an internship.&lt;!--excerpt-separator--&gt; To avoid
 repeating myself, I figured I would compile my tips into this blog post. Without
 further ado, here they are.&lt;/p&gt;
@@ -75,7 +75,21 @@ they will mostly be aimed at supplementing your research. In short, grad
 school is more like a job than “school.” One article I found particularly
 helpful in understanding grad school was
 &lt;a href=&quot;https://stefanosnikolaidis.blogspot.com/2018/12/7-rules-of-grad-school-game.html&quot;&gt;this blog post&lt;/a&gt;
-from my advisor at USC.&lt;/li&gt;
+from my advisor at USC.
+    &lt;ul&gt;
+      &lt;li&gt;Some folks have asked whether they should do a master’s before / instead of
+a PhD. My general impression is that master’s degrees are more focused on
+coursework, though many programs do involve writing a thesis. In general,
+if you want to pursue a career in research, PhD is the way to go. A PhD is
+essentially full-time research, and many PhD programs allow you to petition
+for a master’s anyway (e.g. USC lets you grab a master’s after you finish
+the PhD coursework). Furthermore, PhD programs are typically funded, while
+master’s programs can get pretty expensive. If you are thinking of going
+into a master’s and then PhD, keep in mind that a master’s is not required
+to pursue a PhD (i.e. you can go straight from undergrad), and a master’s
+will not necessarily take time off your PhD.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
   &lt;li&gt;&lt;strong&gt;Talk to as many people as possible.&lt;/strong&gt; Get advice from lots of people when
 you are trying to figure out the program and school to which you should
 apply. Anyone familiar with a PhD (especially professors and other folks who
@@ -86,13 +100,21 @@ each other. It is up to you to distill the information that is helpful for
 your situation. Side note: there are tons of online articles with PhD advice
 (such as this one :wink:). I also found these helpful, but only for figuring
 out the basics.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Figure out an area in which to specialize.&lt;/strong&gt; You should be going into a PhD
+program with a general idea of what problems you want to work on. This will
+help you decide which professors you want to work with, as well as what you
+write in your various application materials. Certainly, this will require
+some soul searching – read some papers, think about your history, and figure
+out what you want to work on next. Choosing an interest is important because,
+even within a specific field, there is still a tremendous amount of knowledge
+to learn.&lt;/li&gt;
   &lt;li&gt;&lt;strong&gt;Choose the professor(s), not just the school.&lt;/strong&gt; Grad school is all about
 the professor and the people, since you are basically picking your boss and
 coworkers for the next several years. Thus, as you select schools, make sure
 you are looking through professors’ publications/websites and finding ones
 who interest you. You may also want to check whether the school has multiple
 professors working in your field of interest, as having a community of
-like-minded researchers can be helpful. To this end,
+like-minded researchers can be beneficial. To this end,
 &lt;a href=&quot;http://csrankings.org&quot;&gt;CS rankings&lt;/a&gt; is a great website for finding prominent
 schools and professors in your field of interest.&lt;/li&gt;
   &lt;li&gt;&lt;strong&gt;Aim for a young professor.&lt;/strong&gt; Someone who is early in their career, such as
