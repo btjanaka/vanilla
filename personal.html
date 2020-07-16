@@ -21,7 +21,30 @@
 <meta name="msapplication-config" content="/assets/favicon/browserconfig.xml">
 <meta name="theme-color" content="#ffffff">
 <!-- end favicons snippet -->
-<link id="main-stylesheet" rel="stylesheet" href="/assets/css/main.css">
+<!-- Stylesheet loaded by js because of dark mode. -->
+<script>// Loads the regular or dark mode stylesheet. Intended to be placed in the head
+// of the document, so that the stylesheet is chosen before the document loads.
+(function() {
+  // See getUseDarkMode() in dark-mode.js
+  const useDarkMode = Boolean(Number(window.localStorage.getItem("use_dark_mode")));
+  // Instead of writing the stylesheet element to the document, we could first
+  // create the element and then modify its href attribute. However, this seems
+  // to take longer, and the user experiences a brief period where the document
+  // has no styling on it.
+  if(useDarkMode) {
+    
+    document.write(`<link id="main-stylesheet" rel="stylesheet" href="/assets/css/dark.css">`)
+  } else {
+    
+    document.write(`<link id="main-stylesheet" rel="stylesheet" href="/assets/css/main.css">`)
+  }
+})();
+</script>
+<noscript>
+  <!-- Insert default stylesheet if JS not supported. -->
+  
+  <link id="main-stylesheet" rel="stylesheet" href="/assets/css/main.css">
+</noscript>
 
 <!-- FontAwesome and Academicons --><link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" >
 <link rel="stylesheet" href="https://cdn.rawgit.com/jpswalsh/academicons/master/css/academicons.min.css" >
@@ -462,8 +485,8 @@
   <!-- The "toggle" -->
   <span class="slider">
     <!-- Sun and moon emoji. -->
-    <span class="text">&#x1F31E;</span>
     <span class="text">&#x1F31C;</span>
+    <span class="text">&#x1F31E;</span>
   </span>
 </label>
 <!-- Search button -->
@@ -478,8 +501,8 @@
   <!-- The "toggle" -->
   <span class="slider">
     <!-- Sun and moon emoji. -->
-    <span class="text">&#x1F31E;</span>
     <span class="text">&#x1F31C;</span>
+    <span class="text">&#x1F31E;</span>
   </span>
 </label>
 <!-- Search button -->
@@ -1488,21 +1511,21 @@ window.Lazyload.js([SOURCES.jquery, PAHTS.search_js], function() {
       for(c of checkboxes) c.checked = true;
     }
 
-    // Initialize the mode.
-    const useDarkMode = getUseDarkMode();
-    if(useDarkMode) {
-      setDarkMode();
+    // We used to initialize the loading of the dark mode stylesheet here, but
+    // that has been moved to load-stylesheet.js. Now, we just initialize the
+    // checkboxes.
+    if(getUseDarkMode()) {
+      for(c of checkboxes) c.checked = true;
     } else {
-      setRegularMode();
+      for(c of checkboxes) c.checked = false;
     }
 
-    // Clicking on the checkbox flips the mode. We could reload the page to
+    // Clicking on any checkbox flips the mode. We could reload the page to
     // change color theme for Disqus, but this can be annoying for the user,
     // especially when scripts like Mathjax have to run.
     for(c of checkboxes) {
       c.onchange = function() {
-        const useDarkMode = getUseDarkMode();
-        if(useDarkMode) {
+        if(getUseDarkMode()) {
           setRegularMode();
         } else {
           setDarkMode();
