@@ -526,238 +526,47 @@
 <p>I typically use <a href="https://inkscape.org">Inkscape</a> to draw these. Refer to this
 <a href="https://github.com/btjanaka/art">GitHub repo</a> for the SVG sources.</p>
 
-<div class="swiper swiper-graphic-design">
-  <div class="swiper__wrapper">
-    
-      <div class="swiper__slide">
-        <img class="image image--full" alt="Mountain explorer (Guess Who?)" title="Mountain explorer (Guess Who?)" src="/assets/img/graphic-design/mountain-explorer-blue.png" />
-      </div>
-    
-      <div class="swiper__slide">
-        <img class="image image--vertical" alt="A hero holding up a sword" title="A hero holding up a sword" src="/assets/img/graphic-design/hero-drawing.png" />
-      </div>
-    
-      <div class="swiper__slide">
-        <img class="image image--full" alt="An explosion?" title="An explosion?" src="/assets/img/graphic-design/explosion-drawing.png" />
-      </div>
-    
-      <div class="swiper__slide">
-        <img class="image image--full" alt="Perspective drawing of a tower" title="Perspective drawing of a tower" src="/assets/img/graphic-design/tower-drawing.png" />
-      </div>
-    
+<h4 id="landscapes">Landscapes</h4>
+<div class="swiper swiper-landscapes">
+    <div class="swiper__wrapper">
+      
+        <div class="swiper__slide">
+          <img class="image image--full" alt="Mountain explorer (Guess Who?)" title="Mountain explorer (Guess Who?)" src="/assets/img/graphic-design/mountain-explorer-blue.png" />
+        </div>
+      
+        <div class="swiper__slide">
+          <img class="image image--vertical" alt="A hero holding up a sword" title="A hero holding up a sword" src="/assets/img/graphic-design/hero.png" />
+        </div>
+      
+        <div class="swiper__slide">
+          <img class="image image--full" alt="An explosion?" title="An explosion?" src="/assets/img/graphic-design/explosion.png" />
+        </div>
+      
+        <div class="swiper__slide">
+          <img class="image image--full" alt="Perspective drawing of a tower" title="Perspective drawing of a tower" src="/assets/img/graphic-design/tower.png" />
+        </div>
+      
+    </div>
+    <div class="swiper__button swiper__button--prev fas fa-chevron-left"></div>
+    <div class="swiper__button swiper__button--next fas fa-chevron-right"></div>
   </div>
-  <div class="swiper__button swiper__button--prev fas fa-chevron-left"></div>
-  <div class="swiper__button swiper__button--next fas fa-chevron-right"></div>
-</div>
 
-<script>(function() {
-  var SOURCES = window.TEXT_VARIABLES.sources;
-  window.Lazyload.js(SOURCES.jquery, function() {
-    function swiper(options) {
-      var $window = $(window), $root = this, $swiperWrapper, $swiperSlides, $swiperButtonPrev, $swiperButtonNext,
-        initialSlide, animation, onChange, onChangeEnd,
-        rootWidth, count, preIndex, curIndex, translateX, CRITICAL_ANGLE = Math.PI / 3;
-
-      function setOptions(options) {
-        var _options = options || {};
-        initialSlide = _options.initialSlide || 0;
-        animation = _options.animation === undefined && true;
-        onChange = onChange || _options.onChange;
-        onChangeEnd = onChangeEnd || _options.onChangeEnd;
-      }
-
-      function init() {
-        $swiperWrapper = $root.find('.swiper__wrapper');
-        $swiperSlides = $root.find('.swiper__slide');
-        $swiperButtonPrev = $root.find('.swiper__button--prev');
-        $swiperButtonNext = $root.find('.swiper__button--next');
-        animation && $swiperWrapper.addClass('swiper__wrapper--animation');
-        calc(true);
-      }
-
-      function preCalc() {
-        rootWidth = $root.width();
-        count = $swiperWrapper.children('.swiper__slide').length;
-        if (count < 2) {
-          $swiperButtonPrev.addClass('d-none');
-          $swiperButtonNext.addClass('d-none');
-        }
-        curIndex = initialSlide || 0;
-        translateX = getTranslateXFromCurIndex();
-      }
-
-      var calc = (function() {
-        var preAnimation, $swiperSlide, $preSwiperSlide;
-        return function (needPreCalc, params) {
-          needPreCalc && preCalc();
-          var _animation = (params && params.animation !== undefined) ? params.animation : animation;
-          if (preAnimation === undefined || preAnimation !== _animation) {
-            preAnimation = _animation ? $swiperWrapper.addClass('swiper__wrapper--animation') :
-              $swiperWrapper.removeClass('swiper__wrapper--animation');
-          }
-          if (preIndex !== curIndex) {
-            ($preSwiperSlide = $swiperSlides.eq(preIndex)).removeClass('active');
-            ($swiperSlide = $swiperSlides.eq(curIndex)).addClass('active');
-            onChange && onChange(curIndex, $swiperSlides.eq(curIndex), $swiperSlide, $preSwiperSlide);
-            if (onChangeEnd) {
-              if (_animation) {
-                setTimeout(function() {
-                  onChangeEnd(curIndex, $swiperSlides.eq(curIndex), $swiperSlide, $preSwiperSlide);
-                }, 400);
-              } else {
-                onChangeEnd(curIndex, $swiperSlides.eq(curIndex), $swiperSlide, $preSwiperSlide);
-              }
-            }
-            preIndex = curIndex;
-          }
-          $swiperWrapper.css('transform', 'translate(' + translateX + 'px, 0)');
-          if (count > 1) {
-            if (curIndex <= 0) {
-              $swiperButtonPrev.addClass('disabled');
-            } else {
-              $swiperButtonPrev.removeClass('disabled');
-            }
-            if (curIndex >= count - 1) {
-              $swiperButtonNext.addClass('disabled');
-            } else {
-              $swiperButtonNext.removeClass('disabled');
-            }
-          }
-        };
-      })();
-
-      function getTranslateXFromCurIndex() {
-        return curIndex <= 0 ? 0 : - rootWidth * curIndex;
-      }
-
-      function moveToIndex(index ,params) {
-        preIndex = curIndex;
-        curIndex = index;
-        translateX = getTranslateXFromCurIndex();
-        calc(false, params);
-      }
-
-      function move(type) {
-        var nextIndex = curIndex, unstableTranslateX;
-        if (type === 'prev') {
-          nextIndex > 0 && nextIndex--;
-        } else if (type === 'next') {
-          nextIndex < count - 1 && nextIndex++;
-        }
-        if (type === 'cur') {
-          moveToIndex(curIndex, { animation: true });
-          return;
-        }
-        unstableTranslateX = translateX % rootWidth !== 0;
-        if (nextIndex !== curIndex || unstableTranslateX) {
-          unstableTranslateX ? moveToIndex(nextIndex, { animation: true }) : moveToIndex(nextIndex);
-        }
-      }
-
-      setOptions(options);
-      init();
-      preIndex = curIndex;
-
-      $swiperButtonPrev.on('click', function(e) {
-        e.stopPropagation();
-        move('prev');
-      });
-      $swiperButtonNext.on('click', function(e) {
-        e.stopPropagation();
-        move('next');
-      });
-      $window.on('resize', function() {
-        calc(true, { animation: false });
-      });
-
-      (function() {
-        var pageX, pageY, velocityX, preTranslateX = translateX, timeStamp, touching;
-        function handleTouchstart(e) {
-          var point = e.touches ? e.touches[0] : e;
-          pageX = point.pageX;
-          pageY = point.pageY;
-          velocityX = 0;
-          preTranslateX = translateX;
-        }
-        function handleTouchmove(e) {
-          if (e.touches && e.touches.length > 1) {
-            return;
-          }
-          var point = e.touches ? e.touches[0] : e;
-          var deltaX = point.pageX - pageX;
-          var deltaY = point.pageY - pageY;
-          velocityX = deltaX / (e.timeStamp - timeStamp);
-          timeStamp = e.timeStamp;
-          if (e.cancelable && Math.abs(Math.atan(deltaY / deltaX)) < CRITICAL_ANGLE) {
-            touching = true;
-            translateX += deltaX;
-            calc(false, { animation: false });
-          }
-          pageX = point.pageX;
-          pageY = point.pageY;
-        }
-        function handleTouchend() {
-          touching = false;
-          var deltaX = translateX - preTranslateX;
-          var distance = deltaX + velocityX * rootWidth;
-          if (Math.abs(distance) > rootWidth / 2) {
-            distance > 0 ? move('prev') : move('next');
-          } else {
-            move('cur');
-          }
-        }
-        $swiperWrapper.on('touchstart', handleTouchstart);
-        $swiperWrapper.on('touchmove', handleTouchmove);
-        $swiperWrapper.on('touchend', handleTouchend);
-        $swiperWrapper.on('touchcancel', handleTouchend);
-
-        (function() {
-          var pressing = false, moved = false;
-          $swiperWrapper.on('mousedown', function(e) {
-            pressing = true; handleTouchstart(e);
-          });
-          $swiperWrapper.on('mousemove', function(e) {
-            pressing && (e.preventDefault(), moved = true, handleTouchmove(e));
-          });
-          $swiperWrapper.on('mouseup', function(e) {
-            pressing && (pressing = false, handleTouchend(e));
-          });
-          $swiperWrapper.on('mouseleave', function(e) {
-            pressing && (pressing = false, handleTouchend(e));
-          });
-          $swiperWrapper.on('click', function(e) {
-            moved && (e.stopPropagation(), moved = false);
-          });
-        })();
-
-        $root.on('touchmove', function(e) {
-          if (e.cancelable & touching) {
-            e.preventDefault();
-          }
-        });
-      })();
-
-      return {
-        setOptions: setOptions,
-        previous: function(){
-          move('prev');
-        },
-        next: function(){
-          move('next');
-        },
-        refresh: function() {
-          calc(true, { animation: false });
-        }
-      };
-    }
-    $.fn.swiper = swiper;
-  });
-})();
-var SOURCES = window.TEXT_VARIABLES.sources;
-window.Lazyload.js(SOURCES.jquery, function() {
-  $('.swiper-graphic-design').swiper();
-});
-</script>
+<h4 id="quotes">Quotes</h4>
+<div class="swiper swiper-quotes">
+    <div class="swiper__wrapper">
+      
+        <div class="swiper__slide">
+          <img class="image image--vertical" alt="Success is directly proportional to how many awkward conversations you're willing to have." title="Success is directly proportional to how many awkward conversations you're willing to have." src="/assets/img/graphic-design/awkward-success.png" />
+        </div>
+      
+        <div class="swiper__slide">
+          <img class="image image--vertical" alt="Some men just want to watch the world burn." title="Some men just want to watch the world burn." src="/assets/img/graphic-design/burn.png" />
+        </div>
+      
+    </div>
+    <div class="swiper__button swiper__button--prev fas fa-chevron-left"></div>
+    <div class="swiper__button swiper__button--next fas fa-chevron-right"></div>
+  </div>
 
 <h3 id="drone">Drone</h3>
 
@@ -792,215 +601,6 @@ window.Lazyload.js(SOURCES.jquery, function() {
   <div class="swiper__button swiper__button--next fas fa-chevron-right"></div>
 </div>
 
-<script>(function() {
-  var SOURCES = window.TEXT_VARIABLES.sources;
-  window.Lazyload.js(SOURCES.jquery, function() {
-    function swiper(options) {
-      var $window = $(window), $root = this, $swiperWrapper, $swiperSlides, $swiperButtonPrev, $swiperButtonNext,
-        initialSlide, animation, onChange, onChangeEnd,
-        rootWidth, count, preIndex, curIndex, translateX, CRITICAL_ANGLE = Math.PI / 3;
-
-      function setOptions(options) {
-        var _options = options || {};
-        initialSlide = _options.initialSlide || 0;
-        animation = _options.animation === undefined && true;
-        onChange = onChange || _options.onChange;
-        onChangeEnd = onChangeEnd || _options.onChangeEnd;
-      }
-
-      function init() {
-        $swiperWrapper = $root.find('.swiper__wrapper');
-        $swiperSlides = $root.find('.swiper__slide');
-        $swiperButtonPrev = $root.find('.swiper__button--prev');
-        $swiperButtonNext = $root.find('.swiper__button--next');
-        animation && $swiperWrapper.addClass('swiper__wrapper--animation');
-        calc(true);
-      }
-
-      function preCalc() {
-        rootWidth = $root.width();
-        count = $swiperWrapper.children('.swiper__slide').length;
-        if (count < 2) {
-          $swiperButtonPrev.addClass('d-none');
-          $swiperButtonNext.addClass('d-none');
-        }
-        curIndex = initialSlide || 0;
-        translateX = getTranslateXFromCurIndex();
-      }
-
-      var calc = (function() {
-        var preAnimation, $swiperSlide, $preSwiperSlide;
-        return function (needPreCalc, params) {
-          needPreCalc && preCalc();
-          var _animation = (params && params.animation !== undefined) ? params.animation : animation;
-          if (preAnimation === undefined || preAnimation !== _animation) {
-            preAnimation = _animation ? $swiperWrapper.addClass('swiper__wrapper--animation') :
-              $swiperWrapper.removeClass('swiper__wrapper--animation');
-          }
-          if (preIndex !== curIndex) {
-            ($preSwiperSlide = $swiperSlides.eq(preIndex)).removeClass('active');
-            ($swiperSlide = $swiperSlides.eq(curIndex)).addClass('active');
-            onChange && onChange(curIndex, $swiperSlides.eq(curIndex), $swiperSlide, $preSwiperSlide);
-            if (onChangeEnd) {
-              if (_animation) {
-                setTimeout(function() {
-                  onChangeEnd(curIndex, $swiperSlides.eq(curIndex), $swiperSlide, $preSwiperSlide);
-                }, 400);
-              } else {
-                onChangeEnd(curIndex, $swiperSlides.eq(curIndex), $swiperSlide, $preSwiperSlide);
-              }
-            }
-            preIndex = curIndex;
-          }
-          $swiperWrapper.css('transform', 'translate(' + translateX + 'px, 0)');
-          if (count > 1) {
-            if (curIndex <= 0) {
-              $swiperButtonPrev.addClass('disabled');
-            } else {
-              $swiperButtonPrev.removeClass('disabled');
-            }
-            if (curIndex >= count - 1) {
-              $swiperButtonNext.addClass('disabled');
-            } else {
-              $swiperButtonNext.removeClass('disabled');
-            }
-          }
-        };
-      })();
-
-      function getTranslateXFromCurIndex() {
-        return curIndex <= 0 ? 0 : - rootWidth * curIndex;
-      }
-
-      function moveToIndex(index ,params) {
-        preIndex = curIndex;
-        curIndex = index;
-        translateX = getTranslateXFromCurIndex();
-        calc(false, params);
-      }
-
-      function move(type) {
-        var nextIndex = curIndex, unstableTranslateX;
-        if (type === 'prev') {
-          nextIndex > 0 && nextIndex--;
-        } else if (type === 'next') {
-          nextIndex < count - 1 && nextIndex++;
-        }
-        if (type === 'cur') {
-          moveToIndex(curIndex, { animation: true });
-          return;
-        }
-        unstableTranslateX = translateX % rootWidth !== 0;
-        if (nextIndex !== curIndex || unstableTranslateX) {
-          unstableTranslateX ? moveToIndex(nextIndex, { animation: true }) : moveToIndex(nextIndex);
-        }
-      }
-
-      setOptions(options);
-      init();
-      preIndex = curIndex;
-
-      $swiperButtonPrev.on('click', function(e) {
-        e.stopPropagation();
-        move('prev');
-      });
-      $swiperButtonNext.on('click', function(e) {
-        e.stopPropagation();
-        move('next');
-      });
-      $window.on('resize', function() {
-        calc(true, { animation: false });
-      });
-
-      (function() {
-        var pageX, pageY, velocityX, preTranslateX = translateX, timeStamp, touching;
-        function handleTouchstart(e) {
-          var point = e.touches ? e.touches[0] : e;
-          pageX = point.pageX;
-          pageY = point.pageY;
-          velocityX = 0;
-          preTranslateX = translateX;
-        }
-        function handleTouchmove(e) {
-          if (e.touches && e.touches.length > 1) {
-            return;
-          }
-          var point = e.touches ? e.touches[0] : e;
-          var deltaX = point.pageX - pageX;
-          var deltaY = point.pageY - pageY;
-          velocityX = deltaX / (e.timeStamp - timeStamp);
-          timeStamp = e.timeStamp;
-          if (e.cancelable && Math.abs(Math.atan(deltaY / deltaX)) < CRITICAL_ANGLE) {
-            touching = true;
-            translateX += deltaX;
-            calc(false, { animation: false });
-          }
-          pageX = point.pageX;
-          pageY = point.pageY;
-        }
-        function handleTouchend() {
-          touching = false;
-          var deltaX = translateX - preTranslateX;
-          var distance = deltaX + velocityX * rootWidth;
-          if (Math.abs(distance) > rootWidth / 2) {
-            distance > 0 ? move('prev') : move('next');
-          } else {
-            move('cur');
-          }
-        }
-        $swiperWrapper.on('touchstart', handleTouchstart);
-        $swiperWrapper.on('touchmove', handleTouchmove);
-        $swiperWrapper.on('touchend', handleTouchend);
-        $swiperWrapper.on('touchcancel', handleTouchend);
-
-        (function() {
-          var pressing = false, moved = false;
-          $swiperWrapper.on('mousedown', function(e) {
-            pressing = true; handleTouchstart(e);
-          });
-          $swiperWrapper.on('mousemove', function(e) {
-            pressing && (e.preventDefault(), moved = true, handleTouchmove(e));
-          });
-          $swiperWrapper.on('mouseup', function(e) {
-            pressing && (pressing = false, handleTouchend(e));
-          });
-          $swiperWrapper.on('mouseleave', function(e) {
-            pressing && (pressing = false, handleTouchend(e));
-          });
-          $swiperWrapper.on('click', function(e) {
-            moved && (e.stopPropagation(), moved = false);
-          });
-        })();
-
-        $root.on('touchmove', function(e) {
-          if (e.cancelable & touching) {
-            e.preventDefault();
-          }
-        });
-      })();
-
-      return {
-        setOptions: setOptions,
-        previous: function(){
-          move('prev');
-        },
-        next: function(){
-          move('next');
-        },
-        refresh: function() {
-          calc(true, { animation: false });
-        }
-      };
-    }
-    $.fn.swiper = swiper;
-  });
-})();
-var SOURCES = window.TEXT_VARIABLES.sources;
-window.Lazyload.js(SOURCES.jquery, function() {
-  $('.swiper-origami').swiper();
-});
-</script>
-
 <h3 id="competitive-programming">Competitive Programming</h3>
 
 <p>I have used these sites when practicing for competitions such as
@@ -1024,13 +624,12 @@ window.Lazyload.js(SOURCES.jquery, function() {
 <h3 id="pronouncing-my-name">Pronouncing My Name</h3>
 
 <p><strong>Bryon</strong> is pronounced exactly the same as <em>Brian</em>. Notably, my name has been
-known to cause temporary cases of dyslexia, and many have mispronounced it as
-<em>Byron</em>.</p>
+known to magically change its ordering to <em>Byron</em> from time to time.</p>
 
 <p><strong>Tjanaka</strong> is pronounced like <em>chuh-NAH-kah</em>. Just imagine the <em>tj</em> as a <em>ch</em>,
 and you’ll be well on your way.</p>
 
-<h3 id="quotes">Quotes</h3>
+<h3 id="quotes-1">Quotes</h3>
 
 <blockquote id="quote-0">
   <p>Audentes fortuna iuvat.</p>
@@ -1103,6 +702,223 @@ and you’ll be well on your way.</p>
 <h2 id="varia">Varia</h2>
 
 <p><a href="/widgets">Random Widgets</a></p>
+
+<!-- Swiper script - all swipers should be initialized here. -->
+<script>(function() {
+  var SOURCES = window.TEXT_VARIABLES.sources;
+  window.Lazyload.js(SOURCES.jquery, function() {
+    function swiper(options) {
+      var $window = $(window), $root = this, $swiperWrapper, $swiperSlides, $swiperButtonPrev, $swiperButtonNext,
+        initialSlide, animation, onChange, onChangeEnd,
+        rootWidth, count, preIndex, curIndex, translateX, CRITICAL_ANGLE = Math.PI / 3;
+
+      function setOptions(options) {
+        var _options = options || {};
+        initialSlide = _options.initialSlide || 0;
+        animation = _options.animation === undefined && true;
+        onChange = onChange || _options.onChange;
+        onChangeEnd = onChangeEnd || _options.onChangeEnd;
+      }
+
+      function init() {
+        $swiperWrapper = $root.find('.swiper__wrapper');
+        $swiperSlides = $root.find('.swiper__slide');
+        $swiperButtonPrev = $root.find('.swiper__button--prev');
+        $swiperButtonNext = $root.find('.swiper__button--next');
+        animation && $swiperWrapper.addClass('swiper__wrapper--animation');
+        calc(true);
+      }
+
+      function preCalc() {
+        rootWidth = $root.width();
+        count = $swiperWrapper.children('.swiper__slide').length;
+        if (count < 2) {
+          $swiperButtonPrev.addClass('d-none');
+          $swiperButtonNext.addClass('d-none');
+        }
+        curIndex = initialSlide || 0;
+        translateX = getTranslateXFromCurIndex();
+      }
+
+      var calc = (function() {
+        var preAnimation, $swiperSlide, $preSwiperSlide;
+        return function (needPreCalc, params) {
+          needPreCalc && preCalc();
+          var _animation = (params && params.animation !== undefined) ? params.animation : animation;
+          if (preAnimation === undefined || preAnimation !== _animation) {
+            preAnimation = _animation ? $swiperWrapper.addClass('swiper__wrapper--animation') :
+              $swiperWrapper.removeClass('swiper__wrapper--animation');
+          }
+          if (preIndex !== curIndex) {
+            ($preSwiperSlide = $swiperSlides.eq(preIndex)).removeClass('active');
+            ($swiperSlide = $swiperSlides.eq(curIndex)).addClass('active');
+            onChange && onChange(curIndex, $swiperSlides.eq(curIndex), $swiperSlide, $preSwiperSlide);
+            if (onChangeEnd) {
+              if (_animation) {
+                setTimeout(function() {
+                  onChangeEnd(curIndex, $swiperSlides.eq(curIndex), $swiperSlide, $preSwiperSlide);
+                }, 400);
+              } else {
+                onChangeEnd(curIndex, $swiperSlides.eq(curIndex), $swiperSlide, $preSwiperSlide);
+              }
+            }
+            preIndex = curIndex;
+          }
+          $swiperWrapper.css('transform', 'translate(' + translateX + 'px, 0)');
+          if (count > 1) {
+            if (curIndex <= 0) {
+              $swiperButtonPrev.addClass('disabled');
+            } else {
+              $swiperButtonPrev.removeClass('disabled');
+            }
+            if (curIndex >= count - 1) {
+              $swiperButtonNext.addClass('disabled');
+            } else {
+              $swiperButtonNext.removeClass('disabled');
+            }
+          }
+        };
+      })();
+
+      function getTranslateXFromCurIndex() {
+        return curIndex <= 0 ? 0 : - rootWidth * curIndex;
+      }
+
+      function moveToIndex(index ,params) {
+        preIndex = curIndex;
+        curIndex = index;
+        translateX = getTranslateXFromCurIndex();
+        calc(false, params);
+      }
+
+      function move(type) {
+        var nextIndex = curIndex, unstableTranslateX;
+        if (type === 'prev') {
+          nextIndex > 0 && nextIndex--;
+        } else if (type === 'next') {
+          nextIndex < count - 1 && nextIndex++;
+        }
+        if (type === 'cur') {
+          moveToIndex(curIndex, { animation: true });
+          return;
+        }
+        unstableTranslateX = translateX % rootWidth !== 0;
+        if (nextIndex !== curIndex || unstableTranslateX) {
+          unstableTranslateX ? moveToIndex(nextIndex, { animation: true }) : moveToIndex(nextIndex);
+        }
+      }
+
+      setOptions(options);
+      init();
+      preIndex = curIndex;
+
+      $swiperButtonPrev.on('click', function(e) {
+        e.stopPropagation();
+        move('prev');
+      });
+      $swiperButtonNext.on('click', function(e) {
+        e.stopPropagation();
+        move('next');
+      });
+      $window.on('resize', function() {
+        calc(true, { animation: false });
+      });
+
+      (function() {
+        var pageX, pageY, velocityX, preTranslateX = translateX, timeStamp, touching;
+        function handleTouchstart(e) {
+          var point = e.touches ? e.touches[0] : e;
+          pageX = point.pageX;
+          pageY = point.pageY;
+          velocityX = 0;
+          preTranslateX = translateX;
+        }
+        function handleTouchmove(e) {
+          if (e.touches && e.touches.length > 1) {
+            return;
+          }
+          var point = e.touches ? e.touches[0] : e;
+          var deltaX = point.pageX - pageX;
+          var deltaY = point.pageY - pageY;
+          velocityX = deltaX / (e.timeStamp - timeStamp);
+          timeStamp = e.timeStamp;
+          if (e.cancelable && Math.abs(Math.atan(deltaY / deltaX)) < CRITICAL_ANGLE) {
+            touching = true;
+            translateX += deltaX;
+            calc(false, { animation: false });
+          }
+          pageX = point.pageX;
+          pageY = point.pageY;
+        }
+        function handleTouchend() {
+          touching = false;
+          var deltaX = translateX - preTranslateX;
+          var distance = deltaX + velocityX * rootWidth;
+          if (Math.abs(distance) > rootWidth / 2) {
+            distance > 0 ? move('prev') : move('next');
+          } else {
+            move('cur');
+          }
+        }
+        $swiperWrapper.on('touchstart', handleTouchstart);
+        $swiperWrapper.on('touchmove', handleTouchmove);
+        $swiperWrapper.on('touchend', handleTouchend);
+        $swiperWrapper.on('touchcancel', handleTouchend);
+
+        (function() {
+          var pressing = false, moved = false;
+          $swiperWrapper.on('mousedown', function(e) {
+            pressing = true; handleTouchstart(e);
+          });
+          $swiperWrapper.on('mousemove', function(e) {
+            pressing && (e.preventDefault(), moved = true, handleTouchmove(e));
+          });
+          $swiperWrapper.on('mouseup', function(e) {
+            pressing && (pressing = false, handleTouchend(e));
+          });
+          $swiperWrapper.on('mouseleave', function(e) {
+            pressing && (pressing = false, handleTouchend(e));
+          });
+          $swiperWrapper.on('click', function(e) {
+            moved && (e.stopPropagation(), moved = false);
+          });
+        })();
+
+        $root.on('touchmove', function(e) {
+          if (e.cancelable & touching) {
+            e.preventDefault();
+          }
+        });
+      })();
+
+      return {
+        setOptions: setOptions,
+        previous: function(){
+          move('prev');
+        },
+        next: function(){
+          move('next');
+        },
+        refresh: function() {
+          calc(true, { animation: false });
+        }
+      };
+    }
+    $.fn.swiper = swiper;
+  });
+})();
+var SOURCES = window.TEXT_VARIABLES.sources;
+window.Lazyload.js(SOURCES.jquery, function() {
+  
+    $(".swiper-landscapes").swiper();
+  
+    $(".swiper-quotes").swiper();
+  
+
+  $('.swiper-origami').swiper();
+});
+</script>
+
 </div><div class="d-print-none"><footer class="article__footer"><!-- start custom article footer snippet -->
 
 <!-- end custom article footer snippet --></footer></div>
